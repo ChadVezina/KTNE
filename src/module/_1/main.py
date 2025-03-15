@@ -2,13 +2,14 @@ from tkinter import Tk, Frame, messagebox, Button, CENTER
 
 from .tools.fonctions import make_menu, make_question, make_conclusion
 from .tools.constantes import FenetrePad
+from constants.fenetre import Titre
 
 
 class Module_1(Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Fils")
+        self.title(Titre.MODULE_1)
         self.resizable(True, True)
 
         self.questions: dict[str, dict[str, str | list[dict[str, str]]]] = {

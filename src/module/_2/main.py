@@ -2,13 +2,14 @@ from tkinter import Frame, messagebox, Toplevel, CENTER
 
 from .tools.fonctions import make_menu, make_question, make_conclusion
 from .tools.constantes import FenetrePad
+from constants.fenetre import Titre
 
 
 class Module_2(Toplevel):
     def __init__(self, root, geometrie):
         super().__init__(root)
 
-        self.title("Fils")
+        self.title(Titre.MODULE_2)
         self.geometry(geometrie)
         self.resizable(True, True)
 

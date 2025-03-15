@@ -137,8 +137,7 @@ class Module_0(Tk):
         self.input_nombre_colonnes = make_label_entry(self.fenetre_configuration, "Nombre de colonnes", 1)
         self.input_nombre_mines = make_label_entry(self.fenetre_configuration, "Nombre de mines", 2)
 
-        bouton_ok = Button(self.fenetre_configuration, font=Font.BODY, text="Lancer la nouvelle partie",
-                           command=self.lancer_partie_configuree)
+        bouton_ok = Button(self.fenetre_configuration, font=Font.BODY, text="Lancer la nouvelle partie", command=self.lancer_partie_configuree)
         bouton_ok.grid(row=3, column=0)
 
     def lancer_partie_configuree(self):

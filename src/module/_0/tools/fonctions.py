@@ -2,13 +2,6 @@ from tkinter import Label, Entry, Button, Menu, Toplevel, Text, E, INSERT, DISAB
 
 from .constantes import GridPad, TextPad, ButtonPad, EntrySize, Font
 
-# Options de couleurs prédéfinies
-bg_colors = ["red", "green", "blue", "yellow", "white", "black"]
-
-
-def change_bg_color(root, color):
-    root.configure(bg=color)
-
 
 def make_label(root, texte, rangee, colonne=0):
     composante = Label(root, font=Font.BODY, text=texte)
@@ -49,17 +42,6 @@ def make_menu(root, nouvelle, configurer, charger, sauvegarder, quitter):
     menu = Menu(root)
     menu.add_cascade(label="Fichier", menu=popup_menu)
     menu.add_command(label="Instructions", command=show_instructions)
-
-    global bg_colors
-
-    bg_submenu = Menu(menu, tearoff=0)
-    for color in bg_colors:
-        bg_submenu.add_command(label=color, command=lambda c=color: change_bg_color(root, c))
-
-    theme_menu = Menu(root, tearoff=0)
-    theme_menu.add_cascade(label="Couleur d'arrière-plan", menu=bg_submenu)
-
-    menu.add_cascade(label="Thème", menu=theme_menu)
 
     root.config(menu=menu)
 
