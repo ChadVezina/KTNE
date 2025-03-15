@@ -30,7 +30,7 @@ def make_conclusion(root, texte, rangee):
 
 
 def make_choix(root, texte, commande, rangee, colonne):
-    composante = Button(root, font=Font.BODY, text=texte, command=commande)
+    composante = Button(root, font=Font.BODY, text=texte, command=commande, bg="white")
     composante.grid(row=rangee, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
     return composante
 
