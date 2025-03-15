@@ -1,23 +1,27 @@
+from enum import Enum
 from .fenetre import Titre as TitreFenetre
 
-class Titre:
-    MODULE_1 = f"À propos des {TitreFenetre.MODULE_1}"
-    MODULE_2 = f"À propos du {TitreFenetre.MODULE_2}"
-    MODULE_3 = f"À propos du {TitreFenetre.MODULE_3}"
-    MODULE_4 = f"À propos du {TitreFenetre.MODULE_4}"
+class Titre(Enum):
+    MODULE_1 = f"À propos des {TitreFenetre.MODULE_1.value}"
+    MODULE_2 = f"À propos du {TitreFenetre.MODULE_2.value}"
+    MODULE_3 = f"À propos du {TitreFenetre.MODULE_3.value}"
+    MODULE_4 = f"À propos du {TitreFenetre.MODULE_4.value}"
     
-    MODULE_5 = f"À propos de {TitreFenetre.MODULE_5}"
-    MODULE_6 = f"À propos du {TitreFenetre.MODULE_6}"
-    MODULE_7 = f"À propos du {TitreFenetre.MODULE_7}"
-    MODULE_8 = f"À propos des {TitreFenetre.MODULE_8}"
+    MODULE_5 = f"À propos de {TitreFenetre.MODULE_5.value}"
+    MODULE_6 = f"À propos du {TitreFenetre.MODULE_6.value}"
+    MODULE_7 = f"À propos du {TitreFenetre.MODULE_7.value}"
+    MODULE_8 = f"À propos des {TitreFenetre.MODULE_8.value}"
     
-    MODULE_9 = f"À propos des {TitreFenetre.MODULE_9}"
-    MODULE_10 = f"À propos du {TitreFenetre.MODULE_10}"
-    MODULE_11 = f"À propos du {TitreFenetre.MODULE_11}"
-    MODULE_12 = f"À propos de {TitreFenetre.MODULE_12}"
+    MODULE_9 = f"À propos des {TitreFenetre.MODULE_9.value}"
+    MODULE_10 = f"À propos du {TitreFenetre.MODULE_10.value}"
+    MODULE_11 = f"À propos du {TitreFenetre.MODULE_11.value}"
+    MODULE_12 = f"À propos de {TitreFenetre.MODULE_12.value}"
 
 
-class Contenu:
+N_FENETRES = len(Titre)
+
+
+class Contenu(Enum):
     MODULE_1 = """Les fils sont comme le sang de l'électronique ! Non... L'électricité est le sang.
     Les fils sont plus comme les artères. Les veines ? Peu importe.
 

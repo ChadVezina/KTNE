@@ -1,4 +1,7 @@
-class Titre:
+from enum import Enum
+
+
+class Titre(Enum):
     MODULE_1 = "Fils"
     MODULE_2 = "Bouton"
     MODULE_3 = "Clavier"

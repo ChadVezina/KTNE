@@ -9,7 +9,7 @@ class Module_1(Tk):
     def __init__(self):
         super().__init__()
 
-        self.title(Titre.MODULE_1)
+        self.title(Titre.MODULE_1.value)
         self.resizable(True, True)
 
         self.questions: dict[str, dict[str, str | list[dict[str, str]]]] = {

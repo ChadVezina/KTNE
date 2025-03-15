@@ -9,7 +9,7 @@ class Module_2(Toplevel):
     def __init__(self, root, geometrie):
         super().__init__(root)
 
-        self.title(Titre.MODULE_2)
+        self.title(Titre.MODULE_2.value)
         self.geometry(geometrie)
         self.resizable(True, True)
 
