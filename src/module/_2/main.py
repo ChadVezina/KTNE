@@ -15,7 +15,7 @@ class Module_2(Toplevel):
 
         self.questions: dict[str, dict[str, str | list[dict[str, str]]]] = {
             "q1": {
-                "text": "Bouton bleu écrit \"Annuler\"?",
+                "text": "Bouton bleu? Bouton écrit \"Annuler\"?",
                 "options": [
                     {"text": "Oui", "next_id": "q7"},
                     {"text": "Non", "next_id": "q2"},
@@ -50,7 +50,7 @@ class Module_2(Toplevel):
                 ]
             },
             "q6": {
-                "text": "Bouton rouge écrit \"Maintenir\"?",
+                "text": "Bouton rouge? Bouton écrit \"Maintenir\"?",
                 "options": [
                     {"text": "Oui", "next_id": "c1"},
                     {"text": "Non", "next_id": "q7"},
