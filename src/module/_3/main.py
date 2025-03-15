@@ -12,130 +12,53 @@ class Module_3(Toplevel):
         self.title(Titre.MODULE_3.value)
         self.geometry(geometrie)
         self.resizable(True, True)
+        
+        self.caracteres = [
+            "Ϙ", # U+03D8
+            "Ѧ", # U+0466
+            "ƛ", # U+019B
+            "Ϟ", # U+03DE
+            "Ѭ", # U+046C
+            "ϗ", # U+03D7
+            "Ͽ", # U+03FF
+            "Ӭ", # U+04EC
+            "Ҩ", # U+04A8
+            "☆", # U+2606
+            "¿", # U+00BF
+            "©", # U+00A9
+            "Ѽ", # U+047C
+            "Җ", # U+0496
+            "Ԇ", # U+0506
+            "Ϭ", # U+03EC
+            "¶", # U+00B6
+            "ƀ", # U+0180
+            "ټ", # U+067C
+            "ψ", # U+03C8
+            "Ͼ", # U+03FE
+            "Ѯ", # U+046E
+            "★", # U+2605
+            "҂", # U+0482
+            "æ", # U+00E6
+            "Ҋ", # U+048A
+            "Ω", # U+03A9
+        ]
 
         self.questions: dict[str, dict[str, str | list[dict[str, str]]]] = {
             "q1": {
                 "text": "Combien de fils?",
                 "options": [
-                    {"text": "3", "next_id": "q3.1"},
-                    {"text": "4", "next_id": "q4.1"},
-                    {"text": "5", "next_id": "q5.1"},
-                    {"text": "6", "next_id": "q6.1"},
-                ]
-            },
-            "q3.1": {
-                "text": "Combien de fils rouges?",
-                "options": [
-                    {"text": "0", "next_id": "c3.1"},
-                    {"text": "plusieurs", "next_id": "q3.2"},
-                ]
-            },
-            "q3.2": {
-                "text": "Le dernier fil est ...?",
-                "options": [
-                    {"text": "blanc", "next_id": "c3.2"},
-                    {"text": "autre", "next_id": "q3.3"},
-                ]
-            },
-            "q3.3": {
-                "text": "Combien de fils bleus?",
-                "options": [
-                    {"text": "plus qu'un", "next_id": "c3.3"},
-                    {"text": "autre", "next_id": "c3.4"},
-                ]
-            },
-            "q4.1": {
-                "text": "Combien de fils rouges? Le dernier chiffre du numéro de série est ...?",
-                "options": [
-                    {"text": "plus qu'un / impair", "next_id": "c4.1"},
-                    {"text": "autre", "next_id": "q4.2"},
-                ]
-            },
-            "q4.2": {
-                "text": "Combien de fils rouges? Le dernier fil est ...?",
-                "options": [
-                    {"text": "0 / jaune", "next_id": "c4.2"},
-                    {"text": "autre", "next_id": "q4.3"},
-                ]
-            },
-            "q4.3": {
-                "text": "Combien de fils bleus?",
-                "options": [
-                    {"text": "1", "next_id": "c4.3"},
-                    {"text": "autre", "next_id": "q4.4"},
-                ]
-            },
-            "q4.4": {
-                "text": "Combien de fils jaunes?",
-                "options": [
-                    {"text": "plus qu'un", "next_id": "c4.4"},
-                    {"text": "autre", "next_id": "c4.5"},
-                ]
-            },
-            "q5.1": {
-                "text": "Le dernier fil est ...? Le dernier chiffre du numéro de série est ...?",
-                "options": [
-                    {"text": "noir / impair", "next_id": "c5.1"},
-                    {"text": "autre", "next_id": "q5.2"},
-                ]
-            },
-            "q5.2": {
-                "text": "Combien de fils rouges? Combien de fils jaunes?",
-                "options": [
-                    {"text": "1 / plus qu'un", "next_id": "c5.2"},
-                    {"text": "autre", "next_id": "q5.3"},
-                ]
-            },
-            "q5.3": {
-                "text": "Combien de fils noirs?",
-                "options": [
-                    {"text": "0", "next_id": "c5.3"},
-                    {"text": "plusieurs", "next_id": "c5.4"},
-                ]
-            },
-            "q6.1": {
-                "text": "Combien de fils jaunes? Le dernier chiffre du numéro de série est ...?",
-                "options": [
-                    {"text": "0 / impair", "next_id": "c6.1"},
-                    {"text": "autre", "next_id": "q6.2"},
-                ]
-            },
-            "q6.2": {
-                "text": "Combien de fils jaunes? Combien de fils blancs?",
-                "options": [
-                    {"text": "1 / plus qu'un", "next_id": "c6.2"},
-                    {"text": "autre", "next_id": "q6.3"},
-                ]
-            },
-            "q6.3": {
-                "text": "Combien de fils rouges?",
-                "options": [
-                    {"text": "0", "next_id": "c6.3"},
-                    {"text": "plusieurs", "next_id": "c6.4"},
+                    {"text": "3", "next_id": "c1"},
+                    {"text": "4", "next_id": "q2"},
+                    {"text": "5", "next_id": "q3"},
+                    {"text": "6", "next_id": "q4"},
                 ]
             },
         }
         self.conclusions = {
-            "c3.1": "Couper le 2e fil",
-            "c3.2": "Couper le dernier fil",
-            "c3.3": "Couper le dernier fil bleu",
-            "c3.4": "Couper le dernier fil",
-
-            "c4.1": "Couper le dernier fil rouge",
-            "c4.2": "Couper le premier fil",
-            "c4.3": "Couper le premier fil",
-            "c4.4": "Couper le dernier fil",
-            "c4.5": "Couper le 2e fil",
-
-            "c5.1": "Couper le 4e fil",
-            "c5.2": "Couper le premier fil",
-            "c5.3": "Couper le 2e fil",
-            "c5.4": "Couper le premier fil",
-
-            "c6.1": "Couper le 3e fil",
-            "c6.2": "Couper le 4e fil",
-            "c6.3": "Couper le dernier fil",
-            "c6.4": "Couper le 4e fil",
+            "c1": "",
+            "c2": "",
+            "c3": "",
+            "c4": "",
         }
 
         make_menu(self, self.nouvelle_partie, self.quitter)
