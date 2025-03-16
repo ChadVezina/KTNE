@@ -44,7 +44,7 @@ class Tableau:
                     old_value = colonnes_communes.get(colonne, [])
                     old_value.append(case.texte)
                     colonnes_communes[colonne] = old_value
-        return sorted(colonnes_communes.items(), key=lambda x: len(x[1]))
+        return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
 
     def initialiser_tableau(self):
         self.cases: list[Case] = []
@@ -55,13 +55,13 @@ class Tableau:
         colonnes_communes = self.obtenir_colonnes_communes()
         if len(colonnes_communes) == 0:
             return "Aucune colonne commune"
-        if len(colonnes_communes[0][1]) == 4:
+        if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             for solution_case in solution:
                 if solution_case not in colonnes_communes[0][1]:
                     solution.remove(solution_case)
-            result = str.join(" ", solution)
-            return f"Solution unique: {result}"
+            result = str.join("\t", solution)
+            return f"Solution unique:\n\n{result}"
         texte: list[str] = []
         for colonne, caracteres in colonnes_communes:
             solution = self.colonnes[colonne].copy()
@@ -69,9 +69,11 @@ class Tableau:
                 if solution_case in caracteres:
                     scan = solution.index(solution_case)
                     solution[scan] = f"({solution_case})"
-            texte.append(str.join(" ", solution))
-        result = str.join("\n", texte)
-        return f"Solutions possibles: {result}"
+            result = str.join("\t", solution)
+            n_caracteres = len(caracteres)
+            texte.append(f"{result}\t\t{n_caracteres}")
+        result = str.join("\n\n", texte)
+        return f"Solutions possibles:\n\n{result}"
 
     def afficher_solution(self):
         texte = self.get_solution()
