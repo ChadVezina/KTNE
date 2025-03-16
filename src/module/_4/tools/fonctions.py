@@ -1,33 +1,7 @@
-from tkinter import Frame, Label, Button, Menu, Toplevel, Text, INSERT, DISABLED, WORD
+from tkinter import Button, Menu, Toplevel, Text, INSERT, DISABLED, WORD
 
-from .constantes import GridPad, TextPad, ButtonPad, Font
+from .constantes import TextPad, ButtonPad, Font
 from constants.instructions import Titre, Contenu
-
-
-def make_question(root: Frame, texte: str, rangee: int, options: list[dict[str, str]], commandeText, commandeId):
-    composante = Frame(root)
-    composante.grid(row=rangee)
-
-    label = Label(composante, font=Font.BODY, text=texte)
-    label.grid(columnspan=len(options), padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-    for scan, option in enumerate(options):
-        make_choix(composante, commandeText(option), commandeId(option, scan+1), 1, scan)
-    return composante
-
-
-def make_conclusion(root, texte, rangee):
-    composante = Frame(root)
-    composante.grid(row=rangee)
-
-    label = Label(composante, font=Font.BODY, text=texte)
-    label.grid(padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-    return composante
-
-
-def make_choix(root, texte, commande, rangee, colonne):
-    composante = Button(root, font=Font.BODY, text=texte, command=commande, bg="white")
-    composante.grid(row=rangee, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-    return composante
 
 
 def make_menu(root, nouvelle, quitter):
