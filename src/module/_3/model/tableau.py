@@ -1,6 +1,7 @@
 from tkinter import Frame
 from .case import Case
 from .conclusion import Conclusion
+from tools.functions import get_width_height, calculate_x_y
 
 
 class Tableau:
@@ -13,8 +14,7 @@ class Tableau:
     def placer_tableau(self, parent):
         composante = Frame(parent)
         composante.grid(row=0)
-        ratio = self.calculateRatio(parent)
-        n_y = self.calculate_x_y(ratio)
+        n_y = self.calculate_y(parent)
         for scan in range(self.length):
             x = scan // n_y
             y = scan % n_y
@@ -79,31 +79,8 @@ class Tableau:
         texte = self.get_solution()
         self.conclusion.setText(texte)
 
-    def calculateRatio(self, parent: Frame):
-        phase_y = 20
-        dephase_x = 2
-        dephase_y = 50
-        screen_width = parent.winfo_screenwidth()-(dephase_x//2)
-        screen_height = parent.winfo_screenheight()-(dephase_y//2)-phase_y
-        return screen_width / screen_height
-
-    def calculate_x_y(self, ratio):
-        unit = self.length / (ratio+1)
-        n_x = round(unit * ratio)
-        n_y = round(unit)
-        diff = self.length - (n_x * n_y)
-        while(diff < 0):
-            if(ratio >= 1):
-                n_x -= 1
-            else:
-                n_y -= 1
-            diff = self.length - (n_x * n_y)
-        while(diff > 0):
-            if(ratio >= 1):
-                n_y += 1
-            else:
-                n_x += 1
-            diff = self.length - (n_x * n_y)
-        return n_y
+    def calculate_y(self, parent):
+        screen_width, screen_height = get_width_height(parent)
+        return calculate_x_y(screen_width, screen_height, self.length)[1]
 
 
