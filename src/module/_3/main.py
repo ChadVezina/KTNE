@@ -3,7 +3,7 @@ from tkinter import Frame, messagebox, Toplevel, CENTER
 from .tools.fonctions import make_menu, make_question, make_conclusion
 from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
-
+from .model.tableau import Tableau
 
 class Module_3(Toplevel):
     def __init__(self, root, geometrie):
@@ -42,24 +42,15 @@ class Module_3(Toplevel):
             "Ҋ", # U+048A
             "Ω", # U+03A9
         ]
-
-        self.questions: dict[str, dict[str, str | list[dict[str, str]]]] = {
-            "q1": {
-                "text": "Combien de fils?",
-                "options": [
-                    {"text": "3", "next_id": "c1"},
-                    {"text": "4", "next_id": "q2"},
-                    {"text": "5", "next_id": "q3"},
-                    {"text": "6", "next_id": "q4"},
-                ]
-            },
-        }
-        self.conclusions = {
-            "c1": "",
-            "c2": "",
-            "c3": "",
-            "c4": "",
-        }
+        self.colonnes = [
+            ["Ϙ", "Ѧ", "ƛ", "Ϟ", "Ѭ", "ϗ", "Ͽ"],
+            ["Ӭ", "Ϙ", "Ͽ", "Ҩ", "☆", "ϗ", "¿"],
+            ["©", "Ѽ", "Ҩ", "Җ", "Ԇ", "ƛ", "☆"],
+            ["Ϭ", "¶", "ƀ", "Ѭ", "Җ", "¿", "ټ"],
+            ["ψ", "ټ", "ƀ", "Ͼ", "¶", "Ѯ", "★"],
+            ["Ϭ", "Ӭ", "҂", "æ", "ψ", "Ҋ", "Ω"],
+        ]
+        self.tableau = Tableau(self.caracteres, self.colonnes)
 
         make_menu(self, self.nouvelle_partie, self.quitter)
 
@@ -75,43 +66,8 @@ class Module_3(Toplevel):
         self.redessiner()
 
     def redessiner(self):
-        self.historique = []
-        self.selectionner("q1")
-
-    def selectionner(self, id, row=0, scan=-1):
-        if(scan != -1):
-            for i, bouton in enumerate(self.cadre.winfo_children()[row].winfo_children()):
-                if(i == 0):
-                    continue
-                if i != scan:
-                    bouton.config(bg="white")
-                else:
-                    bouton.config(bg="pink")
-        if row < len(self.historique):
-            self.historique = self.historique[:row+1]
-            for scan, widget in enumerate(self.cadre.winfo_children()):
-                if(scan > row):
-                    widget.destroy()
-        self.current = id
-        self.display_question(id)
-
-    def display_question(self, question_id):
-        row = len(self.historique)
-        self.historique.append(question_id)
-        if question_id in self.conclusions:
-            make_conclusion(self.cadre, self.conclusions[question_id], row)
-            return
-        question_data = self.questions[question_id]
-        make_question(
-            self.cadre,
-            question_data['text'],
-            row,
-            question_data['options'],
-            lambda option:
-                option['text'],
-            lambda option, scan: lambda n=option['next_id']:
-                self.selectionner(n, row, scan)
-            )
+        self.tableau.placer_tableau(self.cadre)
+        self.tableau.afficher_solution(self.cadre)
 
     def nouvelle_partie(self):
         self.ouvrir_partie()
