@@ -33,5 +33,5 @@ class BoutonCaseRect:
 
 
 class Font:
-    BODY = ('Times New Roman', 16)
+    BODY = ('Times New Roman', 32)
 

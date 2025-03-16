@@ -54,7 +54,7 @@ class Tableau:
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
         if len(colonnes_communes) == 0:
-            return "Aucune colonne commune"
+            return "Solution indéterminée..."
         if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             for solution_case in solution:
