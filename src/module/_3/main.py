@@ -67,7 +67,7 @@ class Module_3(Toplevel):
 
     def redessiner(self):
         self.tableau.placer_tableau(self.cadre)
-        self.tableau.afficher_solution(self.cadre)
+        self.tableau.placer_solution(self.cadre)
 
     def nouvelle_partie(self):
         self.ouvrir_partie()

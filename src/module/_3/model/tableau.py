@@ -1,6 +1,6 @@
 from tkinter import Frame
 from .case import Case
-from ..tools.fonctions import make_conclusion
+from .conclusion import Conclusion
 
 
 class Tableau:
@@ -20,6 +20,12 @@ class Tableau:
             y = scan % n_y
             self.cases[scan].placer_case(composante, x, y)
 
+    def placer_solution(self, parent):
+        composante = Frame(parent)
+        composante.grid(row=1)
+        texte = self.get_solution()
+        self.conclusion = Conclusion(parent, texte)
+
     def valider_coordonnees(self, i):
         return i in range(self.length)
 
@@ -32,18 +38,18 @@ class Tableau:
     def obtenir_colonnes_communes(self):
         colonnes_communes: dict[int, list[str]] = {}
         for case in self.cases:
-           colonnes_valides = case.colonnes_valides(self.colonnes)
-           if colonnes_valides is not None:
-               for colonne in colonnes_valides:
-                   old_value = colonnes_communes.get(colonne, [])
-                   old_value.append(case.texte)
-                   colonnes_communes[colonne] = old_value
+            colonnes_valides = case.colonnes_valides(self.colonnes)
+            if colonnes_valides is not None:
+                for colonne in colonnes_valides:
+                    old_value = colonnes_communes.get(colonne, [])
+                    old_value.append(case.texte)
+                    colonnes_communes[colonne] = old_value
         return sorted(colonnes_communes.items(), key=lambda x: len(x[1]))
 
     def initialiser_tableau(self):
         self.cases: list[Case] = []
         for i in range(self.length):
-            self.cases.append(Case(i, self.caracteres[i]))
+            self.cases.append(Case(i, self.caracteres[i], lambda: self.afficher_solution()))
 
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
@@ -54,20 +60,22 @@ class Tableau:
             for solution_case in solution:
                 if solution_case not in colonnes_communes[0][1]:
                     solution.remove(solution_case)
-            return f"Solution unique: {str.join(" ", solution)}"
+            result = str.join(" ", solution)
+            return f"Solution unique: {result}"
         texte: list[str] = []
         for colonne, caracteres in colonnes_communes:
             solution = self.colonnes[colonne].copy()
             for solution_case in solution:
-                if solution_case not in caracteres:
+                if solution_case in caracteres:
                     scan = solution.index(solution_case)
                     solution[scan] = f"({solution_case})"
-            texte.append(f"{str.join(" ", solution)}")
-        return f"Solutions possibles: {str.join("\n", texte)}"
+            texte.append(str.join(" ", solution))
+        result = str.join("\n", texte)
+        return f"Solutions possibles: {result}"
 
-    def afficher_solution(self, parent):
+    def afficher_solution(self):
         texte = self.get_solution()
-        make_conclusion(parent, texte, 1)
+        self.conclusion.setText(texte)
 
     def calculateRatio(self, parent: Frame):
         phase_y = 20

@@ -1,9 +1,10 @@
 from .bouton_case import BoutonCase
 
 class Case:
-    def __init__(self, numero, texte):
+    def __init__(self, numero, texte, afficher_solution):
         self.numero = numero
         self.texte = texte
+        self.afficher_solution = afficher_solution
         self.bouton = None
         self.is_active = False
 
@@ -16,6 +17,7 @@ class Case:
             self.desactiver()
         else:
             self.activer()
+        self.afficher_solution()
 
     def activer(self):
         self.is_active = True
