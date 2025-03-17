@@ -77,10 +77,12 @@ class Module_4(Toplevel):
                         lambda liste: NextLink(
                             "Couper le dernier fil rouge",
                             ) if 0 in liste and 1 in liste else NextLink(
-                            "Combien de fils rouges? Le dernier fil est ...?",
+                            "Combien de fils rouges? Le dernier fil est ...?" if not 0 in liste else "Le dernier fil est ...?",
                             {
                                 0: "0",
                                 1: "jaune",
+                                } if not 0 in liste else {
+                                0: "jaune",
                                 },
                             [
                                 lambda liste: NextLink(
@@ -118,9 +120,9 @@ class Module_4(Toplevel):
                         1: "impair",
                         },
                     [
-                        lambda liste: NextLink(
+                        lambda liste0: NextLink(
                             "Couper le 4e fil",
-                            ) if 0 in liste and 1 in liste else NextLink(
+                            ) if 0 in liste0 and 1 in liste0 else NextLink(
                             "Combien de fils rouges? Combien de fils jaunes?",
                             {
                                 0: "1",
@@ -141,7 +143,9 @@ class Module_4(Toplevel):
                                             "Couper le premier fil",
                                             ),
                                     ],
-                                    ),
+                                    ) if not 0 in liste0 else NextLink(
+                                            "Couper le premier fil",
+                                            ),
                             ],
                             ),
                     ],
@@ -155,10 +159,12 @@ class Module_4(Toplevel):
                         lambda liste: NextLink(
                             "Couper le 3e fil",
                             ) if 0 in liste and 1 in liste else NextLink(
-                            "Combien de fils jaunes? Combien de fils blancs?",
+                            "Combien de fils jaunes? Combien de fils blancs?" if not 0 in liste else "Combien de fils blancs?",
                             {
                                 0: "1",
                                 1: "plus qu'un",
+                                } if not 0 in liste else {
+                                0: "plus qu'un",
                                 },
                             [
                                 lambda liste: NextLink(
