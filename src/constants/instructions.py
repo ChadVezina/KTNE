@@ -48,7 +48,12 @@ class Contenu(Enum):
     - Le bouton original s'allumera suivi d'un autre. Répéter la séquence dans l'ordre en utilisant la correspondance des couleurs.
     - La séquence s'allongera d'une couleur à chaque fois que la bonne séquence sera entrée, jusqu'à ce que le module soit désarmé.
     """
-    MODULE_5 = """ """
+    MODULE_5 = """La mémoire est une chose fragile, mais bon tout l'est quand une bombe explose, alors faites attention!
+    
+    - Appuyer sur la bonne touche pour aller à la prochaine étape. Compléter toutes les étapes pour désarmer le module.
+    - Appuyer sur un bouton incorrect vous fera revenir à l'étape 1.
+    - Les boutons sont ordonnés de gauche à droite.
+    """
     MODULE_6 = """ """
     MODULE_7 = """ """
     MODULE_8 = """ """
