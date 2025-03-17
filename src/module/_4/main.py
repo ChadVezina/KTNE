@@ -133,7 +133,7 @@ class Module_4(Toplevel):
                                                             False,
                                                             ),
                                                     ],
-                                                    ) if not 0 in liste_1 and not 0 in liste_3 else NextLink(
+                                                    ) if not 0 in liste_1 and not 0 in liste_3 and not 1 in liste_1 and not 1 in liste_2 else NextLink(
                                                     "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
                                                     {
                                                         0: "bleu",
