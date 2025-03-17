@@ -1,6 +1,6 @@
 from tkinter import Frame, messagebox, Toplevel, CENTER
 
-from .tools.fonctions import make_menu, make_question, make_conclusion
+from .tools.fonctions import make_menu
 from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
 from .model.tableau import Tableau

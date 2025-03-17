@@ -6,18 +6,6 @@ from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
 
 
-def test():
-    lambda liste: NextLink(
-                    "",
-                    {
-                        
-                        },
-                    [
-                        
-                    ],
-                    ) if 1 in liste else None,
-
-
 class Module_4(Toplevel):
     def __init__(self, root, geometrie):
         super().__init__(root)
