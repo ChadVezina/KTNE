@@ -133,6 +133,23 @@ class Module_4(Toplevel):
                                                             False,
                                                             ),
                                                     ],
+                                                    ) if not 0 in liste_1 and not 0 in liste_3 else NextLink(
+                                                    "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
+                                                    {
+                                                        0: "bleu",
+                                                        1: "blanc",
+                                                        2: "jaune",
+                                                        },
+                                                    [
+                                                        lambda liste: NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
+                                                            ) if 0 in liste else NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
+                                                            ) if 2 in liste else NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
+                                                            ),
+                                                    ],
+                                                    False,
                                                     ),
                                             ],
                                             ) if not 0 in liste_1 and not 0 in liste_3 else NextLink(
