@@ -8,6 +8,24 @@ from constants.fenetre import Titre
 
 def test():
     lambda liste: NextLink(
+                            "",
+                            {
+                                
+                                },
+                            [
+                                
+                            ],
+                            ) if 0 in liste and 1 in liste else lambda liste: NextLink(
+                            "",
+                            {
+                                
+                                },
+                            [
+                                
+                            ],
+                            ),
+    
+    lambda liste0: NextLink(
                     "",
                     {
                         

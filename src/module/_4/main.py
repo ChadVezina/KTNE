@@ -15,84 +15,122 @@ class Module_4(Toplevel):
         self.resizable(True, True)
 
         self.next_link = NextLink(
-            "Combien de fils?",
+            "Bouton est ...?",
             {
-                0: "3",
-                1: "4",
-                2: "5",
-                3: "6",
-            },
+                0: "bleu",
+                1: "\"Annuler\"",
+                },
             [
                 lambda liste: NextLink(
-                    "Combien de fils rouges?",
+                    "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
                     {
-                        0: "0",
+                        0: "bleu",
+                        1: "blanc",
+                        2: "jaune",
                         },
                     [
                         lambda liste: NextLink(
-                            "Couper le 2e fil",
+                            "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
                             ) if 0 in liste else NextLink(
-                            "Le dernier fil est ...?",
-                            {
-                                0: "blanc",
-                                },
-                            [
-                                lambda liste: NextLink(
-                                    "Couper le dernier fil",
-                                    ) if 0 in liste else NextLink(
-                                    "Combien de fils bleus?",
-                                    {
-                                        0: "plus qu'un",
-                                        },
-                                    [
-                                        lambda liste: NextLink(
-                                            "Couper le dernier fil bleu",
-                                            ) if 0 in liste else NextLink(
-                                            "Couper le dernier fil",
-                                            ),
-                                    ],
-                                    ),
-                            ],
+                            "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
+                            ) if 2 in liste else NextLink(
+                            "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
                             ),
                     ],
-                    ) if 0 in liste else NextLink(
-                    "Combien de fils rouges? Le dernier chiffre du numéro de série est ...?",
+                    False,
+                    ) if 0 in liste and 1 in liste else NextLink(
+                    "Combien de piles? Bouton est ...?",
                     {
-                        0: "plus qu'un",
-                        1: "impair",
+                        0: "plus qu'une",
+                        1: "\"Exploser\"",
                         },
                     [
                         lambda liste: NextLink(
-                            "Couper le dernier fil rouge",
+                            "Appuyer et immédiatement relâcher le bouton",
                             ) if 0 in liste and 1 in liste else NextLink(
-                            "Combien de fils rouges? Le dernier fil est ...?" if not 0 in liste else "Le dernier fil est ...?",
+                            "Bouton est ...? Indicateur est ...?",
                             {
-                                0: "0",
-                                1: "jaune",
-                                } if not 0 in liste else {
-                                0: "jaune",
+                                0: "blanc",
+                                1: "allumé avec \"CAR\"",
                                 },
                             [
                                 lambda liste: NextLink(
-                                    "Couper le premier fil",
-                                    ) if 0 in liste and 1 in liste else NextLink(
-                                    "Combien de fils bleus?",
+                                    "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
                                     {
-                                        0: "1",
+                                        0: "bleu",
+                                        1: "blanc",
+                                        2: "jaune",
                                         },
                                     [
                                         lambda liste: NextLink(
-                                            "Couper le premier fil",
+                                            "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
                                             ) if 0 in liste else NextLink(
-                                            "Combien de fils jaunes?",
+                                            "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
+                                            ) if 2 in liste else NextLink(
+                                            "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
+                                            ),
+                                    ],
+                                    False,
+                                    ) if 0 in liste and 1 in liste else NextLink(
+                                    "Combien de piles? Indicateur est ...?",
+                                    {
+                                        0: "plus que 2",
+                                        1: "allumé avec \"FRK\"",
+                                        },
+                                    [
+                                        lambda liste: NextLink(
+                                            "Appuyer et immédiatement relâcher le bouton",
+                                            ) if 0 in liste and 1 in liste else NextLink(
+                                            "Bouton est ...?",
                                             {
-                                                0: "plus qu'un",
+                                                0: "jaune",
                                                 },
                                             [
                                                 lambda liste: NextLink(
-                                                    "Couper le dernier fil",
+                                                    "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
+                                                    {
+                                                        0: "bleu",
+                                                        1: "blanc",
+                                                        2: "jaune",
+                                                        },
+                                                    [
+                                                        lambda liste: NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
+                                                            ) if 0 in liste else NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
+                                                            ) if 2 in liste else NextLink(
+                                                            "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
+                                                            ),
+                                                    ],
+                                                    False,
                                                     ) if 0 in liste else NextLink(
-                                                    "Couper le 2e fil",
+                                                    "Bouton est ...?",
+                                                    {
+                                                        0: "rouge",
+                                                        1: "\"Maintenir\"",
+                                                        },
+                                                    [
+                                                        lambda liste: NextLink(
+                                                            "Appuyer et immédiatement relâcher le bouton",
+                                                            ) if 0 in liste and 1 in liste else NextLink(
+                                                            "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
+                                                            {
+                                                                0: "bleu",
+                                                                1: "blanc",
+                                                                2: "jaune",
+                                                                },
+                                                            [
+                                                                lambda liste: NextLink(
+                                                                    "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
+                                                                    ) if 0 in liste else NextLink(
+                                                                    "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
+                                                                    ) if 2 in liste else NextLink(
+                                                                    "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
+                                                                    ),
+                                                            ],
+                                                            False,
+                                                            ),
+                                                    ],
                                                     ),
                                             ],
                                             ),
@@ -101,81 +139,8 @@ class Module_4(Toplevel):
                             ],
                             ),
                     ],
-                    ) if 1 in liste else NextLink(
-                    "Le dernier fil est ...? Le dernier chiffre du numéro de série est ...?",
-                    {
-                        0: "noir",
-                        1: "impair",
-                        },
-                    [
-                        lambda liste0: NextLink(
-                            "Couper le 4e fil",
-                            ) if 0 in liste0 and 1 in liste0 else NextLink(
-                            "Combien de fils rouges? Combien de fils jaunes?",
-                            {
-                                0: "1",
-                                1: "plus qu'un",
-                                },
-                            [
-                                lambda liste: NextLink(
-                                    "Couper le premier fil",
-                                    ) if 0 in liste and 1 in liste else NextLink(
-                                    "Combien de fils noirs?",
-                                    {
-                                        0: "0",
-                                        },
-                                    [
-                                        lambda liste: NextLink(
-                                            "Couper le 2e fil",
-                                            ) if 0 in liste else NextLink(
-                                            "Couper le premier fil",
-                                            ),
-                                    ],
-                                    ) if not 0 in liste0 else NextLink(
-                                            "Couper le premier fil",
-                                            ),
-                            ],
-                            ),
-                    ],
-                    ) if 2 in liste else NextLink(
-                    "Combien de fils jaunes? Le dernier chiffre du numéro de série est ...?",
-                    {
-                        0: "0",
-                        1: "impair",
-                        },
-                    [
-                        lambda liste: NextLink(
-                            "Couper le 3e fil",
-                            ) if 0 in liste and 1 in liste else NextLink(
-                            "Combien de fils jaunes? Combien de fils blancs?" if not 0 in liste else "Combien de fils blancs?",
-                            {
-                                0: "1",
-                                1: "plus qu'un",
-                                } if not 0 in liste else {
-                                0: "plus qu'un",
-                                },
-                            [
-                                lambda liste: NextLink(
-                                    "Couper le 4e fil",
-                                    ) if 0 in liste and 1 in liste else NextLink(
-                                    "Combien de fils rouges?",
-                                    {
-                                        0: "0",
-                                        },
-                                    [
-                                        lambda liste: NextLink(
-                                            "Couper le dernier fil",
-                                            ) if 0 in liste else NextLink(
-                                            "Couper le 4e fil",
-                                            ),
-                                    ],
-                                    ),
-                            ],
-                            ),
-                    ],
-                    ) if 3 in liste else None,
+                    ),
             ],
-            False,
         )
 
         make_menu(self, self.nouvelle_partie, self.quitter)

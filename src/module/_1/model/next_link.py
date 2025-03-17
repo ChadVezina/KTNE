@@ -22,7 +22,8 @@ class NextLink:
         self.parent = parent
         self.row = row
         self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
-        self.next(self.etape.options.get_active_options())
+        if(self.options != {}):
+            self.next(self.etape.options.get_active_options())
 
     def undo(self):
         if(self.next_link is not None):
