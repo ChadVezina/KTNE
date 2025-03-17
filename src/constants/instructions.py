@@ -40,7 +40,14 @@ class Contenu(Enum):
     - Seulement l'une de ces colonnes contient les 4 symboles présents sur le clavier.
     - Appuyer sur les 4 boutons dans leur ordre d'apparition dans cette colonne de haut en bas.
     """
-    MODULE_4 = """ """
+    MODULE_4 = """Les modules peuvent être identifiés par leur petite lumière en haut à droite.
+    Lorsque cette lumière est verte, le module est désarmé.
+
+    - 1 des 4 boutons s'allumera.
+    - En utilisant la table, appuyer sur le bouton correspondant.
+    - Le bouton original s'allumera suivi d'un autre. Répéter la séquence dans l'ordre en utilisant la correspondance des couleurs.
+    - La séquence s'allongera d'une couleur à chaque fois que la bonne séquence sera entrée, jusqu'à ce que le module soit désarmé.
+    """
     MODULE_5 = """ """
     MODULE_6 = """ """
     MODULE_7 = """ """
