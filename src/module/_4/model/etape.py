@@ -11,13 +11,17 @@ class Etape(Frame):
         if(len(options.items()) != 0):
             self.options = Options(self, 1, options)
             for scan in options.keys():
-                self.options.add_command(scan, lambda: command(scan))
+                self.options.add_command(scan, command)
         else:
             self.options = None
 
-    def clic(self, scan: int):
+    def clic(self, i: int, multiple: bool = True):
+        if(not multiple):
+            for scan in self.options.get_active_options():
+                if(scan != i):
+                    self.clic(scan)
         if(self.options is not None):
-            if self.options.is_active(scan):
-                self.options.desactiver(scan)
+            if self.options.is_active(i):
+                self.options.desactiver(i)
             else:
-                self.options.activer(scan)
+                self.options.activer(i)

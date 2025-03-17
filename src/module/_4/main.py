@@ -67,8 +67,7 @@ class Module_4(Toplevel):
                             ],
                             ),
                     ],
-                    ) if 0 in liste else None,
-                lambda liste: NextLink(
+                    ) if 0 in liste else NextLink(
                     "Combien de fils rouges? Le dernier chiffre du numéro de série est ...?",
                     {
                         0: "plus qu'un",
@@ -112,8 +111,7 @@ class Module_4(Toplevel):
                             ],
                             ),
                     ],
-                    ) if 1 in liste else None,
-                lambda liste: NextLink(
+                    ) if 1 in liste else NextLink(
                     "Le dernier fil est ...? Le dernier chiffre du numéro de série est ...?",
                     {
                         0: "noir",
@@ -147,8 +145,7 @@ class Module_4(Toplevel):
                             ],
                             ),
                     ],
-                    ) if 2 in liste else None,
-                lambda liste: NextLink(
+                    ) if 2 in liste else NextLink(
                     "Combien de fils jaunes? Le dernier chiffre du numéro de série est ...?",
                     {
                         0: "0",
@@ -183,7 +180,8 @@ class Module_4(Toplevel):
                             ),
                     ],
                     ) if 3 in liste else None,
-            ]
+            ],
+            False,
         )
 
         make_menu(self, self.nouvelle_partie, self.quitter)

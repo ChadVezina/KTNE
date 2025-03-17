@@ -20,8 +20,8 @@ class Options(Frame):
         bouton.grid(row=0, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return bouton
 
-    def add_command(self, scan: int, commande: Callable):
-        self.boutons[scan].config(command=commande)
+    def add_command(self, scan: int, commande: Callable[[int], None]):
+        self.boutons[scan]["command"] = lambda: commande(scan)
 
     def get_active_options(self):
         liste = [scan for scan in self.boutons_active if self.boutons_active[scan]]

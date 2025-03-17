@@ -7,11 +7,13 @@ class NextLink:
         self,
         texte: str,
         options: dict[int, str] = {},
-        actions: list[Callable[[list[int]], "NextLink | None"]] = []
+        actions: list[Callable[[list[int]], "NextLink | None"]] = [],
+        multiple: bool = True,
         ):
         self.texte = texte
         self.options = options
         self.actions = actions
+        self.multiple = multiple
         self.etape: Etape | None = None
         self.next_link: NextLink | None = None
 
@@ -20,6 +22,7 @@ class NextLink:
         self.parent = parent
         self.row = row
         self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
+        self.next(self.etape.options.get_active_options())
 
     def undo(self):
         if(self.next_link is not None):
@@ -33,7 +36,7 @@ class NextLink:
 
     def clic(self, scan: int):
         if(self.etape is not None):
-            self.etape.clic(scan)
+            self.etape.clic(scan, self.multiple)
             self.next(self.etape.options.get_active_options())
 
     def next(self, active_options: list[int]):
@@ -44,4 +47,6 @@ class NextLink:
                     self.next_link.undo()
                 self.next_link = action
                 self.next_link.do(self.parent, self.row + 1)
-                break
+                return
+        if(self.next_link is not None):
+            self.next_link.undo()
