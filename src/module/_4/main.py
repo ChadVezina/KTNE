@@ -234,34 +234,6 @@ class Module_4(Toplevel):
                                             ],
                                             False,
                                             ) if 0 in liste_5 else NextLink(
-                                            "Bouton est ...?",
-                                            {
-                                                0: "rouge",
-                                                1: "\"Maintenir\"",
-                                                },
-                                            [
-                                                lambda liste_6: NextLink(
-                                                    "Appuyer et immédiatement relâcher le bouton",
-                                                    ) if 0 in liste_6 and 1 in liste_6 else NextLink(
-                                                    "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
-                                                    {
-                                                        0: "bleu",
-                                                        1: "blanc",
-                                                        2: "jaune",
-                                                        },
-                                                    [
-                                                        lambda liste: NextLink(
-                                                            "Relâcher le bouton quand le minuteur affiche un 4 dans n'importe quelle position",
-                                                            ) if 0 in liste else NextLink(
-                                                            "Relâcher le bouton quand le minuteur affiche un 5 dans n'importe quelle position",
-                                                            ) if 2 in liste else NextLink(
-                                                            "Relâcher le bouton quand le minuteur affiche un 1 dans n'importe quelle position",
-                                                            ),
-                                                    ],
-                                                    False,
-                                                    ),
-                                            ],
-                                            ) if not 0 in liste_1 and not 0 in liste_3 and not 1 in liste_1 else NextLink(
                                             "Maintenir le bouton appuyé et...\nDe quelle couleur est la bande qui vient de s'allumer à droite?",
                                             {
                                                 0: "bleu",
