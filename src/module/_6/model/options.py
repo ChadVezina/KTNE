@@ -10,10 +10,9 @@ class Options(Frame):
 
     def make_options(self, options: dict[int, str]):
         self.boutons: dict[int, Button] = {}
-        self.boutons_active: dict[int, bool] = {}
+        self.bouton_active: int = -1
         for option in options.items():
             self.boutons[option[0]] = self.make_button(option[0], option[1])
-            self.boutons_active[option[0]] = False
 
     def make_button(self, colonne: int, texte: str):
         bouton = Button(self, font=Font.BODY, text=texte, bg="white")
@@ -23,17 +22,19 @@ class Options(Frame):
     def add_command(self, scan: int, commande: Callable[[int], None]):
         self.boutons[scan]["command"] = lambda: commande(scan)
 
-    def get_active_options(self):
-        liste = [scan for scan in self.boutons_active if self.boutons_active[scan]]
-        return sorted(liste, key=lambda scan: scan)
+    def get_active_option(self):
+        return self.bouton_active
 
     def is_active(self, scan: int):
-        return self.boutons_active[scan]
+        return self.bouton_active == scan
 
     def activer(self, scan: int):
+        if(self.bouton_active != -1 and not self.is_active(scan)):
+            self.desactiver(self.bouton_active)
         self.boutons[scan]["bg"] = "pink"
-        self.boutons_active[scan] = True
+        self.bouton_active = scan
 
     def desactiver(self, scan: int):
-        self.boutons[scan]["bg"] = "white"
-        self.boutons_active[scan] = False
+        if(self.is_active(scan)):
+            self.boutons[scan]["bg"] = "white"
+            self.bouton_active = -1
