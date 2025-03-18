@@ -120,9 +120,13 @@ class Module_4(Toplevel):
         self.cadre.bind("<Configure>", self.on_inner_frame_change)
 
         self.scroll_active = False
-        self.update_scroll()
+        self.bind("<Map>", lambda e: self.enter())
+        self.bind("<Unmap>", lambda e: self.enter())
         self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
         self.ouvrir_partie()
+
+    def enter(self):
+        self.on_inner_frame_change()
 
     def on_inner_frame_change(self, event=None):
         self.outer_frame.event_generate("<Configure>")
