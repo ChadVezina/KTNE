@@ -120,6 +120,7 @@ class Module_4(Toplevel):
         self.cadre.bind("<Configure>", self.on_inner_frame_change)
 
         self.scroll_active = False
+        self.update_scroll()
         self.ouvrir_partie()
 
     def on_inner_frame_change(self, event=None):
