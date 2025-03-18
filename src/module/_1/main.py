@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, messagebox, CENTER
+from tkinter import Tk, Frame, messagebox, Canvas, BOTH, LEFT, TOP
 
 from .model.next_link import NextLink
 from .tools.fonctions import make_menu
@@ -209,11 +209,57 @@ class Module_1(Tk):
 
         make_menu(self, self.nouvelle_partie, self.quitter)
 
-        self.cadre = Frame(self)
-        self.cadre.grid(padx=FenetrePad.PADDING_X, pady=FenetrePad.PADDING_Y)
-        self.cadre.place(relx=0.5, rely=0.5, anchor=CENTER)
+        container = Frame(self)
+        container.pack(fill=BOTH, expand=True)
+        self.canvas = Canvas(container)
 
+        self.outer_frame = Frame(self.canvas)
+        self.cadre = Frame(self.outer_frame)
+        self.cadre.pack(side=TOP, padx=FenetrePad.PADDING_X, pady=FenetrePad.PADDING_Y)
+
+        self.canvas.create_window((0, 0), window=self.outer_frame, anchor="n", tags="frame")
+        self.canvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+        self.outer_frame.bind("<Configure>", self.update_scroll)
+        self.canvas.bind("<Configure>", self.center_content)
+        self.cadre.bind("<Configure>", self.on_inner_frame_change)
+
+        self.scroll_active = False
+        self.update_scroll()
         self.ouvrir_partie()
+
+    def on_inner_frame_change(self, event=None):
+        self.outer_frame.event_generate("<Configure>")
+        self.canvas.event_generate("<Configure>")
+
+    def center_content(self, event=None):
+        canvas_width = self.canvas.winfo_width()
+        self.canvas.itemconfig("frame", width=canvas_width)
+
+    def update_scroll(self, event=None):
+        self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
+        content_height = self.outer_frame.winfo_height()
+        canvas_height = self.canvas.winfo_height()
+
+        if content_height > canvas_height:
+            if not self.scroll_active:
+                self.bind_mouse_scroll(True)
+                self.scroll_active = True
+        else:
+            if self.scroll_active:
+                self.bind_mouse_scroll(False)
+                self.scroll_active = False
+
+    def bind_mouse_scroll(self, activate):
+        if activate:
+            self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
+        else:
+            self.canvas.unbind_all("<MouseWheel>")
+
+    def on_mousewheel(self, event):
+        if self.scroll_active:
+            self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
     def ouvrir_partie(self):
         self.redessiner()
