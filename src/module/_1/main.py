@@ -226,6 +226,7 @@ class Module_1(Tk):
 
         self.scroll_active = False
         self.update_scroll()
+        self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
         self.ouvrir_partie()
 
     def on_inner_frame_change(self, event=None):
@@ -244,15 +245,15 @@ class Module_1(Tk):
 
         if content_height > canvas_height:
             if not self.scroll_active:
-                self.bind_mouse_scroll(True)
                 self.scroll_active = True
+                self.bind_mouse_scroll()
         else:
             if self.scroll_active:
-                self.bind_mouse_scroll(False)
                 self.scroll_active = False
+                self.bind_mouse_scroll()
 
-    def bind_mouse_scroll(self, activate):
-        if activate:
+    def bind_mouse_scroll(self):
+        if self.scroll_active:
             self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
         else:
             self.canvas.unbind_all("<MouseWheel>")
