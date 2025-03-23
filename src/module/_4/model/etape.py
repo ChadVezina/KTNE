@@ -17,7 +17,4 @@ class Etape(Frame):
 
     def clic(self, i: int):
         if(self.options is not None):
-            #if self.options.is_active(i):
-                #self.options.desactiver(i)
-            #else:
             self.options.activer(i)
