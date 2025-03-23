@@ -60,7 +60,13 @@ class Contenu(Enum):
     - Appuyer sur un bouton incorrect vous fera revenir à l'étape 1.
     - Les boutons sont ordonnés de gauche à droite.
     """
-    MODULE_7 = """ """
+    MODULE_7 = """Je sais que vous êtes en train de vous dire: "Sérieux ? Du code Morse ? Et puis quoi encore?"
+    Mais au moins, c'est le vrai code Morse, donc concentrez-vous et vous apprendrez peut-être quelque chose.
+    
+    - Interpréter le signal de la lumière clignotante en utilisant la table de décodage du code Morse pour épeler un mot du tableau sur la droite.
+    - Le signal se répètera, avec une longue pause entre les répétitions.
+    - Lorsque le mot a été identifié, régler la fréquence correspondante et appuyer sur le bouton de transmission (TX).
+    """
     MODULE_8 = """ """
     MODULE_9 = """ """
     MODULE_10 = """ """
