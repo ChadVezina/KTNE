@@ -20,7 +20,7 @@ class Options(Frame):
     def make_entry(self, colonne: int):
         x = colonne // 2
         y = colonne % 2
-        input = Entry(self, font=Font.BODY, bg="white", textvariable=self.sv[colonne])
+        input = Entry(self, font=Font.BODY, textvariable=self.sv[colonne], bg="white")
         input.grid(row=x, column=y, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return input
 

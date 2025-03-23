@@ -19,7 +19,7 @@ class Options(Frame):
             self.inputs[scan].bind("<KeyRelease>", lambda e: commande())
 
     def make_entry(self, colonne: int):
-        input = Entry(self, font=Font.BODY, bg="white", textvariable=self.sv[colonne])
+        input = Entry(self, font=Font.BODY, textvariable=self.sv[colonne], bg="white")
         input.grid(row=colonne, column=0, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return input
 
