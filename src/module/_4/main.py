@@ -94,10 +94,8 @@ class Module_4(Toplevel):
                                             ))
                                         ) else None,
                             ],
-                            False,
                             ),
                     ],
-                    False,
                     ),
             ],
         )

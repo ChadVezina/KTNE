@@ -8,12 +8,10 @@ class NextLink:
         texte: str,
         options: dict[int, str] = {},
         actions: list[Callable[[list[int]], "NextLink | None"]] = [],
-        multiple: bool = True,
         ):
         self.texte = texte
         self.options = options
         self.actions = actions
-        self.multiple = multiple
         self.etape: Etape | None = None
         self.next_link: NextLink | None = None
 
@@ -37,7 +35,7 @@ class NextLink:
 
     def clic(self, scan: int):
         if(self.etape is not None):
-            self.etape.clic(scan, self.multiple)
+            self.etape.clic(scan)
             self.next(self.etape.options.get_active_options())
 
     def next(self, active_options: list[int]):
