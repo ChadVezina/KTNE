@@ -211,7 +211,7 @@ class Module_1(Tk):
 
         container = Frame(self)
         container.pack(fill=BOTH, expand=True)
-        self.canvas = Canvas(container)
+        self.canvas = Canvas(container, bd=0, highlightthickness=0)
 
         self.outer_frame = Frame(self.canvas)
         self.cadre = Frame(self.outer_frame)
