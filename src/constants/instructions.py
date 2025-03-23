@@ -67,9 +67,24 @@ class Contenu(Enum):
     - Le signal se répètera, avec une longue pause entre les répétitions.
     - Lorsque le mot a été identifié, régler la fréquence correspondante et appuyer sur le bouton de transmission (TX).
     """
-    MODULE_8 = """ """
-    MODULE_9 = """ """
-    MODULE_10 = """ """
-    MODULE_11 = """ """
+    MODULE_8 = """Ces fils ne sont pas comme les autres. Ils peuvent avoir deux couleurs !
+    Cela les rend complètement différents. La bonne nouvelle, c'est que vous avez à votre disposition
+    des instructions très précises ! Peut-être trop précises...
+    
+    - Regarder chaque fil: il y a une lumière au-dessus et de l'espace pour le symbole "★" sous le fil.
+    - Pour chaque combinaison de fil/lumière/symbole, utiliser le diagramme de Venn pour savoir s'il faut couper le fil ou non.
+    - Chaque fil peut être rayé de multiples couleurs.
+    """
+    MODULE_9 = """C'est difficile d'expliquer comment ça fonctionne. C'est ingénieux, mais il y avait
+    sûrement un moyen plus simple de gérer neuf fils.
+    
+    - Sur ce module, il y a plusieurs panneaux contenant des fils mais seulement l'un d'eux est visible à la fois. Passer au panneau suivant précédent avec la flèche du haut.
+    - Couper tous les fils du panneau qui doivent être coupés, avant de passer au suivant.
+    - Couper les fils comme décrit sur la table ci-dessous. Le nombre d'apparitions de fils est cumulatif sur tous les panneaux du module.
+    """
+    MODULE_10 = """
+    """
+    MODULE_11 = """
+    """
     MODULE_12 = """ Annexe """
 
