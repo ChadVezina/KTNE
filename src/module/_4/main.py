@@ -38,59 +38,59 @@ class Module_4(Toplevel):
                                 },
                             [
                                 lambda liste: NextLink(
-                                    "Appuyer sur le bouton rouge",
+                                    "rouge",
                                     ) if(
-                                        (0 in liste_1 and (
-                                            (0 in liste_2 and 3 in liste) or
-                                            (1 in liste_2 and 0 in liste) or
-                                            (2 in liste_2 and 3 in liste)
+                                        (0 == liste_1 and (
+                                            (0 == liste_2 and 3 == liste) or
+                                            (1 == liste_2 and 0 == liste) or
+                                            (2 == liste_2 and 3 == liste)
                                             )) or
-                                        (not 0 in liste_1 and (
-                                            (0 in liste_2 and 1 in liste) or
-                                            (1 in liste_2 and 3 in liste) or
-                                            (2 in liste_2 and 1 in liste)
+                                        (not 0 == liste_1 and (
+                                            (0 == liste_2 and 1 == liste) or
+                                            (1 == liste_2 and 3 == liste) or
+                                            (2 == liste_2 and 1 == liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
-                                    "Appuyer sur le bouton bleu",
+                                    "bleu",
                                     ) if(
-                                        (0 in liste_1 and (
-                                            (0 in liste_2 and 0 in liste) or
-                                            (1 in liste_2 and 1 in liste) or
-                                            (2 in liste_2 and 2 in liste)
+                                        (0 == liste_1 and (
+                                            (0 == liste_2 and 0 == liste) or
+                                            (1 == liste_2 and 1 == liste) or
+                                            (2 == liste_2 and 2 == liste)
                                             )) or
-                                        (not 0 in liste_1 and (
-                                            (0 in liste_2 and 0 in liste) or
-                                            (1 in liste_2 and 2 in liste) or
-                                            (2 in liste_2 and 3 in liste)
+                                        (not 0 == liste_1 and (
+                                            (0 == liste_2 and 0 == liste) or
+                                            (1 == liste_2 and 2 == liste) or
+                                            (2 == liste_2 and 3 == liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
-                                    "Appuyer sur le bouton vert",
+                                    "vert",
                                     ) if(
-                                        (0 in liste_1 and (
-                                            (0 in liste_2 and 2 in liste) or
-                                            (1 in liste_2 and 3 in liste) or
-                                            (2 in liste_2 and 1 in liste)
+                                        (0 == liste_1 and (
+                                            (0 == liste_2 and 2 == liste) or
+                                            (1 == liste_2 and 3 == liste) or
+                                            (2 == liste_2 and 1 == liste)
                                             )) or
-                                        (not 0 in liste_1 and (
-                                            (0 in liste_2 and 3 in liste) or
-                                            (1 in liste_2 and 1 in liste) or
-                                            (2 in liste_2 and 0 in liste)
+                                        (not 0 == liste_1 and (
+                                            (0 == liste_2 and 3 == liste) or
+                                            (1 == liste_2 and 1 == liste) or
+                                            (2 == liste_2 and 0 == liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
-                                    "Appuyer sur le bouton jaune",
+                                    "jaune",
                                     ) if(
-                                        (0 in liste_1 and (
-                                            (0 in liste_2 and 1 in liste) or
-                                            (1 in liste_2 and 2 in liste) or
-                                            (2 in liste_2 and 0 in liste)
+                                        (0 == liste_1 and (
+                                            (0 == liste_2 and 1 == liste) or
+                                            (1 == liste_2 and 2 == liste) or
+                                            (2 == liste_2 and 0 == liste)
                                             )) or
-                                        (not 0 in liste_1 and (
-                                            (0 in liste_2 and 2 in liste) or
-                                            (1 in liste_2 and 0 in liste) or
-                                            (2 in liste_2 and 2 in liste)
+                                        (not 0 == liste_1 and (
+                                            (0 == liste_2 and 2 == liste) or
+                                            (1 == liste_2 and 0 == liste) or
+                                            (2 == liste_2 and 2 == liste)
                                             ))
                                         ) else None,
                             ],

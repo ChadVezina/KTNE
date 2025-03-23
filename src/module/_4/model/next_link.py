@@ -7,7 +7,7 @@ class NextLink:
         self,
         texte: str,
         options: dict[int, str] = {},
-        actions: list[Callable[[list[int]], "NextLink | None"]] = [],
+        actions: list[Callable[[int], "NextLink | None"]] = [],
         ):
         self.texte = texte
         self.options = options
@@ -15,13 +15,23 @@ class NextLink:
         self.etape: Etape | None = None
         self.next_link: NextLink | None = None
 
-    def do(self, parent: Frame, row: int):
+    def do(self, parent: Frame, row: int, historique: list[str] = []):
         self.undo()
         self.parent = parent
         self.row = row
-        self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
+        self.historique = historique
+        if len(self.options.items()) == 0:
+            etapes = historique.copy()
+            etapes.append(self.texte)
+            for scan, texte in enumerate(etapes):
+                if(scan % 3 == 2):
+                    etapes[scan] += "\n"
+            texte = str.join("\n", etapes)
+            self.etape = Etape(parent, row, f"Appuyer sur ce(s) bouton(s):\n{texte}", lambda scan: self.clic(scan), self.options)
+        else:
+            self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
         if len(self.options.items()) != 0:
-            self.next(self.etape.options.get_active_options())
+            self.next(self.etape.options.get_active_option())
 
     def undo(self):
         if(self.next_link is not None):
@@ -36,15 +46,19 @@ class NextLink:
     def clic(self, scan: int):
         if(self.etape is not None):
             self.etape.clic(scan)
-            self.next(self.etape.options.get_active_options())
+            self.next(self.etape.options.get_active_option())
+            if(self.next_link is not None):
+                self.next_link.historique.append(self.next_link.texte)
 
-    def next(self, active_options: list[int]):
+    def next(self, active_option: list[int]):
+        historique: list[str] = []
         if(self.next_link is not None):
+            historique = self.next_link.historique.copy()
             self.next_link.undo()
             self.next_link = None
         for condition in self.actions:
-            action = condition(active_options)
+            action = condition(active_option)
             if action is not None:
                 self.next_link = action
-                self.next_link.do(self.parent, self.row + 1)
+                self.next_link.do(self.parent, self.row + 1, historique)
                 return
