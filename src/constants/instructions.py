@@ -82,9 +82,18 @@ class Contenu(Enum):
     - Couper tous les fils du panneau qui doivent être coupés, avant de passer au suivant.
     - Couper les fils comme décrit sur la table ci-dessous. Le nombre d'apparitions de fils est cumulatif sur tous les panneaux du module.
     """
-    MODULE_10 = """
+    MODULE_10 = """On dirait une sorte de labyrinthe... Probablement plagié sur la nappe d'une table de restaurant.
+    
+    - Trouver le labyrinthe auquel les repères circulaires correspondent.
+    - Le désamorceur doit amener le point blanc jusqu'au triangle rouge en utilisant les boutons en forme de flèche.
+    - Attention: Ne pas traverser les lignes visibles dans les labyrinthes. Ces lignes sont invisibles sur la bombe.
     """
-    MODULE_11 = """
+    MODULE_11 = """Heureusement que ces mots de passe ne suivent pas les normes gouvernementales:
+    22 caractères, majuscules et minuscules, nombres aléatoires et pas de palindromes de 3 caractères ou plus.
+    
+    - Les boutons au-dessus et en dessous d'une position permettent de passer en revue les différentes lettres possibles pour cette position.
+    - Seule une combinaison des lettres disponibles correspond à un mot de la liste en dessous.
+    - Appuyer sur le bouton "Valider" lorsque les lettres forment un mot correct.
     """
     MODULE_12 = """ Annexe """
 
