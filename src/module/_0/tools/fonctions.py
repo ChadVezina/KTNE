@@ -64,7 +64,7 @@ def show_instructions():
     instructions_window = Toplevel()
     instructions_window.title("Instructions du jeu Démineur")
 
-    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y)
+    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y, width=30, height=15)
     instructions_text.insert(INSERT,
     """Le Démineur est un jeu de réflexion dont le but est de localiser des mines cachées dans un champ de cases.
 

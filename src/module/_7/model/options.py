@@ -12,7 +12,7 @@ class Options(Frame):
         self.make_options(commande)
 
     def make_options(self, commande: Callable[[], None]):
-        for scan in range(6):
+        for scan in range(7):
             self.sv[scan] = StringVar()
             self.inputs[scan] = self.make_entry(scan)
             self.labels[scan] = self.make_label(scan)
@@ -33,7 +33,7 @@ class Options(Frame):
 
     def get_labels(self):
         labels: dict[str, int] = {}
-        for scan in range(6):
+        for scan in range(7):
             texte = self.get_label(scan)
             if(texte == ""):
                 continue
@@ -52,7 +52,7 @@ class Options(Frame):
 
     def get_options(self):
         options: list[str] = []
-        for scan in range(6):
+        for scan in range(7):
             options.append(self.get_option(scan))
         return options
 

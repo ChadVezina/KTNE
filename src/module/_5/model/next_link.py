@@ -14,36 +14,6 @@ class NextLink:
             4: ["", "reed", "leed", "they're"],
             5: ["display", "says", "no", "lead", "hold on", "you are", "there", "see", "cee"],
         }
-        self.libelle = [
-            "ready",#0
-            "first",#1
-            "no",#2
-            "blank",#3
-            "nothing",#4
-            "yes",#5
-            "what",#6
-            "uhhh",#7
-            "left",#8
-            "right",#9
-            "middle",#10
-            "okay",#11
-            "wait",#12
-            "press",#13
-            "you",#14
-            "you are",#15
-            "your",#16
-            "you're",#17
-            "ur",#18
-            "u",#19
-            "uh huh",#20
-            "uh uh",#21
-            "what?",#22
-            "done",#23
-            "next",#24
-            "hold",#25
-            "sure",#26
-            "like",#27
-            ]
         self.table_libelle = {
             "ready": ["yes", "okay", "what", "middle", "left", "press", "right", "blank", "ready", "no", "first", "uhhh", "nothing", "wait"],
             "first": ["left", "okay", "yes", "middle", "no", "right", "nothing", "uhhh", "wait", "ready", "blank", "what", "press", "first"],
