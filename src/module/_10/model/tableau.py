@@ -62,64 +62,64 @@ class Tableau:
             }, (3, 3), (3, 5)),
             TypeTableau._3: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
-                1: [0, 6], #vertical
-                2: [], #horizontal
-                3: [0, 6], #vertical
-                4: [], #horizontal
-                5: [0, 6], #vertical
-                6: [], #horizontal
-                7: [0, 6], #vertical
-                8: [], #horizontal
-                9: [0, 6], #vertical
-                10: [], #horizontal
-                11: [0, 6], #vertical
+                1: [0, 2, 6], #vertical
+                2: [2, 3, 4], #horizontal
+                3: [0, 1, 2, 6], #vertical
+                4: [3, 4], #horizontal
+                5: [0, 1, 3, 5, 6], #vertical
+                6: [1, 2, 4], #horizontal
+                7: [0, 1, 6], #vertical
+                8: [1, 2, 3, 4], #horizontal
+                9: [0, 5, 6], #vertical
+                10: [1, 2, 3], #horizontal
+                11: [0, 3, 5, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (0, 0), (3, 0)),
             TypeTableau._4: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
                 1: [0, 6], #vertical
-                2: [], #horizontal
-                3: [0, 6], #vertical
-                4: [], #horizontal
-                5: [0, 6], #vertical
-                6: [], #horizontal
-                7: [0, 6], #vertical
-                8: [], #horizontal
-                9: [0, 6], #vertical
-                10: [], #horizontal
-                11: [0, 6], #vertical
+                2: [0, 1, 2, 3], #horizontal
+                3: [0, 5, 6], #vertical
+                4: [1, 2, 4, 5], #horizontal
+                5: [0, 2, 4, 6], #vertical
+                6: [2, 3], #horizontal
+                7: [0, 1, 4, 5, 6], #vertical
+                8: [1, 2, 4], #horizontal
+                9: [0, 1, 5, 6], #vertical
+                10: [2, 3, 4], #horizontal
+                11: [0, 1, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (2, 4), (5, 3)),
             TypeTableau._5: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
-                1: [0, 6], #vertical
-                2: [], #horizontal
-                3: [0, 6], #vertical
-                4: [], #horizontal
-                5: [0, 6], #vertical
-                6: [], #horizontal
-                7: [0, 6], #vertical
-                8: [], #horizontal
-                9: [0, 6], #vertical
-                10: [], #horizontal
-                11: [0, 6], #vertical
+                1: [0, 1, 3, 6], #vertical
+                2: [3], #horizontal
+                3: [0, 1, 2, 3, 5, 6], #vertical
+                4: [4], #horizontal
+                5: [0, 2, 3, 4, 6], #vertical
+                6: [1, 2, 5], #horizontal
+                7: [0, 2, 4, 5, 6], #vertical
+                8: [0], #horizontal
+                9: [0, 2, 3, 4, 6], #vertical
+                10: [1, 2, 4], #horizontal
+                11: [0, 4, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (0, 4), (4, 2)),
             TypeTableau._6: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
-                1: [0, 6], #vertical
-                2: [], #horizontal
-                3: [0, 6], #vertical
-                4: [], #horizontal
-                5: [0, 6], #vertical
-                6: [], #horizontal
-                7: [0, 6], #vertical
-                8: [], #horizontal
-                9: [0, 6], #vertical
-                10: [], #horizontal
+                1: [0, 4, 6], #vertical
+                2: [1, 2], #horizontal
+                3: [0, 1, 3, 5, 6], #vertical
+                4: [2, 3, 4], #horizontal
+                5: [0, 2, 4, 6], #vertical
+                6: [0, 1, 3, 5], #horizontal
+                7: [0, 2, 5, 6], #vertical
+                8: [3, 4], #horizontal
+                9: [0, 1, 2, 5, 6], #vertical
+                10: [1, 2, 3], #horizontal
                 11: [0, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (0, 1), (5, 1)),
             TypeTableau._7: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
                 1: [0, 6], #vertical
@@ -134,7 +134,7 @@ class Tableau:
                 10: [], #horizontal
                 11: [0, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (0, 3), (3, 2)),
             TypeTableau._8: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
                 1: [0, 6], #vertical
@@ -149,12 +149,12 @@ class Tableau:
                 10: [], #horizontal
                 11: [0, 6], #vertical
                 12: [0, 1, 2, 3, 4, 5], #horizontal
-            }, (0, 0), (0, 0)),
+            }, (1, 2), (4, 0)),
         }
         self.initialiser_tableau()
         #self.add_a(1, 0)
         #self.add_b(2, 5)
-        type = TypeTableau._2
+        type = TypeTableau._7
         self.add_a(self.types[type][1][0], self.types[type][1][1])
         self.add_b(self.types[type][2][0], self.types[type][2][1])
 
