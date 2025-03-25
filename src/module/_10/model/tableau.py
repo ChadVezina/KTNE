@@ -146,7 +146,13 @@ class Tableau:
         if solution == []:
             return "Pas de solution"
         else:
-            return " -> ".join(solution)
+            lignes = [" -> ".join(x) for x in zip(solution[0::3], solution[1::3], solution[2::3])]
+            n_deplacements = len(solution)
+            if n_deplacements % 3 == 2:
+                lignes.append(" -> ".join(solution[-2:]))
+            elif n_deplacements % 3 == 1:
+                lignes.append(solution[-1])
+            return "\n".join(lignes)
 
     def solve(self) -> list[str]:
         if(self.depart is None or self.arrivee is None):
