@@ -12,45 +12,8 @@ class Module_10(Toplevel):
         self.title(Titre.MODULE_10.value)
         self.geometry(geometrie)
         self.resizable(True, True)
-
-        self.caracteres = [
-            "Ϙ", # U+03D8
-            "Ѧ", # U+0466
-            "ƛ", # U+019B
-            "Ϟ", # U+03DE
-            "Ѭ", # U+046C
-            "ϗ", # U+03D7
-            "Ͽ", # U+03FF
-            "Ӭ", # U+04EC
-            "Ҩ", # U+04A8
-            "☆", # U+2606
-            "¿", # U+00BF
-            "©", # U+00A9
-            "Ѽ", # U+047C
-            "Җ", # U+0496
-            "Ԇ", # U+0506
-            "Ϭ", # U+03EC
-            "¶", # U+00B6
-            "ƀ", # U+0180
-            "ټ", # U+067C
-            "ψ", # U+03C8
-            "Ͼ", # U+03FE
-            "Ѯ", # U+046E
-            "★", # U+2605
-            "҂", # U+0482
-            "æ", # U+00E6
-            "Ҋ", # U+048A
-            "Ω", # U+03A9
-        ]
-        self.colonnes = [
-            ["Ϙ", "Ѧ", "ƛ", "Ϟ", "Ѭ", "ϗ", "Ͽ"],
-            ["Ӭ", "Ϙ", "Ͽ", "Ҩ", "☆", "ϗ", "¿"],
-            ["©", "Ѽ", "Ҩ", "Җ", "Ԇ", "ƛ", "☆"],
-            ["Ϭ", "¶", "ƀ", "Ѭ", "Җ", "¿", "ټ"],
-            ["ψ", "ټ", "ƀ", "Ͼ", "¶", "Ѯ", "★"],
-            ["Ϭ", "Ӭ", "҂", "æ", "ψ", "Ҋ", "Ω"],
-        ]
-        self.tableau = Tableau(self.caracteres, self.colonnes)
+        
+        self.tableau = Tableau()
 
         make_menu(self, self.nouvelle_partie, self.quitter)
 

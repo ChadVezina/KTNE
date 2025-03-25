@@ -5,32 +5,41 @@ from ..tools.enums import TypeCase
 
 
 class BoutonCase(Button):
-    def __init__(self, parent, x, y, texte, commande):
+    def __init__(self, parent, x: int, y: int, commande):
         self.x = x
         self.y = y
         super().__init__(
             parent,
             font=Font.BODY,
-            text=".",
+            text="",
             padx=BoutonCaseRect.PADDING_X,
             pady=BoutonCaseRect.PADDING_Y,
             width=BoutonCaseRect.WIDTH,
             height=BoutonCaseRect.HEIGHT,
             command=commande,
-            bg="white",
+            border=0,
             )
         self.grid(row=x, column=y)
 
     def setType(self, type: TypeCase):
         match type:
-            case TypeCase.VIDE:
-                self["text"] = "white"
-            case TypeCase.OBSTACLE:
-                self["text"] = "black"
+            case TypeCase.POINT_A:
+                self["text"] = "◐"
+            case TypeCase.POINT_B:
+                self["text"] = "◑"
             case TypeCase.DEPART:
-                self["text"] = "red"
+                self["text"] = "▢"
             case TypeCase.ARRIVEE:
-                self["text"] = "green"
+                self["text"] = "▲"
+            case TypeCase.MUR:
+                if self.x % 2 == 0:
+                    self["text"] = "━"
+                else:
+                    self["text"] = "┃"
+            case TypeCase.MUR_VIDE:
+                self["text"] = ""
+            case TypeCase.VIDE:
+                self["text"] = "▪"
             case _:
                 pass
 
