@@ -1,4 +1,5 @@
 from tkinter import Frame
+import heapq
 
 from .case import Case
 from .conclusion import Conclusion
@@ -47,9 +48,11 @@ class Tableau:
             case TypeCase.DEPART:
                 self.depart = None
                 self.cases[x][y].setType(TypeCase.VIDE)
+                self.afficher_solution()
             case TypeCase.ARRIVEE:
                 self.arrivee = None
                 self.cases[x][y].setType(TypeCase.VIDE)
+                self.afficher_solution()
             case TypeCase.VIDE:
                 if self.depart is None:
                     self.depart = (x, y)
@@ -57,6 +60,7 @@ class Tableau:
                 elif self.arrivee is None:
                     self.arrivee = (x, y)
                     self.cases[x][y].setType(TypeCase.ARRIVEE)
+                self.afficher_solution()
             case _:
                 pass
 
@@ -137,10 +141,85 @@ class Tableau:
             for j in range(self.max_col):
                 self.cases[i][j].init()
 
-    def get_solution(self):
-        return "Solution"
+    def get_solution(self) -> str:
+        solution = self.solve()
+        if solution == []:
+            return "Pas de solution"
+        else:
+            return " -> ".join(solution)
+
+    def solve(self) -> list[str]:
+        if(self.depart is None or self.arrivee is None):
+            return []
+
+        # Construire le graphe des déplacements possibles
+        graphe: dict[tuple[int, int], list[tuple[int, int]]] = {}
+        for i in range(1, 13, 2):
+            for j in range(1, 13, 2):
+                noeud = (i, j)
+                voisins: list[tuple[int, int]] = []
+                # Vérifier déplacement haut
+                if i - 2 >= 0 and self.cases[i-1][j].type == TypeCase.MUR_VIDE:
+                    voisins.append((i-2, j))
+                # Vérifier déplacement bas
+                if i + 2 < 13 and self.cases[i+1][j].type == TypeCase.MUR_VIDE:
+                    voisins.append((i+2, j))
+                # Vérifier déplacement gauche
+                if j - 2 >= 0 and self.cases[i][j-1].type == TypeCase.MUR_VIDE:
+                    voisins.append((i, j-2))
+                # Vérifier déplacement droite
+                if j + 2 < 13 and self.cases[i][j+1].type == TypeCase.MUR_VIDE:
+                    voisins.append((i, j+2))
+                graphe[noeud] = voisins
+
+        # Algorithme de Dijkstra
+        file_priorite: list[tuple[int, tuple[int, int]]] = []
+        heapq.heappush(file_priorite, (0, self.depart))
+        predecesseurs: dict[tuple[int, int], tuple[int, int]] = {}
+        couts = {noeud: float('inf') for noeud in graphe}
+        couts[self.depart] = 0
+        while file_priorite.count != 0:
+            cout_actuel, noeud_actuel = heapq.heappop(file_priorite)
+            if noeud_actuel == self.arrivee:
+                break
+            if cout_actuel > couts[noeud_actuel]:
+                continue
+            for voisin in graphe[noeud_actuel]:
+                nouveau_cout = cout_actuel + 1
+                if nouveau_cout < couts[voisin]:
+                    couts[voisin] = nouveau_cout
+                    predecesseurs[voisin] = noeud_actuel
+                    heapq.heappush(file_priorite, (nouveau_cout, voisin))
+
+        # Reconstituer le chemin
+        chemin: list[tuple[int, int]] = []
+        noeud_courant: tuple[int, int] | None = self.arrivee
+        if noeud_courant not in predecesseurs and noeud_courant != self.depart:
+            return []
+        while noeud_courant is not None:
+            chemin.append(noeud_courant)
+            noeud_courant = predecesseurs.get(noeud_courant, None)
+        chemin.reverse()
+        if chemin[0] != self.depart:
+            return []
+
+        # Convertir le chemin en directions
+        directions: list[str] = []
+        for i in range(len(chemin)-1):
+            x1, y1 = chemin[i]
+            x2, y2 = chemin[i+1]
+            if x2 > x1:
+                directions.append("bas")
+            elif x2 < x1:
+                directions.append("haut")
+            elif y2 > y1:
+                directions.append("droite")
+            elif y2 < y1:
+                directions.append("gauche")
+        return directions
 
     def afficher_solution(self):
+        self.conclusion.setText("Chargement...")
         texte = self.get_solution()
         self.conclusion.setText(texte)
 
