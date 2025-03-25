@@ -6,6 +6,7 @@ from module._4.main import Module_4
 from module._5.main import Module_5
 from module._6.main import Module_6
 from module._7.main import Module_7
+from module._10.main import Module_10
 from constants.fenetre import N_MODULES
 from tools.functions import calculateSize
 
@@ -24,6 +25,8 @@ def getModule(numero, fenetre, geometry):
             return Module_6(fenetre, geometry)
         case 7:
             return Module_7(fenetre, geometry)
+        case 10:
+            return Module_10(fenetre, geometry)
         case _:
             pass
 
