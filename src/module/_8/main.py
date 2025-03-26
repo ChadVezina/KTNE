@@ -6,11 +6,11 @@ from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
 
 
-class Module_9(Toplevel):
+class Module_8(Toplevel):
     def __init__(self, root, geometrie):
         super().__init__(root)
 
-        self.title(Titre.MODULE_9.value)
+        self.title(Titre.MODULE_8.value)
         self.geometry(geometrie)
         self.resizable(True, True)
 
