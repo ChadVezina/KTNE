@@ -14,6 +14,8 @@ class Tableau:
         self.b = None
         self.depart = None
         self.arrivee = None
+        self.tableau = None
+        self.solution = None
         self.types = {
             TypeTableau._0: ({
                 0: [0, 1, 2, 3, 4, 5], #horizontal
@@ -161,9 +163,38 @@ class Tableau:
                 cases.append(Case(i, j))
             self.cases.append(cases)
 
-    def init_a_b(self, type: TypeTableau):
+    def set_type(self, type: TypeTableau):
+        self.clear()
         self.add_a(*self.types[type][1])
         self.add_b(*self.types[type][2])
+        if self.depart is not None:
+            case = self.cases[self.depart[0]][self.depart[1]]
+            if case.type == TypeCase.VIDE:
+                case.setType(TypeCase.DEPART)
+            else:
+                self.depart = None
+        if self.arrivee is not None:
+            case = self.cases[self.arrivee[0]][self.arrivee[1]]
+            if case.type == TypeCase.VIDE:
+                case.setType(TypeCase.ARRIVEE)
+            else:
+                self.arrivee = None
+        self.afficher_solution()
+
+    def clear_type(self):
+        self.clear()
+        if self.depart is not None:
+            self.cases[self.depart[0]][self.depart[1]].setType(TypeCase.DEPART)
+        if self.arrivee is not None:
+            self.cases[self.arrivee[0]][self.arrivee[1]].setType(TypeCase.ARRIVEE)
+        if(self.a is not None):
+            x, y = self.get_coords(*self.a)
+            self.cases[x][y].setType(TypeCase.VIDE)
+        if(self.b is not None):
+            x, y = self.get_coords(*self.b)
+            self.cases[x][y].setType(TypeCase.VIDE)
+        self.a = None
+        self.b = None
 
     def clic(self, x: int, y: int, type: TypeCase):
         match type:
@@ -186,18 +217,32 @@ class Tableau:
             case _:
                 pass
 
-    def placer_tableau(self, parent):
+    def do(self, parent, row: int):
+        self.tableau = self.placer_tableau(parent, row)
+        self.solution = self.placer_solution(parent, row)
+
+    def undo(self):
+        if self.tableau is not None:
+            self.tableau.destroy()
+            self.tableau = None
+        if self.solution is not None:
+            self.solution.destroy()
+            self.solution = None
+
+    def placer_tableau(self, parent, row: int):
         composante = Frame(parent)
-        composante.grid(row=0)
+        composante.grid(row=row)
         for i in range(self.max_row):
             for j in range(self.max_col):
                 self.cases[i][j].placer_case(composante, i, j, lambda x, y, type: self.clic(x, y, type))
+        return composante
 
-    def placer_solution(self, parent):
+    def placer_solution(self, parent, row: int):
         composante = Frame(parent)
-        composante.grid(row=1)
+        composante.grid(row=row+1)
         texte = self.get_solution()
         self.conclusion = Conclusion(parent, texte)
+        return composante
 
     def valider_coordonnees(self, i: int, j: int):
         return i in range(self.max_row) and j in range(self.max_col)
