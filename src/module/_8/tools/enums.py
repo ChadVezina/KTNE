@@ -16,6 +16,22 @@ class TypeSolution(Enum):
     B = 4
 
     @property
+    def str_value2(self):
+        match self.value:
+            case 0:
+                return "C"
+            case 1:
+                return "N"
+            case 2:
+                return "S"
+            case 3:
+                return "P"
+            case 4:
+                return "B"
+            case _:
+                pass
+
+    @property
     def str_value(self):
         match self.value:
             case 0:
@@ -23,10 +39,10 @@ class TypeSolution(Enum):
             case 1:
                 return "Ne pas couper le fil"
             case 2:
-                return "Couper le fil si le dernier chiffre du numéro de série est pair"
+                return "Couper le fil\nsi le dernier chiffre\ndu numéro de série est pair"
             case 3:
-                return "Couper le fil si la bombe a un port parallèle"
+                return "Couper le fil\nsi la bombe a\nun port parallèle"
             case 4:
-                return "Couper le fil si la bombe a deux piles ou plus"
+                return "Couper le fil\nsi la bombe a\ndeux piles ou plus"
             case _:
                 pass

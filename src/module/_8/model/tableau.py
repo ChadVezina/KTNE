@@ -1,5 +1,4 @@
 from .case import Case
-from ..tools.enums import TypeConnexion, TypeFil
 
 
 class Tableau:
