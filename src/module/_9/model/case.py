@@ -32,11 +32,10 @@ class Case:
 
     def update_solution(self):
         if self.action and self.connexion:
-            test = self.action(self.connexion)
             if self.action(self.connexion):
-                self.set_solution(f"Couper {self.type.name} {self.connexion.name} {test}")
+                self.set_solution("Couper")
             else:
-                self.set_solution(f"Ne pas couper {self.type.name} {self.connexion.name} {test}")
+                self.set_solution("Ne pas couper")
 
     def set_solution(self, texte):
         self.solution.set_texte(texte)
