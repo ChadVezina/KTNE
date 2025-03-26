@@ -22,12 +22,12 @@ def make_menu(root, nouvelle, quitter):
 
 def show_instructions():
     instructions_window = Toplevel()
-    instructions_window.title(Titre.MODULE_3.value)
+    instructions_window.title(Titre.MODULE_9.value)
 
-    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY2, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y, width=30, height=15)
-    instructions_text.insert(INSERT, Contenu.MODULE_3.value)
+    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y, width=30, height=15)
+    instructions_text.insert(INSERT, Contenu.MODULE_9.value)
     instructions_text.config(state=DISABLED)
     instructions_text.pack()
 
-    ok_button = Button(instructions_window, font=Font.BODY2, text="OK", command=instructions_window.destroy)
+    ok_button = Button(instructions_window, font=Font.BODY, text="OK", command=instructions_window.destroy)
     ok_button.pack(padx=ButtonPad.PADDING_X, pady=ButtonPad.PADDING_Y)
