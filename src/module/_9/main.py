@@ -1,6 +1,6 @@
 from tkinter import Frame, messagebox, Toplevel, Canvas, BOTH, LEFT, TOP
 
-from .model.next_link import NextLink
+from .model.tableau import Tableau
 from .tools.fonctions import make_menu
 from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
@@ -26,7 +26,7 @@ class Module_9(Toplevel):
         self.geometry(geometrie)
         self.resizable(True, True)
 
-        
+        self.tableau = Tableau()
 
         make_menu(self, self.nouvelle_partie, self.quitter)
 
@@ -91,8 +91,7 @@ class Module_9(Toplevel):
         self.redessiner()
 
     def redessiner(self):
-        self.next_link.undo()
-        self.next_link.do(self.cadre, 0)
+        self.tableau.placer_tableau(self.cadre)
 
     def nouvelle_partie(self):
         self.ouvrir_partie()

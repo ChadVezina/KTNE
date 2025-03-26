@@ -1,86 +1,78 @@
-from tkinter import Frame
 from .case import Case
-from .conclusion import Conclusion
-from tools.functions import get_width_height, calculate_x_y
+from ..tools.enums import TypeConnexion, TypeFil
 
 
 class Tableau:
-    def __init__(self, caracteres: list[str], colonnes: list[list[str]]):
-        self.caracteres = caracteres
-        self.colonnes = colonnes
-        self.length = len(self.caracteres)
+    def __init__(self):
+        self.length = 9
+        self.table = {
+            TypeFil.ROUGE: [
+                [TypeConnexion.C],
+                [TypeConnexion.B],
+                [TypeConnexion.A],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.B],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.A, TypeConnexion.B, TypeConnexion.C],
+                [TypeConnexion.A, TypeConnexion.B],
+                [TypeConnexion.B],
+            ],
+            TypeFil.BLEU: [
+                [TypeConnexion.B],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.B],
+                [TypeConnexion.A],
+                [TypeConnexion.B],
+                [TypeConnexion.B, TypeConnexion.C],
+                [TypeConnexion.C],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.A],
+            ],
+            TypeFil.NOIR: [
+                [TypeConnexion.A, TypeConnexion.B, TypeConnexion.C],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.B],
+                [TypeConnexion.A, TypeConnexion.C],
+                [TypeConnexion.B],
+                [TypeConnexion.B, TypeConnexion.C],
+                [TypeConnexion.A, TypeConnexion.B],
+                [TypeConnexion.C],
+                [TypeConnexion.C],
+            ],
+        }
         self.initialiser_tableau()
-
-    def placer_tableau(self, parent):
-        composante = Frame(parent)
-        composante.grid(row=0)
-        n_y = self.calculate_y(parent)
-        for scan in range(self.length):
-            x = scan // n_y
-            y = scan % n_y
-            self.cases[scan].placer_case(composante, x, y)
-
-    def placer_solution(self, parent):
-        composante = Frame(parent)
-        composante.grid(row=1)
-        texte = self.get_solution()
-        self.conclusion = Conclusion(parent, texte)
-
-    def valider_coordonnees(self, i):
-        return i in range(self.length)
-
-    def obtenir_case(self, numero):
-        if not self.valider_coordonnees(numero):
-            return None
-
-        return self.cases[numero]
-
-    def obtenir_colonnes_communes(self):
-        colonnes_communes: dict[int, list[str]] = {}
-        for case in self.cases:
-            colonnes_valides = case.colonnes_valides(self.colonnes)
-            if colonnes_valides is not None:
-                for colonne in colonnes_valides:
-                    old_value = colonnes_communes.get(colonne, [])
-                    old_value.append(case.texte)
-                    colonnes_communes[colonne] = old_value
-        return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
 
     def initialiser_tableau(self):
         self.cases: list[Case] = []
         for i in range(self.length):
-            self.cases.append(Case(i, self.caracteres[i], lambda: self.afficher_solution()))
+            self.cases.append(Case(i, lambda numero: self.clic(numero)))
 
-    def get_solution(self):
-        colonnes_communes = self.obtenir_colonnes_communes()
-        if len(colonnes_communes) == 0:
-            return "Solution indéterminée..."
-        if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
-            solution = self.colonnes[colonnes_communes[0][0]].copy()
-            for solution_case in solution:
-                if solution_case not in colonnes_communes[0][1]:
-                    solution.remove(solution_case)
-            result = str.join("\t", solution)
-            return f"Solution unique:\n\n{result}"
-        texte: list[str] = []
-        for colonne, caracteres in colonnes_communes:
-            solution = self.colonnes[colonne].copy()
-            for solution_case in solution:
-                if solution_case in caracteres:
-                    scan = solution.index(solution_case)
-                    solution[scan] = f"({solution_case})"
-            result = str.join("\t", solution)
-            n_caracteres = len(caracteres)
-            texte.append(f"{result}\t\t{n_caracteres}")
-        result = str.join("\n\n", texte)
-        return f"Solutions possibles:\n\n{result}"
+    def placer_tableau(self, parent):
+        for scan in range(self.length):
+            self.cases[scan].placer_case(parent)
 
-    def afficher_solution(self):
-        texte = self.get_solution()
-        self.conclusion.setText(texte)
-
-    def calculate_y(self, parent):
-        screen_width, screen_height = get_width_height(parent)
-        return calculate_x_y(screen_width, screen_height, self.length)[1]
-
-
+    def clic(self, numero: int):
+        for scan, case in enumerate(self.cases, numero+1):
+            if case.is_active:
+                case.clear_solution()
+        rouge = 0
+        bleu = 0
+        noir = 0
+        for scan, case in enumerate(self.cases):
+            if not case.is_active:
+                return
+            match case.type:
+                case TypeFil.ROUGE:
+                    table = self.table[TypeFil.ROUGE][rouge].copy()
+                    case.add_solution(lambda connexion: connexion in table)
+                    rouge += 1
+                case TypeFil.BLEU:
+                    table = self.table[TypeFil.BLEU][bleu].copy()
+                    case.add_solution(lambda connexion: connexion in table)
+                    bleu += 1
+                case TypeFil.NOIR:
+                    table = self.table[TypeFil.NOIR][noir].copy()
+                    case.add_solution(lambda connexion: connexion in table)
+                    noir += 1
+                case _:
+                    pass

@@ -26,7 +26,7 @@ class EntrySize:
 
 
 class BoutonCaseRect:
-    WIDTH = 2 * MULTI_SIZE
+    WIDTH = 5 * MULTI_SIZE
     HEIGHT = 1 * MULTI_SIZE
     PADDING_X = 1 * MULTI_PAD
     PADDING_Y = 3 * MULTI_PAD
