@@ -12,7 +12,7 @@ class Module_10(Toplevel):
         self.title(Titre.MODULE_10.value)
         self.geometry(geometrie)
         self.resizable(True, True)
-        
+
         self.tableau = Tableau()
 
         make_menu(self, self.nouvelle_partie, self.quitter)

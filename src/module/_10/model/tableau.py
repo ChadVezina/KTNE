@@ -152,11 +152,6 @@ class Tableau:
             }, (1, 2), (4, 0)),
         }
         self.initialiser_tableau()
-        #self.add_a(1, 0)
-        #self.add_b(2, 5)
-        type = TypeTableau._8
-        self.add_a(self.types[type][1][0], self.types[type][1][1])
-        self.add_b(self.types[type][2][0], self.types[type][2][1])
 
     def initialiser_tableau(self):
         self.cases: list[list[Case]] = []
@@ -165,6 +160,10 @@ class Tableau:
             for j in range(self.max_col):
                 cases.append(Case(i, j))
             self.cases.append(cases)
+
+    def init_a_b(self, type: TypeTableau):
+        self.add_a(*self.types[type][1])
+        self.add_b(*self.types[type][2])
 
     def clic(self, x: int, y: int, type: TypeCase):
         match type:
