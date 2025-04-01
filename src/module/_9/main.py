@@ -37,7 +37,15 @@ class Module_9(Toplevel):
         self.bind("<Map>", lambda e: self.enter())
         self.bind("<Unmap>", lambda e: self.enter())
         self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
+        self.bind("<Button-2>", lambda e: self.redessiner())
+        self.bind("<Button-3>", lambda e: self.clic())
         self.ouvrir_partie()
+
+    def clic(self):
+        if self.state() == "zoomed":
+            self.state("normal")
+        else:
+            self.state("zoomed")
 
     def enter(self):
         self.on_inner_frame_change()
@@ -79,6 +87,8 @@ class Module_9(Toplevel):
         self.redessiner()
 
     def redessiner(self):
+        for widget in self.cadre.winfo_children():
+            widget.destroy()
         self.tableau.placer_tableau(self.cadre)
 
     def nouvelle_partie(self):
