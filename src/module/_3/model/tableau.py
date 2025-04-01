@@ -57,9 +57,8 @@ class Tableau:
             return "Solution indéterminée..."
         if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
-            for solution_case in solution:
-                if solution_case not in colonnes_communes[0][1]:
-                    solution.remove(solution_case)
+            selection = colonnes_communes[0][1].copy()
+            solution = [val for val in solution if val in selection]
             result = str.join("\t", solution)
             return f"Solution unique:\n\n{result}"
         texte: list[str] = []
