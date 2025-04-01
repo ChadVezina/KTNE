@@ -6,36 +6,6 @@ from .tools.constantes import FenetrePad
 from constants.fenetre import Titre
 
 
-def test():
-    lambda liste: NextLink(
-                            "",
-                            {
-                                
-                                },
-                            [
-                                
-                            ],
-                            ) if 0 in liste and 1 in liste else lambda liste: NextLink(
-                            "",
-                            {
-                                
-                                },
-                            [
-                                
-                            ],
-                            ),
-    
-    lambda liste0: NextLink(
-                    "",
-                    {
-                        
-                        },
-                    [
-                        
-                    ],
-                    ) if 1 in liste else None,
-
-
 class Module_1(Tk):
     def __init__(self):
         super().__init__()
