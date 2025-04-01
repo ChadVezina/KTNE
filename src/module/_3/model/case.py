@@ -1,16 +1,22 @@
+from tkinter import Frame, Label
 from .bouton_case import BoutonCase
 
 class Case:
-    def __init__(self, numero, texte, afficher_solution):
+    def __init__(self, numero, texte, hint, afficher_solution):
         self.numero = numero
         self.texte = texte
+        self.hint = hint
         self.afficher_solution = afficher_solution
         self.bouton = None
         self.is_active = False
 
     def placer_case(self, parent, x, y):
         self.is_active = False
-        self.bouton = BoutonCase(parent, x, y, self.texte, lambda: self.clic())
+        self.composante = Frame(parent)
+        self.composante.grid(row=x, column=y)
+        self.bouton = BoutonCase(self.composante, 0, 0, self.texte, lambda: self.clic())
+        self.label = Label(self.composante, text=self.hint)
+        self.label.grid(row=1, column=0)
 
     def clic(self):
         if self.is_active:

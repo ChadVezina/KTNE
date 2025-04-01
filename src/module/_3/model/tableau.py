@@ -5,8 +5,9 @@ from tools.functions import get_width_height, calculate_x_y
 
 
 class Tableau:
-    def __init__(self, caracteres: list[str], colonnes: list[list[str]]):
+    def __init__(self, caracteres: list[str], hints: list[str], colonnes: list[list[str]]):
         self.caracteres = caracteres
+        self.hints = hints
         self.colonnes = colonnes
         self.length = len(self.caracteres)
         self.initialiser_tableau()
@@ -49,7 +50,7 @@ class Tableau:
     def initialiser_tableau(self):
         self.cases: list[Case] = []
         for i in range(self.length):
-            self.cases.append(Case(i, self.caracteres[i], lambda: self.afficher_solution()))
+            self.cases.append(Case(i, self.caracteres[i], self.hints[i], lambda: self.afficher_solution()))
 
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
@@ -60,7 +61,9 @@ class Tableau:
             selection = colonnes_communes[0][1].copy()
             solution = [val for val in solution if val in selection]
             result = str.join("\t", solution)
-            return f"Solution unique:\n\n{result}"
+            solution_hint = [f"{self.hints[self.caracteres.index(val)]}" for val in solution]
+            result_hint = str.join("\t", solution_hint)
+            return f"Solution unique:\n\n{result}\n{result_hint}"
         texte: list[str] = []
         for colonne, caracteres in colonnes_communes:
             solution = self.colonnes[colonne].copy()

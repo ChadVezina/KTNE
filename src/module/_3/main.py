@@ -13,7 +13,7 @@ class Module_3(Toplevel):
         self.geometry(geometrie)
         self.resizable(True, True)
 
-        self.caracteres = [
+        self.caracteres0 = [
             "Ϙ", # U+03D8
             "Ѧ", # U+0466
             "ƛ", # U+019B
@@ -42,6 +42,37 @@ class Module_3(Toplevel):
             "Ҋ", # U+048A
             "Ω", # U+03A9
         ]
+        self.hints0 = [
+            "raquette",
+            "a t",
+            "lambda",
+            "Harry Potter",
+            "bébite",
+            "cédille",
+            "c à l'envers",
+            "trema",
+            "cursive",
+            "etoile vide",
+            "? à l'envers",
+            "copyright",
+            "seins",
+            "k miroir",
+            "lâche lousse",
+            "6",
+            "note",
+            "b",
+            "sourire",
+            "chandelier",
+            "c à l'endroit",
+            "fesses",
+            "étoile pleine",
+            "feuille",
+            "ae",
+            "h n",
+            "omega",
+        ]
+        self.hints = sorted(self.hints0.copy())
+        self.caracteres = sorted(self.caracteres0.copy(), key=lambda x: self.hints.index(self.hints0[self.caracteres0.index(x)]))
         self.colonnes = [
             ["Ϙ", "Ѧ", "ƛ", "Ϟ", "Ѭ", "ϗ", "Ͽ"],
             ["Ӭ", "Ϙ", "Ͽ", "Ҩ", "☆", "ϗ", "¿"],
@@ -50,7 +81,7 @@ class Module_3(Toplevel):
             ["ψ", "ټ", "ƀ", "Ͼ", "¶", "Ѯ", "★"],
             ["Ϭ", "Ӭ", "҂", "æ", "ψ", "Ҋ", "Ω"],
         ]
-        self.tableau = Tableau(self.caracteres, self.colonnes)
+        self.tableau = Tableau(self.caracteres, self.hints, self.colonnes)
 
         make_menu(self, self.nouvelle_partie, self.quitter)
 
