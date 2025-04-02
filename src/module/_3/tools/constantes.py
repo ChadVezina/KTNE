@@ -26,7 +26,7 @@ class EntrySize:
 
 
 class BoutonCaseRect:
-    WIDTH = 2 * MULTI_SIZE
+    WIDTH = 4 * MULTI_SIZE
     HEIGHT = 1 * MULTI_SIZE
     PADDING_X = 1 * MULTI_PAD
     PADDING_Y = 3 * MULTI_PAD
@@ -35,4 +35,5 @@ class BoutonCaseRect:
 class Font:
     BODY = ('Times New Roman', 32)
     BODY2 = ('Times New Roman', 16)
+    BODY3 = ('Times New Roman', 12)
 

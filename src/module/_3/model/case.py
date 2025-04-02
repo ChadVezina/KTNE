@@ -1,4 +1,5 @@
-from tkinter import Frame, Label
+from tkinter import Frame
+from .hint_case import HintCase
 from .bouton_case import BoutonCase
 
 class Case:
@@ -15,8 +16,7 @@ class Case:
         self.composante = Frame(parent)
         self.composante.grid(row=x, column=y)
         self.bouton = BoutonCase(self.composante, 0, 0, self.texte, lambda: self.clic())
-        self.label = Label(self.composante, text=self.hint)
-        self.label.grid(row=1, column=0)
+        self.label = HintCase(self.composante, 1, 0, self.hint)
 
     def clic(self):
         if self.is_active:
