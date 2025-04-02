@@ -6,6 +6,7 @@ from .root import Root
 class Tableau:
     def __init__(self):
         self.length = 6
+        self.root: Root | None = None
         self.initialiser_tableau()
 
     def do(self, parent: Frame, row: int):

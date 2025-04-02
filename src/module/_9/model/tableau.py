@@ -42,6 +42,7 @@ class Tableau:
                 [TypeConnexion.C],
             ],
         }
+        self.root: Root | None = None
         self.initialiser_tableau()
 
     def do(self, parent: Frame, row: int):

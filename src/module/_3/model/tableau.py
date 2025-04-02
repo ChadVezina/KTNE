@@ -11,6 +11,7 @@ class Tableau:
         self.hints = hints
         self.colonnes = colonnes
         self.length = len(self.caracteres)
+        self.root: Root | None = None
         self.initialiser_tableau()
 
     def do(self, parent: Frame, row: int):
