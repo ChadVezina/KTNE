@@ -223,6 +223,9 @@ class Tableau:
 
     def undo(self):
         if self.tableau is not None:
+            self.depart = None
+            self.arrivee = None
+            self.clear_type()
             self.tableau.destroy()
             self.tableau = None
         if self.solution is not None:
@@ -241,7 +244,7 @@ class Tableau:
         composante = Frame(parent)
         composante.grid(row=row+1)
         texte = self.get_solution()
-        self.conclusion = Conclusion(parent, texte)
+        self.conclusion = Conclusion(composante, texte)
         return composante
 
     def valider_coordonnees(self, i: int, j: int):
