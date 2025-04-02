@@ -1,3 +1,4 @@
+from textwrap import wrap
 from tkinter import Frame, Button
 from typing import Callable
 from ..tools.constantes import GridPad, Font
@@ -15,7 +16,7 @@ class Options(Frame):
             self.boutons[option[0]] = self.make_button(option[0], option[1])
 
     def make_button(self, colonne: int, texte: str):
-        bouton = Button(self, font=Font.BODY, text=texte, bg="white")
+        bouton = Button(self, font=Font.BODY, text=texte, bg="white", wraplength=100)
         bouton.grid(row=0, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return bouton
 

@@ -14,17 +14,17 @@ class Module_10(Module):
         self.next_link = NextLink(
             "Premier cas qui semble être vrai?",
             {
-                0: "même rangée/\nmême colonne?\n\nmême rangée",
-                1: "même rangée/\nmême colonne?\n\nmême colonne 1",
-                2: "même rangée/\nmême colonne?\n\nmême colonne 2",
+                0: "même rangée/même colonne?\n\nmême rangée",
+                1: "même rangée/même colonne?\n\nmême colonne 1",
+                2: "même rangée/même colonne?\n\nmême colonne 2",
 
                 3: "symétrie colonnes?\n\npremière et dernière colonne",
                 4: "symétrie colonnes?\n\n2e et avant-dernière colonne",
                 5: "symétrie colonnes?\n\nles colonnes du centre",
 
-                6: "sinon,\n\ncontient 1\npremière rangée",
-                7: "sinon,\n\ncontient 1\ndernière rangée",
-                8: "sinon,\n\ncontient 1\npremière colonne",
+                6: "sinon,\n\ncontient 1 première rangée",
+                7: "sinon,\n\ncontient 1 dernière rangée",
+                8: "sinon,\n\ncontient 1 première colonne",
                 },
             [
                 lambda scan: TypeTableau._2 if 0 == scan else None,
