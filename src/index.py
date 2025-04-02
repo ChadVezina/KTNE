@@ -1,4 +1,3 @@
-from tkinter import Tk
 from module._1.main import Module_1
 from module._2.main import Module_2
 from module._3.main import Module_3
@@ -12,9 +11,10 @@ from module._10.main import Module_10
 from module._11.main import Module_11
 from constants.fenetre import N_MODULES
 from tools.functions import calculateSize
+from tools.module import Module
 
 
-def getModule(numero, fenetre, geometry):
+def getModule(numero: int, fenetre, geometry: str) -> Module | None:
     match numero:
         case 2:
             return Module_2(fenetre, geometry)
@@ -43,8 +43,91 @@ def getModule(numero, fenetre, geometry):
 fenetre = Module_1()
 geometries = calculateSize(fenetre, N_MODULES)
 fenetre.geometry(geometries.pop(0))
+modules: list[Module] = []
+is_update = False
+is_show = True
 
+def get_module(i: int) -> Module | None:
+    if i < len(modules) and i >= 0:
+        return modules[i]
+
+def hide(self: Module | None):
+    if self is None:
+        return
+    if self.winfo_exists():
+        if isinstance(self, Module_1):
+            self.iconify()
+        else:
+            self.iconify()
+
+def show(self: Module | None):
+    if self is None:
+        return
+    if self.winfo_exists():
+        self.deiconify()
+        self.enter()
+
+def state_hide(self: Module | None) -> bool:
+    if self is None:
+        return False
+    if not self.state == "iconic":
+        return True
+    self.enter()
+    return False
+
+def state_show(self: Module | None) -> bool:
+    if self is None:
+        return False
+    if self.state == "iconic":
+        self.enter()
+        return True
+    return False
+
+def hides(i: int):
+    if state_hide(get_module(i)):
+        return
+    global is_show
+    if is_show:
+        global is_update
+        if is_update:
+            return
+        is_update = True
+        for scan, module in enumerate(modules):
+            if scan != i:
+                hide(module)
+        is_update = False
+        is_show = False
+
+def shows(i: int):
+    if state_show(get_module(i)):
+        return
+    global is_show
+    if not is_show:
+        global is_update
+        if is_update:
+            return
+        is_update = True
+        for scan, module in enumerate(modules):
+            if scan != i:
+                show(module)
+        is_update = False
+        is_show = True
+
+
+#map = "<Map>"
+#unmap = "<Unmap>"
+map = "<Map>"
+unmap = "<Unmap>"
+
+modules.append(fenetre)
 for module in range(1, N_MODULES):
-    getModule(module+1, fenetre, geometries.pop(0))
+    modules_i = getModule(module+1, fenetre, geometries.pop(0))
+    if modules_i is not None:
+        modules_i.bind(map, lambda e: shows(module))
+        modules_i.bind(unmap, lambda e: hides(module))
+        modules.append(modules_i)
+
+fenetre.bind(map, lambda e: shows(0))
+fenetre.bind(unmap, lambda e: hides(0))
 
 fenetre.mainloop()
