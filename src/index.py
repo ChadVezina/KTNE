@@ -58,28 +58,27 @@ def hide(self: Module | None):
         if isinstance(self, Module_1):
             self.iconify()
         else:
-            self.iconify()
+            self.withdraw()
 
 def show(self: Module | None):
     if self is None:
         return
     if self.winfo_exists():
         self.deiconify()
-        self.enter()
 
 def state_hide(self: Module | None) -> bool:
     if self is None:
         return False
-    if not self.state == "iconic":
-        return True
     self.enter()
+    if self.wm_state() != "iconic":
+        return True
     return False
 
 def state_show(self: Module | None) -> bool:
     if self is None:
         return False
-    if self.state == "iconic":
-        self.enter()
+    self.enter()
+    if self.wm_state() == "iconic":
         return True
     return False
 
@@ -97,6 +96,8 @@ def hides(i: int):
                 hide(module)
         is_update = False
         is_show = False
+        if not isinstance(get_module(i), Module_1):
+            get_module(i).withdraw()
 
 def shows(i: int):
     if state_show(get_module(i)):
@@ -113,21 +114,17 @@ def shows(i: int):
         is_update = False
         is_show = True
 
-
-#map = "<Map>"
-#unmap = "<Unmap>"
-map = "<Map>"
-unmap = "<Unmap>"
-
 modules.append(fenetre)
-for module in range(1, N_MODULES):
-    modules_i = getModule(module+1, fenetre, geometries.pop(0))
+for scan in range(1, N_MODULES):
+    modules_i = getModule(scan+1, fenetre, geometries.pop(0))
     if modules_i is not None:
-        modules_i.bind(map, lambda e: shows(module))
-        modules_i.bind(unmap, lambda e: hides(module))
         modules.append(modules_i)
+        module = get_module(scan)
+        if module is not None:
+            module.bind("<Map>", lambda e, scan=scan: shows(scan))
+            module.bind("<Unmap>", lambda e, scan=scan: hides(scan))
 
-fenetre.bind(map, lambda e: shows(0))
-fenetre.bind(unmap, lambda e: hides(0))
+fenetre.bind("<Map>", lambda e: shows(0))
+fenetre.bind("<Unmap>", lambda e: hides(0))
 
 fenetre.mainloop()
