@@ -11,8 +11,8 @@ class Module(Tk, Toplevel):
             self.geometry(geometrie)
         self.resizable(True, True)
         self.init()
-        if not no_args:
-            self.bind("<Destroy>", lambda e: self.close(root))
+        #if not no_args:
+            #self.bind("<Destroy>", lambda e: self.close_test(root))
 
     def init(self):
         container = Frame(self)
@@ -45,7 +45,7 @@ class Module(Tk, Toplevel):
     def enter(self):
         self.on_inner_frame_change()
 
-    def close(self, parent: Tk):
+    def close_test(self, parent: Tk):
         parent.destroy()
 
     def on_inner_frame_change(self, event=None):
