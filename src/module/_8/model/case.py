@@ -13,6 +13,7 @@ class Case:
         }
 
     def placer_case(self, parent):
+        self.destroy()
         self.label = Texte(parent, self.numero, 0, f"Fil {self.numero + 1}")
         self.solution = Texte(parent, self.numero, 1)
         self.update_solution()
@@ -20,6 +21,14 @@ class Case:
         self.bouton_bleu = BoutonCase(parent, self.numero, 3, "bleu", lambda: self.clic(TypeFil.BLEU))
         self.bouton_etoile = BoutonCase(parent, self.numero, 4, "★", lambda: self.clic(TypeFil.ETOILE))
         self.bouton_lumiere_allumee = BoutonCase(parent, self.numero, 5, "lumière allumée", lambda: self.clic(TypeFil.LUMIERE_ALLUMEE))
+
+    def destroy(self):
+        self.types = {
+            TypeFil.ROUGE: False,
+            TypeFil.BLEU: False,
+            TypeFil.ETOILE: False,
+            TypeFil.LUMIERE_ALLUMEE: False,
+        }
 
     def get_solution(self):
         if self.types[TypeFil.ROUGE]:

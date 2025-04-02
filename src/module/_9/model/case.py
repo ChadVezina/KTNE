@@ -14,7 +14,7 @@ class Case:
         self.is_connexion = False
 
     def placer_case(self, parent):
-        self.is_active = False
+        self.destroy()
         self.label = Texte(parent, self.numero, 0, f"Fil {self.numero + 1}")
         self.solution = Texte(parent, self.numero, 1)
         self.bouton_rouge = BoutonCase(parent, self.numero, 2, "rouge", lambda: self.clic(TypeFil.ROUGE))
@@ -23,6 +23,13 @@ class Case:
         self.bouton_a = BoutonCase(parent, self.numero, 5, "A", lambda: self.clic_connexion(TypeConnexion.A))
         self.bouton_b = BoutonCase(parent, self.numero, 6, "B", lambda: self.clic_connexion(TypeConnexion.B))
         self.bouton_c = BoutonCase(parent, self.numero, 7, "C", lambda: self.clic_connexion(TypeConnexion.C))
+
+    def destroy(self):
+        self.is_active = False
+        self.is_connexion = False
+        self.type = None
+        self.connexion = None
+        self.action = None
 
     def add_solution(self, action: Callable[[TypeConnexion], bool]):
         if self.action == action:
