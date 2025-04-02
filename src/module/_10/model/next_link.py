@@ -19,7 +19,7 @@ class NextLink:
         self.type: TypeTableau | None = None
 
     def do(self, parent: Frame, row: int):
-        self.undo()
+        self.destroy()
         self.parent = parent
         self.row = row
         self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
@@ -27,9 +27,9 @@ class NextLink:
         if len(self.options.items()) != 0:
             self.next(self.etape.options.get_active_option())
 
-    def undo(self):
+    def destroy(self):
         if self.tableau is not None:
-            self.tableau.undo()
+            self.tableau.destroy()
         if(self.etape is not None):
             self.etape.destroy()
             self.etape = None

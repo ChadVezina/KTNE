@@ -1,6 +1,7 @@
 from tkinter import Frame
 from .case import Case
 from .conclusion import Conclusion
+from .root import Root
 from tools.functions import get_width_height, calculate_x_y
 
 
@@ -11,6 +12,21 @@ class Tableau:
         self.colonnes = colonnes
         self.length = len(self.caracteres)
         self.initialiser_tableau()
+
+    def do(self, parent: Frame, row: int):
+        self.destroy()
+        self.parent = parent
+        self.row = row
+        self.root = Root(parent, row)
+        self.placer_tableau(self.root)
+        self.placer_solution(self.root)
+
+    def destroy(self):
+        if(self.root is not None):
+            self.root.destroy()
+            self.root = None
+            self.parent = None
+            self.row = None
 
     def placer_tableau(self, parent):
         composante = Frame(parent)

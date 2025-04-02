@@ -84,7 +84,4 @@ class Module_3(Module):
         self.ouvrir_partie()
 
     def redessiner(self):
-        for widget in self.cadre.winfo_children():
-            widget.destroy()
-        self.tableau.placer_tableau(self.cadre)
-        self.tableau.placer_solution(self.cadre)
+        self.tableau.do(self.cadre, 0)

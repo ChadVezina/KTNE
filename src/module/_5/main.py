@@ -17,5 +17,4 @@ class Module_5(Module):
         self.ouvrir_partie()
 
     def redessiner(self):
-        self.next_link.undo()
         self.next_link.do(self.cadre, 0)

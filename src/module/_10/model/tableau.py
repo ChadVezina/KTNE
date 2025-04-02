@@ -221,7 +221,7 @@ class Tableau:
         self.tableau = self.placer_tableau(parent, row)
         self.solution = self.placer_solution(parent, row)
 
-    def undo(self):
+    def destroy(self):
         if self.tableau is not None:
             self.depart = None
             self.arrivee = None

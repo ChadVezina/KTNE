@@ -1,5 +1,4 @@
 from tkinter import Frame
-from typing import Callable
 from .etape import Etape
 
 class NextLink:
@@ -47,12 +46,12 @@ class NextLink:
         self.etape: Etape | None = None
 
     def do(self, parent: Frame, row: int):
-        self.undo()
+        self.destroy()
         self.parent = parent
         self.row = row
         self.etape = Etape(parent, row, lambda: self.clic())
 
-    def undo(self):
+    def destroy(self):
         if(self.etape is not None):
             self.etape.destroy()
             self.etape = None

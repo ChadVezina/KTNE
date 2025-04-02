@@ -26,7 +26,7 @@ class NextLink:
         self.next_link: NextLink | None = None
 
     def do(self, parent: Frame, row: int, historique: list[tuple[int,int]] = []):
-        self.undo()
+        self.destroy()
         self.parent = parent
         self.row = row
         self.historique = historique
@@ -34,9 +34,9 @@ class NextLink:
         if len(self.options.items()) != 0:
             self.next(-1)
 
-    def undo(self):
+    def destroy(self):
         if(self.next_link is not None):
-            self.next_link.undo()
+            self.next_link.destroy()
             self.next_link = None
         if(self.etape is not None):
             self.etape.destroy()
@@ -56,7 +56,7 @@ class NextLink:
 
     def next(self, active_option: int):
         if(self.next_link is not None):
-            self.next_link.undo()
+            self.next_link.destroy()
             self.next_link = None
         for condition in self.actions:
             action = condition(self.historique, active_option)
