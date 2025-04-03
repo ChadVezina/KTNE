@@ -32,7 +32,7 @@ class Case:
         self.action = None
 
     def add_solution(self, action: Callable[[TypeConnexion], bool]):
-        if self.action = = action:
+        if self.action == action:
             return
         self.action = action
         self.update_solution()
@@ -53,7 +53,7 @@ class Case:
 
     def clic(self, type: TypeFil):
         if self.is_active:
-            condition = self.type = = type
+            condition = self.type == type
             self.desactiver()
             if condition:
                 self.commande(self.numero)
@@ -86,7 +86,7 @@ class Case:
 
     def clic_connexion(self, type: TypeConnexion):
         if self.is_connexion:
-            condition = self.connexion = = type
+            condition = self.connexion == type
             self.desactiver_connexion()
             if condition:
                 self.update_solution()

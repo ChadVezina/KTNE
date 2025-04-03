@@ -33,7 +33,7 @@ class BoutonCase(Button):
             case TypeCase.ARRIVEE:
                 self["text"] = "▲"
             case TypeCase.MUR:
-                if self.x % 2 = = 0:
+                if self.x % 2 == 0:
                     self["text"] = "━"
                 else:
                     self["text"] = "┃"

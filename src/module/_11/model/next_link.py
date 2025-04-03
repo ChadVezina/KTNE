@@ -64,17 +64,17 @@ class NextLink:
         for mot in self.mots:
             is_mot_accepte = True
             for scan, option in enumerate(options):
-                is_accepte = True if option = = "" else False
+                is_accepte = True if option == "" else False
                 for letter in option:
-                    if(mot[scan] = = letter):
+                    if(mot[scan] == letter):
                         is_accepte = True
                         break
-                if is_accepte = = False:
+                if is_accepte == False:
                     is_mot_accepte = False
                     break
-            if is_mot_accepte = = True:
+            if is_mot_accepte == True:
                 mots_acceptes.append(mot)
-        if len(mots_acceptes) = = 0:
+        if len(mots_acceptes) == 0:
             return None
         return mots_acceptes
 

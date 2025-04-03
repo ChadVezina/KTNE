@@ -208,11 +208,11 @@ class Module_0(Tk):
                 y + = 1
                 y_max = max(y, y_max)
                 case = Case()
-                if str_case[0] = = "o":
+                if str_case[0] == "o":
                     case.devoiler()
                 else:
                     jeu_en_cours = True
-                if str_case[1] = = "M":
+                if str_case[1] == "M":
                     case.ajouter_mine()
                     n_mines + = 1
                 else:

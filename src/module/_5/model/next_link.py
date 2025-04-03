@@ -62,7 +62,7 @@ class NextLink:
 
     def desactiver(self):
         active_option = self.etape.options.get_active_option()
-        if(active_option ! = -1):
+        if(active_option != -1):
             self.etape.options.desactiver(active_option)
 
     def scan_texte(self, texte: str):

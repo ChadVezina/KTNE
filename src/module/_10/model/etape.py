@@ -8,7 +8,7 @@ class Etape(Frame):
         super().__init__(parent)
         self.grid(row = row)
         self.texte = Texte(self, 0, texte = texte)
-        if len(options.items()) ! = 0:
+        if len(options.items()) != 0:
             self.options = Options(self, 1, options)
             for scan in options.keys():
                 self.options.add_command(scan, command)

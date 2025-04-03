@@ -14,7 +14,7 @@ class Etape(Frame):
     def clic(self, i: int):
         if(not self.multiple):
             for scan in self.options.get_active_options():
-                if(scan ! = i):
+                if(scan != i):
                     self.options.desactiver(scan)
         if self.options.is_active(i):
             self.options.desactiver(i)

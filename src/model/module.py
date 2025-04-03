@@ -40,7 +40,7 @@ class Module(Tk, Toplevel):
         self.bind("<Button-3>", lambda e: self.clic())
 
     def clic(self):
-        if self.state() = = "zoomed":
+        if self.state() == "zoomed":
             self.state("normal")
         else:
             self.state("zoomed")

@@ -71,28 +71,28 @@ class Case:
             return " "
 
 
-if __name__ = = '__main__':
+if __name__ == '__main__':
     print('Tests unitaires...')
 
     une_case = Case()
     assert not une_case.est_minee
     assert not une_case.est_devoilee
-    assert une_case.nombre_mines_voisines = = 0
-    assert une_case.obtenir_apparence() = = " "
+    assert une_case.nombre_mines_voisines == 0
+    assert une_case.obtenir_apparence() == " "
 
     une_case.devoiler()
     assert une_case.est_devoilee
 
     une_case.ajouter_mine()
     assert une_case.est_minee
-    assert une_case.obtenir_apparence() = = "M"
+    assert une_case.obtenir_apparence() == "M"
     assert not une_case.est_voisine_d_une_mine()
 
     une_case.est_minee = False
     for i in range(1, 5):
         une_case.ajouter_une_mine_voisine()
-        assert une_case.nombre_mines_voisines = = i
+        assert une_case.nombre_mines_voisines == i
         assert une_case.est_voisine_d_une_mine()
-        assert une_case.obtenir_apparence() = = str(i)
+        assert une_case.obtenir_apparence() == str(i)
 
     print('Tests réussis!')

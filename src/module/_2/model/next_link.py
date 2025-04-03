@@ -22,7 +22,7 @@ class NextLink:
         self.destroy()
         self.parent = parent
         self.row = row
-        if len(self.options.items()) = = 0:
+        if len(self.options.items()) == 0:
             self.etape = Texte(parent, row, texte = self.texte)
         else:
             self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan), self.multiple)

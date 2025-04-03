@@ -199,13 +199,13 @@ class Tableau:
         self.add_b(*self.types[type][2])
         if self.depart is not None:
             case = self.cases[self.depart[0]][self.depart[1]]
-            if case.type = = TypeCase.VIDE:
+            if case.type == TypeCase.VIDE:
                 case.setType(TypeCase.DEPART)
             else:
                 self.depart = None
         if self.arrivee is not None:
             case = self.cases[self.arrivee[0]][self.arrivee[1]]
-            if case.type = = TypeCase.VIDE:
+            if case.type == TypeCase.VIDE:
                 case.setType(TypeCase.ARRIVEE)
             else:
                 self.arrivee = None
@@ -230,18 +230,18 @@ class Tableau:
         match type:
             case TypeCase.DEPART:
                 self.depart = None
-                if (x, y) = = self.get_coords(*self.a):
+                if (x, y) == self.get_coords(*self.a):
                     self.cases[x][y].setType(TypeCase.POINT_A)
-                elif (x, y) = = self.get_coords(*self.b):
+                elif (x, y) == self.get_coords(*self.b):
                     self.cases[x][y].setType(TypeCase.POINT_B)
                 else:
                     self.cases[x][y].setType(TypeCase.VIDE)
                 self.afficher_solution()
             case TypeCase.ARRIVEE:
                 self.arrivee = None
-                if (x, y) = = self.get_coords(*self.a):
+                if (x, y) == self.get_coords(*self.a):
                     self.cases[x][y].setType(TypeCase.POINT_A)
-                elif (x, y) = = self.get_coords(*self.b):
+                elif (x, y) == self.get_coords(*self.b):
                     self.cases[x][y].setType(TypeCase.POINT_B)
                 else:
                     self.cases[x][y].setType(TypeCase.VIDE)
@@ -260,7 +260,7 @@ class Tableau:
     def remplir_tableau(self, type: TypeTableau):
         for i in range(self.max_row):
             for j in self.types[type][0][i]:
-                if i % 2 = = 0:
+                if i % 2 == 0:
                     self.add_mur(i, j*2+1)
                 else:
                     self.add_mur(i, j*2)
@@ -273,7 +273,7 @@ class Tableau:
 
     def add_a(self, i: int, j: int):
         if self.a is not None:
-            if self.a = = (i, j):
+            if self.a == (i, j):
                 return
             x, y = self.get_coords(*self.a)
             self.cases[x][y].setType(TypeCase.VIDE)
@@ -285,7 +285,7 @@ class Tableau:
 
     def add_b(self, i: int, j: int):
         if self.b is not None:
-            if self.b = = (i, j):
+            if self.b == (i, j):
                 return
             x, y = self.get_coords(*self.b)
             self.cases[x][y].setType(TypeCase.VIDE)
@@ -297,7 +297,7 @@ class Tableau:
 
     def get_type_tableau(self):
         for type in TypeTableau:
-            if self.a = = self.types[type][1] and self.b = = self.types[type][2]:
+            if self.a == self.types[type][1] and self.b == self.types[type][2]:
                 return type
         return None
 
@@ -314,7 +314,7 @@ class Tableau:
 
     def get_solution(self) -> str:
         solution = self.solve()
-        if solution = = []:
+        if solution == []:
             return None
         else:
             return solution
@@ -330,16 +330,16 @@ class Tableau:
                 noeud = (i, j)
                 voisins: list[tuple[int, int]] = []
                 # Vérifier déplacement haut
-                if i - 2 > = 0 and self.cases[i-1][j].type = = TypeCase.MUR_VIDE:
+                if i - 2 > = 0 and self.cases[i-1][j].type == TypeCase.MUR_VIDE:
                     voisins.append((i-2, j))
                 # Vérifier déplacement bas
-                if i + 2 < 13 and self.cases[i+1][j].type = = TypeCase.MUR_VIDE:
+                if i + 2 < 13 and self.cases[i+1][j].type == TypeCase.MUR_VIDE:
                     voisins.append((i+2, j))
                 # Vérifier déplacement gauche
-                if j - 2 > = 0 and self.cases[i][j-1].type = = TypeCase.MUR_VIDE:
+                if j - 2 > = 0 and self.cases[i][j-1].type == TypeCase.MUR_VIDE:
                     voisins.append((i, j-2))
                 # Vérifier déplacement droite
-                if j + 2 < 13 and self.cases[i][j+1].type = = TypeCase.MUR_VIDE:
+                if j + 2 < 13 and self.cases[i][j+1].type == TypeCase.MUR_VIDE:
                     voisins.append((i, j+2))
                 graphe[noeud] = voisins
 
@@ -349,9 +349,9 @@ class Tableau:
         predecesseurs: dict[tuple[int, int], tuple[int, int]] = {}
         couts = {noeud: float('inf') for noeud in graphe}
         couts[self.depart] = 0
-        while file_priorite.count ! = 0:
+        while file_priorite.count != 0:
             cout_actuel, noeud_actuel = heapq.heappop(file_priorite)
-            if noeud_actuel = = self.arrivee:
+            if noeud_actuel == self.arrivee:
                 break
             if cout_actuel > couts[noeud_actuel]:
                 continue
@@ -365,13 +365,13 @@ class Tableau:
         # Reconstituer le chemin
         chemin: list[tuple[int, int]] = []
         noeud_courant: tuple[int, int] | None = self.arrivee
-        if noeud_courant not in predecesseurs and noeud_courant ! = self.depart:
+        if noeud_courant not in predecesseurs and noeud_courant != self.depart:
             return []
         while noeud_courant is not None:
             chemin.append(noeud_courant)
             noeud_courant = predecesseurs.get(noeud_courant, None)
         chemin.reverse()
-        if chemin[0] ! = self.depart:
+        if chemin[0] != self.depart:
             return []
 
         # Convertir le chemin en directions

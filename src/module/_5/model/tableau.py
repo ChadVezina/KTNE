@@ -17,10 +17,9 @@ class Tableau(Frame):
         for scan, texte in enumerate(options):
             bouton = self.make_button(composante, scan, texte, split_col)
             bouton["command"] = lambda: commande(texte)
-            bouton.set_active(False)
         return composante
 
     def make_button(self, parent: Frame, colonne: int, texte: str, split_col: int):
         x = colonne // split_col
         y = colonne % split_col
-        return Bouton(parent, x, y, texte)
+        return Bouton(parent, x, y, texte, "raised")

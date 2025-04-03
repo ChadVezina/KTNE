@@ -26,10 +26,10 @@ class Options(Frame):
         return self.bouton_active
 
     def is_active(self, scan: int):
-        return self.bouton_active = = scan
+        return self.bouton_active == scan
 
     def activer(self, scan: int):
-        if self.bouton_active ! = -1:
+        if self.bouton_active != -1:
             self.desactiver(self.bouton_active)
         self.boutons[scan]["bg"] = "pink"
         self.bouton_active = scan

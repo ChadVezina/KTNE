@@ -35,5 +35,5 @@ class Texte(Frame):
                     sub_liste.append(next_solution)
                 except StopIteration:
                     break
-            if len(sub_liste) ! = 0:
+            if len(sub_liste) != 0:
                 Ligne(self.root, row, sub_liste)

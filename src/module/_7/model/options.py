@@ -30,7 +30,7 @@ class Options(Frame):
         labels: dict[str, int] = {}
         for scan in range(self.n_options):
             texte = self.get_label(scan)
-            if(texte = = ""):
+            if(texte == ""):
                 continue
             label = labels.get(texte, 0)
             labels[texte] = label + 1

@@ -16,7 +16,7 @@ class NextLink:
         self.is_chiffre = chiffre is None and position is not None
         self.is_position = position is None and chiffre is not None
         self.texte = "Quelles est la valeur du bouton en {}e position? ...et appuyez dessus".format(self.position) if self.is_chiffre else "Quelles est la position du bouton portant le chiffre \'{}\'? ...et appuyez dessus".format(self.chiffre) if self.is_position else texte
-        self.options: dict[int, str] = {} if actions = = [] else {
+        self.options: dict[int, str] = {} if actions == [] else {
             0: "1",
             1: "2",
             2: "3",
@@ -31,7 +31,7 @@ class NextLink:
         self.parent = parent
         self.row = row
         self.historique = historique
-        if len(self.options.items()) = = 0:
+        if len(self.options.items()) == 0:
             self.etape = Texte(parent, row, texte = self.texte)
         else:
             self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan), False)
@@ -51,11 +51,11 @@ class NextLink:
         if(self.etape is not None):
             self.etape.clic(scan)
             active_options = self.etape.options.get_active_options()
-            active_option = -1 if len(active_options) = = 0 else active_options[0]
+            active_option = -1 if len(active_options) == 0 else active_options[0]
             if(self.is_position):
-                self.position = None if active_option = = -1 else int(self.options[active_option])
+                self.position = None if active_option == -1 else int(self.options[active_option])
             elif(self.is_chiffre):
-                self.chiffre = None if active_option = = -1 else int(self.options[active_option])
+                self.chiffre = None if active_option == -1 else int(self.options[active_option])
             self.next(active_option)
 
     def next(self, active_option: int):
