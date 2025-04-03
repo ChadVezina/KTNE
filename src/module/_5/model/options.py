@@ -25,7 +25,7 @@ class Options(Frame):
         return input
 
     def get_option(self, scan: int):
-        return self.sv[scan].get().strip()
+        return self.sv[scan].get().lower().strip()
 
     def get_options(self):
         options: list[str] = []

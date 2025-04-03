@@ -10,7 +10,7 @@ class Texte(Entry):
         self.bind("<KeyRelease>", lambda e: commande())
 
     def get_texte(self):
-        return self.sv.get().strip()
+        return self.sv.get().lower().strip()
 
     def is_exist(self):
         self["bg"] = "green"
