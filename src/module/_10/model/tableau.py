@@ -230,13 +230,23 @@ class Tableau:
         match type:
             case TypeCase.DEPART:
                 self.depart = None
-                self.cases[x][y].setType(TypeCase.VIDE)
+                if (x, y) == self.get_coords(*self.a):
+                    self.cases[x][y].setType(TypeCase.POINT_A)
+                elif (x, y) == self.get_coords(*self.b):
+                    self.cases[x][y].setType(TypeCase.POINT_B)
+                else:
+                    self.cases[x][y].setType(TypeCase.VIDE)
                 self.afficher_solution()
             case TypeCase.ARRIVEE:
                 self.arrivee = None
-                self.cases[x][y].setType(TypeCase.VIDE)
+                if (x, y) == self.get_coords(*self.a):
+                    self.cases[x][y].setType(TypeCase.POINT_A)
+                elif (x, y) == self.get_coords(*self.b):
+                    self.cases[x][y].setType(TypeCase.POINT_B)
+                else:
+                    self.cases[x][y].setType(TypeCase.VIDE)
                 self.afficher_solution()
-            case TypeCase.VIDE:
+            case TypeCase.VIDE | TypeCase.POINT_A | TypeCase.POINT_B:
                 if self.depart is None:
                     self.depart = (x, y)
                     self.cases[x][y].setType(TypeCase.DEPART)
