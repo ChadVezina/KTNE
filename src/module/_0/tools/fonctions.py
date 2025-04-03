@@ -48,7 +48,7 @@ def make_menu(root, nouvelle, configurer, charger, sauvegarder, quitter):
 
 def validate_entry(entry, message):
     if entry.isdigit():
-        if int(entry) < 1 or int(entry) > 30:
+        if int(entry) not in range(1, 31):
             raise ValueError(message + ": Le nombre doit être compris entre 1 et 30")
     else:
         raise TypeError(message + ": L'entrée doit être un entier")

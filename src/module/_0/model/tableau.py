@@ -60,8 +60,8 @@ class Tableau:
         Returns:
             bool: True si les coordonnées (x, y) sont valides, False autrement
         """
-        rangee_valide = rangee_x >= 1 and rangee_x <= self.dimension_rangee
-        colonne_valide = colonne_y >= 1 and colonne_y <= self.dimension_colonne
+        rangee_valide = rangee_x in range(1, self.dimension_rangee + 1)
+        colonne_valide = colonne_y in range(1, self.dimension_colonne + 1)
         return rangee_valide and colonne_valide
 
     def obtenir_case(self, rangee_x, colonne_y):

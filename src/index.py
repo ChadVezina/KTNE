@@ -48,7 +48,7 @@ is_update = False
 is_show = True
 
 def get_module(i: int) -> Module | None:
-    if i < len(modules) and i >= 0:
+    if i in range(len(modules)):
         return modules[i]
 
 def hide(self: Module | None):
