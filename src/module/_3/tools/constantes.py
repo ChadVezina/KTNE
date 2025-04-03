@@ -33,7 +33,7 @@ class BoutonCaseRect:
 
 
 class Font:
-    BODY = ('Times New Roman', 32)
-    BODY2 = ('Times New Roman', 16)
-    BODY3 = ('Times New Roman', 12)
+    BODY_SYMBOLE = ('Times New Roman', 32)
+    BODY = ('Times New Roman', 16)
+    BODY_HINT = ('Times New Roman', 12)
 

@@ -9,7 +9,7 @@ class BoutonCase(Button):
         self.y = y
         super().__init__(
             parent,
-            font=Font.BODY,
+            font=Font.BODY_SYMBOLE,
             text=texte,
             padx=BoutonCaseRect.PADDING_X,
             pady=BoutonCaseRect.PADDING_Y,

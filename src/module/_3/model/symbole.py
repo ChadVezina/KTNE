@@ -8,7 +8,7 @@ class Symbole:
     def __init__(self, parent, col, texte, hint, selected, commande: Callable[[], None]):
         self.bouton = Button(
             parent,
-            font=Font.BODY,
+            font=Font.BODY_SYMBOLE,
             text=texte,
             padx=TextPad.PADDING_X,
             pady=TextPad.PADDING_Y,
@@ -17,7 +17,7 @@ class Symbole:
             )
         self.hint = Button(
             parent,
-            font=Font.BODY3,
+            font=Font.BODY_HINT,
             text=hint,
             padx=TextPad.PADDING_X,
             pady=TextPad.PADDING_Y,

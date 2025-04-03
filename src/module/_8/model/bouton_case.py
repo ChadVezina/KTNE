@@ -13,8 +13,6 @@ class BoutonCase(Button):
             text=texte,
             padx=BoutonCaseRect.PADDING_X,
             pady=BoutonCaseRect.PADDING_Y,
-            width=BoutonCaseRect.WIDTH,
-            height=BoutonCaseRect.HEIGHT,
             command=commande,
             bg="white",
             )

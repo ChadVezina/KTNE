@@ -12,7 +12,7 @@ class HintCase(Label):
         width = (BoutonCaseRect.WIDTH+BoutonCaseRect.PADDING_X*2)*multi
         super().__init__(
             parent,
-            font=Font.BODY3,
+            font=Font.BODY_HINT,
             text=texte,
             width=width,
             wraplength=width*taille,
