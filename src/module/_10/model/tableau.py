@@ -155,6 +155,36 @@ class Tableau:
         }
         self.initialiser_tableau()
 
+    def do(self, parent, row: int):
+        self.tableau = self.placer_tableau(parent, row)
+        self.solution = self.placer_solution(parent, row)
+
+    def destroy(self):
+        if self.tableau is not None:
+            self.depart = None
+            self.arrivee = None
+            self.clear_type()
+            self.tableau.destroy()
+            self.tableau = None
+        if self.solution is not None:
+            self.solution.destroy()
+            self.solution = None
+
+    def placer_tableau(self, parent, row: int):
+        composante = Frame(parent)
+        composante.grid(row=row)
+        for i in range(self.max_row):
+            for j in range(self.max_col):
+                self.cases[i][j].placer_case(composante, i, j, lambda x, y, type: self.clic(x, y, type))
+        return composante
+
+    def placer_solution(self, parent, row: int):
+        composante = Frame(parent)
+        composante.grid(row=row+1)
+        self.conclusion = Conclusion(composante)
+        self.conclusion.setText()
+        return composante
+
     def initialiser_tableau(self):
         self.cases: list[list[Case]] = []
         for i in range(self.max_row):
@@ -217,45 +247,6 @@ class Tableau:
             case _:
                 pass
 
-    def do(self, parent, row: int):
-        self.tableau = self.placer_tableau(parent, row)
-        self.solution = self.placer_solution(parent, row)
-
-    def destroy(self):
-        if self.tableau is not None:
-            self.depart = None
-            self.arrivee = None
-            self.clear_type()
-            self.tableau.destroy()
-            self.tableau = None
-        if self.solution is not None:
-            self.solution.destroy()
-            self.solution = None
-
-    def placer_tableau(self, parent, row: int):
-        composante = Frame(parent)
-        composante.grid(row=row)
-        for i in range(self.max_row):
-            for j in range(self.max_col):
-                self.cases[i][j].placer_case(composante, i, j, lambda x, y, type: self.clic(x, y, type))
-        return composante
-
-    def placer_solution(self, parent, row: int):
-        composante = Frame(parent)
-        composante.grid(row=row+1)
-        texte = self.get_solution()
-        self.conclusion = Conclusion(composante, texte)
-        return composante
-
-    def valider_coordonnees(self, i: int, j: int):
-        return i in range(self.max_row) and j in range(self.max_col)
-
-    def obtenir_case(self, x, y):
-        if not self.valider_coordonnees(x, y):
-            return None
-
-        return self.cases[x][y]
-
     def remplir_tableau(self, type: TypeTableau):
         for i in range(self.max_row):
             for j in self.types[type][0][i]:
@@ -314,15 +305,9 @@ class Tableau:
     def get_solution(self) -> str:
         solution = self.solve()
         if solution == []:
-            return "Pas de solution"
+            return None
         else:
-            lignes = [" -> ".join(x) for x in zip(solution[0::3], solution[1::3], solution[2::3])]
-            n_deplacements = len(solution)
-            if n_deplacements % 3 == 2:
-                lignes.append(" -> ".join(solution[-2:]))
-            elif n_deplacements % 3 == 1:
-                lignes.append(solution[-1])
-            return "\n".join(lignes)
+            return solution
 
     def solve(self) -> list[str]:
         if(self.depart is None or self.arrivee is None):
@@ -395,7 +380,5 @@ class Tableau:
         return directions
 
     def afficher_solution(self):
-        self.conclusion.setText("Chargement...")
-        texte = self.get_solution()
-        self.conclusion.setText(texte)
-
+        self.conclusion.prepare()
+        self.conclusion.setText(self.get_solution(), 3)

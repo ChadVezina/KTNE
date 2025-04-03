@@ -45,14 +45,17 @@ class Tableau:
         self.conclusion = Conclusion(parent)
         self.afficher_solution()
 
+    def initialiser_tableau(self):
+        self.cases: list[Case] = []
+        for i in range(self.length):
+            self.cases.append(Case(i, self.caracteres[i], self.hints[i], lambda: self.afficher_solution()))
+
+    def calculate_y(self, parent):
+        screen_width, screen_height = get_width_height(parent)
+        return calculate_x_y(screen_width, screen_height, self.length)[1]
+
     def valider_coordonnees(self, i):
         return i in range(self.length)
-
-    def obtenir_case(self, numero):
-        if not self.valider_coordonnees(numero):
-            return None
-
-        return self.cases[numero]
 
     def obtenir_commande(self, numero: int):
         if not self.valider_coordonnees(numero):
@@ -70,11 +73,6 @@ class Tableau:
                     old_value.append(case.texte)
                     colonnes_communes[colonne] = old_value
         return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
-
-    def initialiser_tableau(self):
-        self.cases: list[Case] = []
-        for i in range(self.length):
-            self.cases.append(Case(i, self.caracteres[i], self.hints[i], lambda: self.afficher_solution()))
 
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
@@ -94,7 +92,3 @@ class Tableau:
 
     def afficher_solution(self):
         self.conclusion.setText(*self.get_solution())
-
-    def calculate_y(self, parent):
-        screen_width, screen_height = get_width_height(parent)
-        return calculate_x_y(screen_width, screen_height, self.length)[1]
