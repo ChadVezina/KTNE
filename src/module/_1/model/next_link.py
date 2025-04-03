@@ -26,7 +26,7 @@ class NextLink:
             self.etape = Texte(parent, row, self.texte)
         else:
             self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan), self.multiple)
-            self.next(self.etape.options.get_active_options())
+            self.next([])
 
     def destroy(self):
         if(self.next_link is not None):
