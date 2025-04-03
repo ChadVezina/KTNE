@@ -14,7 +14,7 @@ class Case:
     def placer_case(self, parent, x, y):
         self.is_active = False
         self.composante = Frame(parent)
-        self.composante.grid(row=x, column=y)
+        self.composante.grid(row = x, column = y)
         self.bouton = BoutonCase(self.composante, 0, 0, self.texte, lambda: self.clic())
         self.label = HintCase(self.composante, 1, 0, self.hint)
 

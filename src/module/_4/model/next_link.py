@@ -21,7 +21,7 @@ class NextLink:
         self.parent = parent
         self.row = row
         self.historique = historique
-        if len(self.options.items()) == 0:
+        if len(self.options.items()) = = 0:
             etapes = historique.copy()
             etapes.append(self.texte)
             self.etape = Conclusion(parent, row, etapes, 3)
@@ -43,7 +43,7 @@ class NextLink:
         if(self.etape is not None):
             self.etape.clic(scan)
             active_options = self.etape.options.get_active_options()
-            active_option = -1 if len(active_options) == 0 else active_options[0]
+            active_option = -1 if len(active_options) = = 0 else active_options[0]
             self.next(active_option)
             if(self.next_link is not None):
                 self.next_link.historique.append(self.next_link.texte)
@@ -54,7 +54,7 @@ class NextLink:
         if(self.next_link is not None):
             historique = self.next_link.historique.copy()
             self.next_link.destroy()
-            if len(self.next_link.options.items()) == 0:
+            if len(self.next_link.options.items()) = = 0:
                 next_link = self.next_link
             self.next_link = None
         for condition in self.actions:

@@ -28,7 +28,7 @@ class Tableau:
             Les éléments sont des objets de la classe Case.
     """
 
-    def __init__(self, dimension_rangee=5, dimension_colonne=5, nombre_mines=5):
+    def __init__(self, dimension_rangee = 5, dimension_colonne = 5, nombre_mines = 5):
         """ Initialisation d'un objet tableau.
 
         Attributes:
@@ -129,7 +129,7 @@ class Tableau:
             case = self.obtenir_case(mine_x, mine_y)
             if not case.est_minee:
                 case.ajouter_mine()
-                mines_a_placer -= 1
+                mines_a_placer - = 1
                 for voisin_x, voisin_y in self.obtenir_voisins(mine_x, mine_y):
                     self.obtenir_case(voisin_x, voisin_y).ajouter_une_mine_voisine()
 
@@ -182,14 +182,14 @@ class Tableau:
 
             # Affichage d'une ligne, caractère par caractère
             for colonne_y in range(0, self.dimension_colonne + 1):
-                if rangee_x == 0 and colonne_y == 0:
+                if rangee_x = = 0 and colonne_y = = 0:
                     # Premiers caractères de l'en-tête (coin supérieur gauche)
                     car = '  |'
-                elif rangee_x == 0:
+                elif rangee_x = = 0:
                     # En-tête: numéro de la colonne
                     # (si y > 10, on affiche seulement l'unité pour éviter les décalages)
                     car = f'{colonne_y % 10}'
-                elif colonne_y == 0:
+                elif colonne_y = = 0:
                     # Début de ligne: numéro de la ligne sur deux caractères,
                     # suivi d'une ligne verticale.
                     car = f'{rangee_x:<2}|'
@@ -206,11 +206,11 @@ class Tableau:
                         car = '.'
 
                 # Afficher le caractère suivit d'un espace (sans retour de ligne)
-                print(car, end=" ")
+                print(car, end = " ")
 
             # À la fin de chaque ligne
             print()  # Retour de ligne
-            if rangee_x == 0:  # Ligne horizontale de l'en-tête
+            if rangee_x = = 0:  # Ligne horizontale de l'en-tête
                 print('--+-' + '--' * self.dimension_colonne)
 
     def contient_cases_a_devoiler(self):
@@ -263,7 +263,7 @@ class Tableau:
         case.devoiler()
 
         if not case.est_minee:
-            self.nombre_cases_sans_mine_a_devoiler -= 1
+            self.nombre_cases_sans_mine_a_devoiler - = 1
 
     def contient_mine(self, rangee_x, colonne_y):
         """
@@ -285,7 +285,7 @@ def test_initialisation():
     tableau_test = Tableau()
 
     assert tableau_test.contient_cases_a_devoiler()
-    assert tableau_test.nombre_cases_sans_mine_a_devoiler == tableau_test.dimension_colonne * \
+    assert tableau_test.nombre_cases_sans_mine_a_devoiler = = tableau_test.dimension_colonne * \
         tableau_test.dimension_rangee - tableau_test.nombre_mines
 
 
@@ -303,8 +303,8 @@ def test_valider_coordonnees():
 def test_obtenir_case():
     tableau_test = Tableau()
     case1 = tableau_test.obtenir_case(3, 3)
-    assert case1 == tableau_test.obtenir_case(3, 3)
-    assert case1 != tableau_test.obtenir_case(3, 4)
+    assert case1 = = tableau_test.obtenir_case(3, 3)
+    assert case1 ! = tableau_test.obtenir_case(3, 4)
     assert tableau_test.obtenir_case(10, 10) is None
 
 
@@ -323,9 +323,9 @@ def test_obtenir_voisins():
     for i in range(len(voisins_attendus)):
         assert voisins[i] in voisins_attendus
         assert voisins_attendus[i] in voisins
-    assert len(tableau_test.obtenir_voisins(3, 3)) == 8
-    assert len(tableau_test.obtenir_voisins(1, 1)) == 3
-    assert len(tableau_test.obtenir_voisins(5, 5)) == 3
+    assert len(tableau_test.obtenir_voisins(3, 3)) = = 8
+    assert len(tableau_test.obtenir_voisins(1, 1)) = = 3
+    assert len(tableau_test.obtenir_voisins(5, 5)) = = 3
 
 
 def test_devoiler_case():
@@ -335,13 +335,13 @@ def test_devoiler_case():
     assert not case.est_devoilee
     tableau_test_1.devoiler_case(case)
     assert case.est_devoilee
-    assert tableau_test_1.nombre_cases_sans_mine_a_devoiler == n_mines - 1
+    assert tableau_test_1.nombre_cases_sans_mine_a_devoiler = = n_mines - 1
 
     tableau_test_2 = Tableau(5, 5, 25)
     n_mines = tableau_test_2.nombre_cases_sans_mine_a_devoiler
     case = tableau_test_2.obtenir_case(3, 3)
     tableau_test_2.devoiler_case(case)
-    assert tableau_test_2.nombre_cases_sans_mine_a_devoiler == n_mines
+    assert tableau_test_2.nombre_cases_sans_mine_a_devoiler = = n_mines
 
 
 def test_case_contient_mine():
@@ -358,7 +358,7 @@ def test_contient_cases_a_devoiler():
     assert tableau_test.contient_cases_a_devoiler()
 
 
-if __name__ == '__main__':
+if __name__ = = '__main__':
     # Les cinq prochaines lignes de code sont là pour vous aider à tester votre
     # première tentative d'implémentation des méthodes initialiser_tableau et afficher_tableau.
 

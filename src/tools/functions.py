@@ -14,29 +14,29 @@ def make_menu(root: Tk | Toplevel, nouvelle: Callable, quitter: Callable, titre:
     root.bind("<Control-n>", lambda event: nouvelle())
     root.bind("<Alt-F4>", lambda event: quitter())
 
-    popup_menu = Menu(root, tearoff=0)
-    popup_menu.add_command(label="Nouvelle", command=nouvelle, accelerator="Ctrl+N")
+    popup_menu = Menu(root, tearoff = 0)
+    popup_menu.add_command(label = "Nouvelle", command = nouvelle, accelerator = "Ctrl+N")
     popup_menu.add_separator()
-    popup_menu.add_command(label="Quitter", command=quitter, accelerator="Alt+F4")
+    popup_menu.add_command(label = "Quitter", command = quitter, accelerator = "Alt+F4")
 
     menu = Menu(root)
-    menu.add_cascade(label="Fichier", menu=popup_menu)
-    menu.add_command(label="Instructions", command=lambda root=root, titre=new_titre, contenu=contenu: show_instructions(root, titre, contenu))
+    menu.add_cascade(label = "Fichier", menu = popup_menu)
+    menu.add_command(label = "Instructions", command = lambda root = root, titre = new_titre, contenu = contenu: show_instructions(root, titre, contenu))
 
-    root.config(menu=menu)
+    root.config(menu = menu)
 
 
 def show_instructions(root: Tk | Toplevel, titre: str | None, contenu: Contenu):
     instructions_window = Toplevel(root)
     instructions_window.title(titre if titre is not None else "Instructions")
 
-    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y, width=30, height=15)
+    instructions_text = Text(instructions_window, wrap = WORD, font = Font.BODY, padx = TextPad.PADDING_X, pady = TextPad.PADDING_Y, width = 30, height = 15)
     instructions_text.insert(INSERT, contenu.value)
-    instructions_text.config(state=DISABLED)
+    instructions_text.config(state = DISABLED)
     instructions_text.pack()
 
-    ok_button = Button(instructions_window, font=Font.BODY, text="OK", command=instructions_window.destroy)
-    ok_button.pack(padx=ButtonPad.PADDING_X, pady=ButtonPad.PADDING_Y)
+    ok_button = Button(instructions_window, font = Font.BODY, text = "OK", command = instructions_window.destroy)
+    ok_button.pack(padx = ButtonPad.PADDING_X, pady = ButtonPad.PADDING_Y)
 
 
 def get_width_height(parent: Tk | Toplevel | Frame) -> tuple[int, int]:
@@ -53,16 +53,16 @@ def calculate_x_y(screen_width: int, screen_height: int, length: int) -> tuple[i
     n_y = round(unit)
     diff = length - (n_x * n_y)
     while(diff < 0):
-        if(ratio >= 1):
-            n_x -= 1
+        if(ratio > = 1):
+            n_x - = 1
         else:
-            n_y -= 1
+            n_y - = 1
         diff = length - (n_x * n_y)
     while(diff > 0):
-        if(ratio >= 1):
-            n_y += 1
+        if(ratio > = 1):
+            n_y + = 1
         else:
-            n_x += 1
+            n_x + = 1
         diff = length - (n_x * n_y)
     return n_x, n_y
 

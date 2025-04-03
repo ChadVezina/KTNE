@@ -9,16 +9,16 @@ class BoutonCase(Button):
         self.y = y
         super().__init__(
             parent,
-            font=Font.BODY_SYMBOLE,
-            text=texte,
-            padx=BoutonCaseRect.PADDING_X,
-            pady=BoutonCaseRect.PADDING_Y,
-            width=BoutonCaseRect.WIDTH,
-            height=BoutonCaseRect.HEIGHT,
-            command=commande,
-            bg="white",
+            font = Font.BODY_SYMBOLE,
+            text = texte,
+            padx = BoutonCaseRect.PADDING_X,
+            pady = BoutonCaseRect.PADDING_Y,
+            width = BoutonCaseRect.WIDTH,
+            height = BoutonCaseRect.HEIGHT,
+            command = commande,
+            bg = "white",
             )
-        self.grid(row=x, column=y)
+        self.grid(row = x, column = y)
 
     def activer(self):
         self["bg"] = "pink"

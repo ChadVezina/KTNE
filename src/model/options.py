@@ -6,7 +6,7 @@ from constants.config import GridPad
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, options: dict[int, str], commande: Callable[[int], None]):
         super().__init__(parent)
-        self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.make_options(options, commande)
 
     def make_options(self, options: dict[int, str], commande: Callable[[int], None]):
@@ -23,7 +23,7 @@ class Options(Frame):
 
     def get_active_options(self):
         liste = [scan for scan in self.boutons_active if self.boutons_active[scan]]
-        return sorted(liste, key=lambda scan: scan)
+        return sorted(liste, key = lambda scan: scan)
 
     def is_active(self, scan: int):
         return self.boutons_active[scan]

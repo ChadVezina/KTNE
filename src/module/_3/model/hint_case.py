@@ -9,10 +9,10 @@ class HintCase(Label):
         self.y = y
         super().__init__(
             parent,
-            font=Font.BODY_HINT,
-            text=texte,
-            width=HintCaseRect.WIDTH,
-            wraplength=HintCaseRect.WRAP_LENGTH,
+            font = Font.BODY_HINT,
+            text = texte,
+            width = HintCaseRect.WIDTH,
+            wraplength = HintCaseRect.WRAP_LENGTH,
             )
-        self.grid(row=x, column=y)
+        self.grid(row = x, column = y)
 

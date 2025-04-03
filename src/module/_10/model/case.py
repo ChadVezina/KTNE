@@ -10,9 +10,9 @@ class Case:
         self.init()
 
     def init(self):
-        if self.type == TypeCase.POINT_A or self.type == TypeCase.POINT_B:
+        if self.type = = TypeCase.POINT_A or self.type = = TypeCase.POINT_B:
             return
-        if self.x % 2 == 0 or self.y % 2 == 0:
+        if self.x % 2 = = 0 or self.y % 2 = = 0:
             self.setType(TypeCase.MUR_VIDE)
         else:
             self.setType(TypeCase.VIDE)
@@ -22,7 +22,7 @@ class Case:
         self.bouton.setType(self.type)
 
     def setType(self, type: TypeCase):
-        if self.type == type:
+        if self.type = = type:
             return
         self.type = type
         if self.bouton is not None:

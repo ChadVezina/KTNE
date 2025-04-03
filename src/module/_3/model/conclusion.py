@@ -12,7 +12,7 @@ class Conclusion(Frame):
         super().__init__(
             parent,
             )
-        self.grid(padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.root: Root | None = None
 
     def do(self):
@@ -23,9 +23,9 @@ class Conclusion(Frame):
     def setText(self, solutions: list[list[tuple[str, str, bool, Callable[[], None]]]] = None, unique: bool = False):
         self.do()
         if solutions is None:
-            Label(self.root, font=Font.BODY_SYMBOLE, text="Solution indéterminée...").grid()
+            Label(self.root, font = Font.BODY_SYMBOLE, text = "Solution indéterminée...").grid()
             return
         texte = "Solution unique:" if unique else "Solutions possibles:"
-        Label(self.root, font=Font.BODY_SYMBOLE, text=texte).grid(row=0)
+        Label(self.root, font = Font.BODY_SYMBOLE, text = texte).grid(row = 0)
         for row, solution in enumerate(solutions):
             Ligne(self.root, row+1, solution)

@@ -64,7 +64,7 @@ class Module_3(Module):
             "omega",
         ]
         self.hints = sorted(self.hints0.copy())
-        self.caracteres = sorted(self.caracteres0.copy(), key=lambda x: self.hints.index(self.hints0[self.caracteres0.index(x)]))
+        self.caracteres = sorted(self.caracteres0.copy(), key = lambda x: self.hints.index(self.hints0[self.caracteres0.index(x)]))
         self.colonnes = [
             ["Ϙ", "Ѧ", "ƛ", "Ϟ", "Ѭ", "ϗ", "Ͽ"],
             ["Ӭ", "Ϙ", "Ͽ", "Ҩ", "☆", "ϗ", "¿"],

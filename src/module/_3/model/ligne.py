@@ -9,6 +9,6 @@ class Ligne(Frame):
         super().__init__(
             parent,
             )
-        self.grid(row=row)
+        self.grid(row = row)
         for col, (texte, hint, selected, commande) in enumerate(solution):
             Symbole(self, col, texte, hint, selected, commande)

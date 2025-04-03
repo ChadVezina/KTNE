@@ -10,17 +10,17 @@ class BoutonCase(Button):
         self.y = y
         super().__init__(
             parent,
-            font=Font.BODY,
-            text="",
-            padx=0,
-            pady=0,
-            width=0,
-            height=0,
-            command=commande,
-            bg="white",
-            border=0,
+            font = Font.BODY,
+            text = "",
+            padx = 0,
+            pady = 0,
+            width = 0,
+            height = 0,
+            command = commande,
+            bg = "white",
+            border = 0,
             )
-        self.grid(row=x, column=y)
+        self.grid(row = x, column = y)
 
     def setType(self, type: TypeCase):
         match type:
@@ -33,7 +33,7 @@ class BoutonCase(Button):
             case TypeCase.ARRIVEE:
                 self["text"] = "▲"
             case TypeCase.MUR:
-                if self.x % 2 == 0:
+                if self.x % 2 = = 0:
                     self["text"] = "━"
                 else:
                     self["text"] = "┃"

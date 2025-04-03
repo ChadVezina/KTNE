@@ -11,7 +11,7 @@ class Conclusion(Frame):
         super().__init__(
             parent,
             )
-        self.grid(padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.root: Root | None = None
 
     def do(self):
@@ -21,12 +21,12 @@ class Conclusion(Frame):
 
     def prepare(self):
         self.do()
-        Label(self.root, font=Font.BODY, text="Chargement...").grid()
+        Label(self.root, font = Font.BODY, text = "Chargement...").grid()
 
     def setText(self, solutions: list[str] = None, split_col = 1):
         self.do()
         if solutions is None:
-            Label(self.root, font=Font.BODY, text="Solution indéterminée...").grid()
+            Label(self.root, font = Font.BODY, text = "Solution indéterminée...").grid()
             return
         liste = enumerate(solutions)
         for row, solution in liste:
@@ -39,7 +39,7 @@ class Conclusion(Frame):
                     sub_liste.append(next_solution)
                 except StopIteration:
                     break
-            if len(sub_liste) != 0:
+            if len(sub_liste) ! = 0:
                 if row < len(solutions) - split_col:
                     sub_liste.append("->")
                 Ligne(self.root, row, sub_liste)

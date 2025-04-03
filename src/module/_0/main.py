@@ -31,12 +31,12 @@ class Module_0(Tk):
         make_menu(self, self.nouvelle_partie, self.configurer, self.charger, self.sauvegarder, self.quitter)
 
         self.cadre = Frame(self)
-        self.cadre.grid(padx=FenetrePad.PADDING_X, pady=FenetrePad.PADDING_Y)
-        self.cadre.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.cadre.grid(padx = FenetrePad.PADDING_X, pady = FenetrePad.PADDING_Y)
+        self.cadre.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 
         self.ouvrir_partie()
 
-    def ouvrir_partie(self, dictionnaire_cases=None, activer_jeu=True):
+    def ouvrir_partie(self, dictionnaire_cases = None, activer_jeu = True):
         """
         Redémarre le tableau avec de nouveaux emplacements de mines
         """
@@ -46,14 +46,14 @@ class Module_0(Tk):
         for i in range(self.dimension_rangee):
             for j in range(self.dimension_colonne):
                 bouton = BoutonCase(self.cadre, i + 1, j + 1)
-                bouton.grid(row=i, column=j)
+                bouton.grid(row = i, column = j)
                 self.dictionnaire_boutons[(i + 1, j + 1)] = bouton
         self.tableau_mines = Tableau(self.dimension_rangee, self.dimension_colonne, self.nombre_mines)
         if dictionnaire_cases is not None:
             self.tableau_mines.dictionnaire_cases = dictionnaire_cases
             for case in self.tableau_mines.dictionnaire_cases.values():
                 if case.est_devoilee:
-                    self.tableau_mines.nombre_cases_sans_mine_a_devoiler -= 1
+                    self.tableau_mines.nombre_cases_sans_mine_a_devoiler - = 1
         if activer_jeu:
             self.activer_jeu()
         else:
@@ -138,8 +138,8 @@ class Module_0(Tk):
         self.input_nombre_colonnes = make_label_entry(self.fenetre_configuration, "Nombre de colonnes", 1)
         self.input_nombre_mines = make_label_entry(self.fenetre_configuration, "Nombre de mines", 2)
 
-        bouton_ok = Button(self.fenetre_configuration, font=Font.BODY, text="Lancer la nouvelle partie", command=self.lancer_partie_configuree)
-        bouton_ok.grid(row=3, column=0)
+        bouton_ok = Button(self.fenetre_configuration, font = Font.BODY, text = "Lancer la nouvelle partie", command = self.lancer_partie_configuree)
+        bouton_ok.grid(row = 3, column = 0)
 
     def lancer_partie_configuree(self):
         try:
@@ -201,20 +201,20 @@ class Module_0(Tk):
         dictionnaire_cases = {}
         jeu_en_cours = False
         for ligne in f.readlines():
-            x += 1
+            x + = 1
             y = 0
             rangee = ligne.rstrip().split(" ")
             for str_case in rangee:
-                y += 1
+                y + = 1
                 y_max = max(y, y_max)
                 case = Case()
-                if str_case[0] == "o":
+                if str_case[0] = = "o":
                     case.devoiler()
                 else:
                     jeu_en_cours = True
-                if str_case[1] == "M":
+                if str_case[1] = = "M":
                     case.ajouter_mine()
-                    n_mines += 1
+                    n_mines + = 1
                 else:
                     mines_voisines = int(str_case[1])
                     for i in range(mines_voisines):

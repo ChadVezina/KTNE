@@ -84,14 +84,14 @@ class Tableau:
                 case TypeFil.ROUGE:
                     table = self.table[TypeFil.ROUGE][rouge].copy()
                     case.add_solution(lambda connexion: connexion in table)
-                    rouge += 1
+                    rouge + = 1
                 case TypeFil.BLEU:
                     table = self.table[TypeFil.BLEU][bleu].copy()
                     case.add_solution(lambda connexion: connexion in table)
-                    bleu += 1
+                    bleu + = 1
                 case TypeFil.NOIR:
                     table = self.table[TypeFil.NOIR][noir].copy()
                     case.add_solution(lambda connexion: connexion in table)
-                    noir += 1
+                    noir + = 1
                 case _:
                     pass

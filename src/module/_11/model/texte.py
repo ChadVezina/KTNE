@@ -8,7 +8,7 @@ from constants.config import GridPad, Font
 class Texte(Frame):
     def __init__(self, parent, row):
         super().__init__(parent)
-        self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.root: Root | None = None
 
     def do(self):
@@ -18,12 +18,12 @@ class Texte(Frame):
 
     def prepare(self):
         self.do()
-        Label(self.root, font=Font.BODY, text="Chargement...").grid()
+        Label(self.root, font = Font.BODY, text = "Chargement...").grid()
 
     def set_texte(self, solutions: list[str] = None, split_col = 1):
         self.do()
         if solutions is None:
-            Label(self.root, font=Font.BODY, text="Aucun mot trouvé").grid()
+            Label(self.root, font = Font.BODY, text = "Aucun mot trouvé").grid()
             return
         liste = enumerate(solutions)
         for row, solution in liste:
@@ -35,5 +35,5 @@ class Texte(Frame):
                     sub_liste.append(next_solution)
                 except StopIteration:
                     break
-            if len(sub_liste) != 0:
+            if len(sub_liste) ! = 0:
                 Ligne(self.root, row, sub_liste)

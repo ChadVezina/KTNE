@@ -24,7 +24,7 @@ class NextLink:
         self.row = row
         self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
         self.tableau.do(parent, row + 1)
-        if len(self.options.items()) != 0:
+        if len(self.options.items()) ! = 0:
             self.next(self.etape.options.get_active_option())
 
     def destroy(self):

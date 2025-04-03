@@ -3,23 +3,23 @@ from tkinter import Label, Entry, Button, Menu, Toplevel, Text, E, INSERT, DISAB
 from constants.config import GridPad, TextPad, ButtonPad, EntrySize, Font
 
 
-def make_label(root, texte, rangee, colonne=0):
-    composante = Label(root, font=Font.BODY, text=texte)
-    composante.grid(row=rangee, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+def make_label(root, texte, rangee, colonne = 0):
+    composante = Label(root, font = Font.BODY, text = texte)
+    composante.grid(row = rangee, column = colonne, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
     return composante
 
 
-def make_label_entry(root, texte, rangee, colonne=0):
-    composante = Label(root, font=Font.BODY, text=texte)
-    composante.grid(row=rangee, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y, sticky=E)
-    entry = Entry(root, font=Font.BODY, width=EntrySize.WIDTH)
-    entry.grid(row=rangee, column=(colonne+1), padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+def make_label_entry(root, texte, rangee, colonne = 0):
+    composante = Label(root, font = Font.BODY, text = texte)
+    composante.grid(row = rangee, column = colonne, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y, sticky = E)
+    entry = Entry(root, font = Font.BODY, width = EntrySize.WIDTH)
+    entry.grid(row = rangee, column = (colonne+1), padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
     return entry
 
 
-def make_bouton(root, texte, rangee, colonne=0):
-    composante = Button(root, font=Font.BODY, text=texte)
-    composante.grid(row=rangee, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+def make_bouton(root, texte, rangee, colonne = 0):
+    composante = Button(root, font = Font.BODY, text = texte)
+    composante.grid(row = rangee, column = colonne, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
     return composante
 
 
@@ -30,20 +30,20 @@ def make_menu(root, nouvelle, configurer, charger, sauvegarder, quitter):
     root.bind("<Control-s>", lambda event: sauvegarder())
     root.bind("<Alt-F4>", lambda event: quitter())
 
-    popup_menu = Menu(root, tearoff=0)
-    popup_menu.add_command(label="Nouvelle", command=nouvelle, accelerator="Ctrl+N")
-    popup_menu.add_command(label="Configurer", command=configurer, accelerator="Ctrl+,")
+    popup_menu = Menu(root, tearoff = 0)
+    popup_menu.add_command(label = "Nouvelle", command = nouvelle, accelerator = "Ctrl+N")
+    popup_menu.add_command(label = "Configurer", command = configurer, accelerator = "Ctrl+,")
     popup_menu.add_separator()
-    popup_menu.add_command(label="Charger", command=charger, accelerator="Ctrl+O")
-    popup_menu.add_command(label="Sauvegarder", command=sauvegarder, accelerator="Ctrl+S")
+    popup_menu.add_command(label = "Charger", command = charger, accelerator = "Ctrl+O")
+    popup_menu.add_command(label = "Sauvegarder", command = sauvegarder, accelerator = "Ctrl+S")
     popup_menu.add_separator()
-    popup_menu.add_command(label="Quitter", command=quitter, accelerator="Alt+F4")
+    popup_menu.add_command(label = "Quitter", command = quitter, accelerator = "Alt+F4")
 
     menu = Menu(root)
-    menu.add_cascade(label="Fichier", menu=popup_menu)
-    menu.add_command(label="Instructions", command=show_instructions)
+    menu.add_cascade(label = "Fichier", menu = popup_menu)
+    menu.add_command(label = "Instructions", command = show_instructions)
 
-    root.config(menu=menu)
+    root.config(menu = menu)
 
 
 def validate_entry(entry, message):
@@ -64,7 +64,7 @@ def show_instructions():
     instructions_window = Toplevel()
     instructions_window.title("Instructions du jeu Démineur")
 
-    instructions_text = Text(instructions_window, wrap=WORD, font=Font.BODY, padx=TextPad.PADDING_X, pady=TextPad.PADDING_Y, width=30, height=15)
+    instructions_text = Text(instructions_window, wrap = WORD, font = Font.BODY, padx = TextPad.PADDING_X, pady = TextPad.PADDING_Y, width = 30, height = 15)
     instructions_text.insert(INSERT,
     """Le Démineur est un jeu de réflexion dont le but est de localiser des mines cachées dans un champ de cases.
 
@@ -76,8 +76,8 @@ def show_instructions():
 6. Vous gagnez si vous révélez toutes les cases sans mines et marquez correctement toutes les mines avec des drapeaux.
 
 Bonne chance !""")
-    instructions_text.config(state=DISABLED)
+    instructions_text.config(state = DISABLED)
     instructions_text.pack()
 
-    ok_button = Button(instructions_window, font=Font.BODY, text="OK", command=instructions_window.destroy)
-    ok_button.pack(padx=ButtonPad.PADDING_X, pady=ButtonPad.PADDING_Y)
+    ok_button = Button(instructions_window, font = Font.BODY, text = "OK", command = instructions_window.destroy)
+    ok_button.pack(padx = ButtonPad.PADDING_X, pady = ButtonPad.PADDING_Y)

@@ -7,7 +7,7 @@ from constants.config import GridPad
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, commande: Callable[[], None], n_options: int = 6):
         super().__init__(parent)
-        self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.n_options = n_options
         self.inputs: dict[int, Input] = {}
         self.labels: dict[int, Texte] = {}
@@ -30,7 +30,7 @@ class Options(Frame):
         labels: dict[str, int] = {}
         for scan in range(self.n_options):
             texte = self.get_label(scan)
-            if(texte == ""):
+            if(texte = = ""):
                 continue
             label = labels.get(texte, 0)
             labels[texte] = label + 1

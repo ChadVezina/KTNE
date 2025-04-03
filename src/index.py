@@ -70,7 +70,7 @@ def state_hide(self: Module | None) -> bool:
     if self is None:
         return False
     self.enter()
-    if self.wm_state() != "iconic":
+    if self.wm_state() ! = "iconic":
         return True
     return False
 
@@ -78,7 +78,7 @@ def state_show(self: Module | None) -> bool:
     if self is None:
         return False
     self.enter()
-    if self.wm_state() == "iconic":
+    if self.wm_state() = = "iconic":
         return True
     return False
 
@@ -92,7 +92,7 @@ def hides(i: int):
             return
         is_update = True
         for scan, module in enumerate(modules):
-            if scan != i:
+            if scan ! = i:
                 hide(module)
         is_update = False
         is_show = False
@@ -109,7 +109,7 @@ def shows(i: int):
             return
         is_update = True
         for scan, module in enumerate(modules):
-            if scan != i:
+            if scan ! = i:
                 show(module)
         is_update = False
         is_show = True
@@ -121,8 +121,8 @@ for scan in range(1, N_MODULES):
         modules.append(modules_i)
         module = get_module(scan)
         if module is not None:
-            module.bind("<Map>", lambda e, scan=scan: shows(scan))
-            module.bind("<Unmap>", lambda e, scan=scan: hides(scan))
+            module.bind("<Map>", lambda e, scan = scan: shows(scan))
+            module.bind("<Unmap>", lambda e, scan = scan: hides(scan))
 
 fenetre.bind("<Map>", lambda e: shows(0))
 fenetre.bind("<Unmap>", lambda e: hides(0))

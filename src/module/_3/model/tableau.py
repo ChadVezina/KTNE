@@ -34,7 +34,7 @@ class Tableau:
 
     def placer_tableau(self, parent):
         composante = Frame(parent)
-        composante.grid(row=0)
+        composante.grid(row = 0)
         n_y = self.calculate_y(parent)
         for scan in range(self.length):
             x = scan // n_y
@@ -43,7 +43,7 @@ class Tableau:
 
     def placer_solution(self, parent):
         composante = Frame(parent)
-        composante.grid(row=1)
+        composante.grid(row = 1)
         self.conclusion = Conclusion(parent)
         self.afficher_solution()
 
@@ -74,14 +74,14 @@ class Tableau:
                     old_value = colonnes_communes.get(colonne, [])
                     old_value.append(case.texte)
                     colonnes_communes[colonne] = old_value
-        return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
+        return sorted(colonnes_communes.items(), key = lambda x: len(x[1]), reverse = True)
 
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
-        if len(colonnes_communes) == 0:
+        if len(colonnes_communes) = = 0:
             return None, False
         result: list[list[tuple[str, str, bool, Callable[[], None]]]] = []
-        if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
+        if len(colonnes_communes[0][1]) = = 4 and (len(colonnes_communes) = = 1 or len(colonnes_communes[1][1]) ! = 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             selection = colonnes_communes[0][1].copy()
             result.append([(val, self.hints[self.caracteres.index(val)], True, self.obtenir_commande(self.caracteres.index(val))) for val in solution if val in selection])

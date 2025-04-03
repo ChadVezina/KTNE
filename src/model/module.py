@@ -19,15 +19,15 @@ class Module(Tk, Toplevel):
 
     def init(self):
         container = Frame(self)
-        container.pack(fill=BOTH, expand=True)
-        self.canvas = Canvas(container, bd=0, highlightthickness=0)
+        container.pack(fill = BOTH, expand = True)
+        self.canvas = Canvas(container, bd = 0, highlightthickness = 0)
 
         self.outer_frame = Frame(self.canvas)
         self.cadre = Frame(self.outer_frame)
-        self.cadre.pack(side=TOP)
+        self.cadre.pack(side = TOP)
 
-        self.canvas.create_window((0, 0), window=self.outer_frame, anchor="n", tags="frame")
-        self.canvas.pack(side=LEFT, fill=BOTH, expand=True)
+        self.canvas.create_window((0, 0), window = self.outer_frame, anchor = "n", tags = "frame")
+        self.canvas.pack(side = LEFT, fill = BOTH, expand = True)
 
         self.outer_frame.bind("<Configure>", self.update_scroll)
         self.canvas.bind("<Configure>", self.center_content)
@@ -40,7 +40,7 @@ class Module(Tk, Toplevel):
         self.bind("<Button-3>", lambda e: self.clic())
 
     def clic(self):
-        if self.state() == "zoomed":
+        if self.state() = = "zoomed":
             self.state("normal")
         else:
             self.state("zoomed")
@@ -48,16 +48,16 @@ class Module(Tk, Toplevel):
     def enter(self):
         self.on_inner_frame_change()
 
-    def on_inner_frame_change(self, event=None):
+    def on_inner_frame_change(self, event = None):
         self.outer_frame.event_generate("<Configure>")
         self.canvas.event_generate("<Configure>")
 
-    def center_content(self, event=None):
+    def center_content(self, event = None):
         canvas_width = self.canvas.winfo_width()
-        self.canvas.itemconfig("frame", width=canvas_width)
+        self.canvas.itemconfig("frame", width = canvas_width)
 
-    def update_scroll(self, event=None):
-        self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+    def update_scroll(self, event = None):
+        self.canvas.configure(scrollregion = self.canvas.bbox("all"))
 
         content_height = self.outer_frame.winfo_height()
         canvas_height = self.canvas.winfo_height()

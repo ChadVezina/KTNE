@@ -7,7 +7,7 @@ from constants.config import GridPad
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, commande: Callable[[int], None], n_options: int = 6):
         super().__init__(parent)
-        self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.n_options = n_options
         self.make_options(commande)
 
@@ -44,7 +44,7 @@ class Options(Frame):
         return self.bouton_active
 
     def is_active(self, scan: int):
-        return self.bouton_active == scan
+        return self.bouton_active = = scan
 
     def is_exist(self, scan: int):
         self.boutons[scan].is_exist()
@@ -56,7 +56,7 @@ class Options(Frame):
         self.boutons[scan].set_active(active)
 
     def activer(self, scan: int):
-        if(self.bouton_active != -1 and not self.is_active(scan)):
+        if(self.bouton_active ! = -1 and not self.is_active(scan)):
             self.desactiver(self.bouton_active)
         self.boutons[scan].activer()
         self.bouton_active = scan

@@ -12,7 +12,7 @@ class BoutonCase(Button):
     def __init__(self, parent, rangee_x, colonne_y):
         self.rangee_x = rangee_x
         self.colonne_y = colonne_y
-        super().__init__(parent, font=Font.BODY, text=" ", padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, width=BoutonCaseRect.WIDTH, height=BoutonCaseRect.HEIGHT)
+        super().__init__(parent, font = Font.BODY, text = " ", padx = BoutonCaseRect.PADDING_X, pady = BoutonCaseRect.PADDING_Y, width = BoutonCaseRect.WIDTH, height = BoutonCaseRect.HEIGHT)
 
     def activer(self, commande):
         self["state"] = "normal"

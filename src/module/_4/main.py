@@ -32,61 +32,61 @@ class Module_4(Module):
                                 lambda liste: NextLink(
                                     "rouge",
                                     ) if(
-                                        (0 == liste_1 and (
-                                            (0 == liste_2 and 3 == liste) or
-                                            (1 == liste_2 and 0 == liste) or
-                                            (2 == liste_2 and 3 == liste)
+                                        (0 = = liste_1 and (
+                                            (0 = = liste_2 and 3 = = liste) or
+                                            (1 = = liste_2 and 0 = = liste) or
+                                            (2 = = liste_2 and 3 = = liste)
                                             )) or
-                                        (not 0 == liste_1 and (
-                                            (0 == liste_2 and 1 == liste) or
-                                            (1 == liste_2 and 3 == liste) or
-                                            (2 == liste_2 and 1 == liste)
+                                        (not 0 = = liste_1 and (
+                                            (0 = = liste_2 and 1 = = liste) or
+                                            (1 = = liste_2 and 3 = = liste) or
+                                            (2 = = liste_2 and 1 = = liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
                                     "bleu",
                                     ) if(
-                                        (0 == liste_1 and (
-                                            (0 == liste_2 and 0 == liste) or
-                                            (1 == liste_2 and 1 == liste) or
-                                            (2 == liste_2 and 2 == liste)
+                                        (0 = = liste_1 and (
+                                            (0 = = liste_2 and 0 = = liste) or
+                                            (1 = = liste_2 and 1 = = liste) or
+                                            (2 = = liste_2 and 2 = = liste)
                                             )) or
-                                        (not 0 == liste_1 and (
-                                            (0 == liste_2 and 0 == liste) or
-                                            (1 == liste_2 and 2 == liste) or
-                                            (2 == liste_2 and 3 == liste)
+                                        (not 0 = = liste_1 and (
+                                            (0 = = liste_2 and 0 = = liste) or
+                                            (1 = = liste_2 and 2 = = liste) or
+                                            (2 = = liste_2 and 3 = = liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
                                     "vert",
                                     ) if(
-                                        (0 == liste_1 and (
-                                            (0 == liste_2 and 2 == liste) or
-                                            (1 == liste_2 and 3 == liste) or
-                                            (2 == liste_2 and 1 == liste)
+                                        (0 = = liste_1 and (
+                                            (0 = = liste_2 and 2 = = liste) or
+                                            (1 = = liste_2 and 3 = = liste) or
+                                            (2 = = liste_2 and 1 = = liste)
                                             )) or
-                                        (not 0 == liste_1 and (
-                                            (0 == liste_2 and 3 == liste) or
-                                            (1 == liste_2 and 1 == liste) or
-                                            (2 == liste_2 and 0 == liste)
+                                        (not 0 = = liste_1 and (
+                                            (0 = = liste_2 and 3 = = liste) or
+                                            (1 = = liste_2 and 1 = = liste) or
+                                            (2 = = liste_2 and 0 = = liste)
                                             ))
                                         ) else None,
                                 lambda liste: NextLink(
                                     "jaune",
                                     ) if(
-                                        (0 == liste_1 and (
-                                            (0 == liste_2 and 1 == liste) or
-                                            (1 == liste_2 and 2 == liste) or
-                                            (2 == liste_2 and 0 == liste)
+                                        (0 = = liste_1 and (
+                                            (0 = = liste_2 and 1 = = liste) or
+                                            (1 = = liste_2 and 2 = = liste) or
+                                            (2 = = liste_2 and 0 = = liste)
                                             )) or
-                                        (not 0 == liste_1 and (
-                                            (0 == liste_2 and 2 == liste) or
-                                            (1 == liste_2 and 0 == liste) or
-                                            (2 == liste_2 and 2 == liste)
+                                        (not 0 = = liste_1 and (
+                                            (0 = = liste_2 and 2 = = liste) or
+                                            (1 = = liste_2 and 0 = = liste) or
+                                            (2 = = liste_2 and 2 = = liste)
                                             ))
                                         ) else None,
                             ],
-                            ) if liste_2 != -1 else None,
+                            ) if liste_2 ! = -1 else None,
                     ],
                     ),
             ],
