@@ -1,6 +1,7 @@
 from tkinter import Frame
 from typing import Callable
-from .etape import Etape
+from model.texte import Texte
+from model.etape import Etape
 
 class NextLink:
     def __init__(
@@ -14,15 +15,17 @@ class NextLink:
         self.options = options
         self.actions = actions
         self.multiple = multiple
-        self.etape: Etape | None = None
+        self.etape: Etape | Texte | None = None
         self.next_link: NextLink | None = None
 
     def do(self, parent: Frame, row: int):
         self.destroy()
         self.parent = parent
         self.row = row
-        self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
-        if len(self.options.items()) != 0:
+        if len(self.options.items()) == 0:
+            self.etape = Texte(parent, row, self.texte)
+        else:
+            self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan), self.multiple)
             self.next(self.etape.options.get_active_options())
 
     def destroy(self):
@@ -37,7 +40,7 @@ class NextLink:
 
     def clic(self, scan: int):
         if(self.etape is not None):
-            self.etape.clic(scan, self.multiple)
+            self.etape.clic(scan)
             self.next(self.etape.options.get_active_options())
 
     def next(self, active_options: list[int]):

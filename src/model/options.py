@@ -3,17 +3,19 @@ from typing import Callable
 from constants.config import GridPad, Font
 
 class Options(Frame):
-    def __init__(self, parent: Frame, row: int, options: dict[int, str]):
+    def __init__(self, parent: Frame, row: int, options: dict[int, str], commande: Callable[[int], None]):
         super().__init__(parent)
         self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        self.make_options(options)
+        self.make_options(options, commande)
 
-    def make_options(self, options: dict[int, str]):
+    def make_options(self, options: dict[int, str], commande: Callable[[int], None]):
         self.boutons: dict[int, Button] = {}
         self.boutons_active: dict[int, bool] = {}
-        for option in options.items():
-            self.boutons[option[0]] = self.make_button(option[0], option[1])
-            self.boutons_active[option[0]] = False
+        for scan, option in options.items():
+            self.boutons[scan] = self.make_button(scan, option)
+            self.boutons_active[scan] = False
+        for scan in options.keys():
+            self.add_command(scan, commande)
 
     def make_button(self, colonne: int, texte: str):
         bouton = Button(self, font=Font.BODY, text=texte, bg="white")
