@@ -1,6 +1,8 @@
 from tkinter import Frame
+
 from .case import Case
-from .root import Root
+
+from model.root import Root
 
 
 class Tableau:

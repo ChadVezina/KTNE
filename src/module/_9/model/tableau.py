@@ -1,7 +1,9 @@
 from tkinter import Frame
+
 from .case import Case
-from .root import Root
 from ..tools.enums import TypeConnexion, TypeFil
+
+from model.root import Root
 
 
 class Tableau:

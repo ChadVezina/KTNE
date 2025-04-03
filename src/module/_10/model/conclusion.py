@@ -1,8 +1,8 @@
 from tkinter import Frame, Label
 
 from .ligne import Ligne
-from .root import Root
 
+from model.root import Root
 from constants.config import GridPad, Font
 
 

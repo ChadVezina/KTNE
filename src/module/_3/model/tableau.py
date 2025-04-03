@@ -1,8 +1,10 @@
 from tkinter import Frame
 from typing import Callable
+
 from .case import Case
 from .conclusion import Conclusion
-from .root import Root
+
+from model.root import Root
 from tools.functions import get_width_height, calculate_x_y
 
 

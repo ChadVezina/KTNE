@@ -2,8 +2,8 @@ from tkinter import Frame, Label
 from typing import Callable
 
 from .ligne import Ligne
-from .root import Root
 
+from model.root import Root
 from constants.config import GridPad, Font
 
 
