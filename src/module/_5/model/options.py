@@ -18,12 +18,11 @@ class Options(Frame):
             self.boutons[scan] = self.make_button(scan)
         for scan in range(self.n_options):
             self.add_command(scan, commande)
-            self.set_active_option(scan, False)
 
     def make_button(self, colonne: int):
         x = colonne // 2
         y = colonne % 2
-        return Bouton(self, x, y)
+        return Bouton(self, x, y, relief="raised")
 
     def add_command(self, scan: int, commande: Callable[[int], None]):
         self.boutons[scan]["command"] = lambda: commande(scan)
