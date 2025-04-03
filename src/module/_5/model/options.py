@@ -18,6 +18,7 @@ class Options(Frame):
             self.boutons[scan] = self.make_button(scan)
         for scan in range(self.n_options):
             self.add_command(scan, commande)
+            self.set_active_option(scan, False)
 
     def make_button(self, colonne: int):
         x = colonne // 2
