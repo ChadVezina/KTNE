@@ -7,7 +7,8 @@ from .model.case import Case
 from .model.tableau import Tableau
 from .model.bouton_case import BoutonCase
 from .tools.fonctions import make_label, make_label_entry, make_menu, validate_entry, validate_entry_mines
-from .tools.constantes import FenetrePad, Font
+
+from constants.config import FenetrePad, Font
 
 
 class Module_0(Tk):
