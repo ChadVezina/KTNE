@@ -11,7 +11,7 @@ from module._10.main import Module_10
 from module._11.main import Module_11
 from constants.fenetre import N_MODULES
 from tools.functions import calculateSize
-from src.model.module import Module
+from model.module import Module
 
 
 def getModule(numero: int, fenetre, geometry: str) -> Module | None:

@@ -1,7 +1,7 @@
 from .model.tableau import Tableau
 from constants.fenetre import Titre
 from constants.instructions import Contenu
-from src.model.module import Module
+from model.module import Module
 
 class Module_3(Module):
     def __init__(self, root, geometrie):

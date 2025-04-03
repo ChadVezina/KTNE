@@ -2,7 +2,7 @@ from .model.next_link import NextLink
 from .tools.enums import TypeTableau
 from constants.fenetre import Titre
 from constants.instructions import Contenu
-from src.model.module import Module
+from model.module import Module
 
 
 class Module_10(Module):

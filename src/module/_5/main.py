@@ -1,7 +1,7 @@
 from .model.next_link import NextLink
 from constants.fenetre import Titre
 from constants.instructions import Contenu
-from src.model.module import Module
+from model.module import Module
 
 
 class Module_5(Module):

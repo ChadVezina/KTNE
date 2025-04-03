@@ -1,7 +1,7 @@
 from textwrap import wrap
 from tkinter import Frame, Button
 from typing import Callable
-from constants.config import GridPad, Font
+from constants.config import GridPad, BoutonCaseRect, Font
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, options: dict[int, str]):
@@ -16,7 +16,7 @@ class Options(Frame):
             self.boutons[option[0]] = self.make_button(option[0], option[1])
 
     def make_button(self, colonne: int, texte: str):
-        bouton = Button(self, font=Font.BODY, text=texte, bg="white", wraplength=100)
+        bouton = Button(self, font=Font.BODY, text=texte, bg="white", wraplength=BoutonCaseRect.WRAP_LENGTH)
         bouton.grid(row=0, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return bouton
 

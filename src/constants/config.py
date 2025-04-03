@@ -1,6 +1,9 @@
 MULTI_PAD = 1
 MULTI_SIZE = 1
 
+MULTI_HINT_CASE = 2
+TAILLE_HINT_CASE = 9
+
 class FenetrePad:
     PADDING_X = 10 * MULTI_PAD
     PADDING_Y = 10 * MULTI_PAD
@@ -30,6 +33,16 @@ class BoutonCaseRect:
     HEIGHT = 1 * MULTI_SIZE
     PADDING_X = 1 * MULTI_PAD
     PADDING_Y = 3 * MULTI_PAD
+    WRAP_LENGTH = 100 * MULTI_PAD
+
+
+class HintCaseWidth:
+    WIDTH = (BoutonCaseRect.WIDTH+BoutonCaseRect.PADDING_X*2)*MULTI_HINT_CASE
+
+
+class HintCaseRect:
+    WIDTH = HintCaseWidth.WIDTH
+    WRAP_LENGTH = HintCaseWidth.WIDTH * TAILLE_HINT_CASE
 
 
 class Font:
