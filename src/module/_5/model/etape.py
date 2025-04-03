@@ -13,6 +13,7 @@ class Etape(Frame):
         self.texte = Texte(self, 0)
         self.options = Options(self, 1, self.clic_option)
         self.tableau = Tableau(self, 2, textes, options, self.clic_tableau_texte, self.clic_tableau_option)
+        self.clic_option(0)
 
     def clic_option(self, scan: int):
         if self.bouton_active != -1:
@@ -31,3 +32,8 @@ class Etape(Frame):
         if self.bouton_active != -1:
             self.options.set_option(self.bouton_active, texte)
             self.commande()
+            length = len(self.options.boutons)
+            if self.bouton_active == length - 1:
+                self.clic_option(0)
+            else:
+                self.clic_option(self.bouton_active + 1)

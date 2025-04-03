@@ -43,8 +43,8 @@ class NextLink:
             "sure": ["you are", "done", "like", "you're", "you", "hold", "uh huh", "ur", "sure", "u", "what?", "next", "your", "uh uh"],
             "like": ["you're", "next", "u", "ur", "hold", "done", "uh uh", "what?", "uh huh", "you", "like", "sure", "you are", "your"],
         }
-        self.textes = [texte for value in self.table_ecran.values() for texte in value]
-        self.options = [texte for texte in self.table_libelle.keys()]
+        self.textes = sorted([texte for value in self.table_ecran.values() for texte in value], key=lambda texte: texte)
+        self.options = sorted([texte for texte in self.table_libelle.keys()], key=lambda texte: texte)
         self.etape: Etape | None = None
 
     def do(self, parent: Frame, row: int):

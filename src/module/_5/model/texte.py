@@ -4,7 +4,7 @@ from ..tools.constantes import GridPad, BoutonCaseRect, Font
 
 class Texte(Button):
     def __init__(self, parent, row):
-        super().__init__(parent, font=Font.BODY, text=" ", padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, bg="white")
+        super().__init__(parent, font=Font.BODY, text=" ", padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, bg="white", relief="sunken")
         self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
 
     def get_texte(self) -> str:

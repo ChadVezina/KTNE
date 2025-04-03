@@ -12,7 +12,7 @@ class Tableau(Frame):
 
     def make_options(self, row: int, options: list[str], commande: Callable[[str], None], split_col: int = 2):
         composante = Frame(self)
-        composante.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        composante.grid(row=row, padx=GridPad.PADDING_X*2, pady=GridPad.PADDING_Y*2)
         for scan, texte in enumerate(options):
             bouton = self.make_button(composante, scan, texte, split_col)
             bouton["command"] = lambda texte=texte: commande(texte)
