@@ -43,13 +43,15 @@ class NextLink:
             "sure": ["you are", "done", "like", "you're", "you", "hold", "uh huh", "ur", "sure", "u", "what?", "next", "your", "uh uh"],
             "like": ["you're", "next", "u", "ur", "hold", "done", "uh uh", "what?", "uh huh", "you", "like", "sure", "you are", "your"],
         }
+        self.textes = [texte for value in self.table_ecran.values() for texte in value]
+        self.options = [texte for texte in self.table_libelle.keys()]
         self.etape: Etape | None = None
 
     def do(self, parent: Frame, row: int):
         self.destroy()
         self.parent = parent
         self.row = row
-        self.etape = Etape(parent, row, lambda: self.clic())
+        self.etape = Etape(parent, row, self.textes, self.options, lambda: self.clic())
 
     def destroy(self):
         if(self.etape is not None):

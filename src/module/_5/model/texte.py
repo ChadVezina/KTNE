@@ -1,16 +1,17 @@
-from tkinter import Entry, StringVar
+from tkinter import Button
 from typing import Callable
-from ..tools.constantes import GridPad, Font
+from ..tools.constantes import GridPad, BoutonCaseRect, Font
 
-class Texte(Entry):
-    def __init__(self, parent, row, commande: Callable[[], None]):
-        self.sv = StringVar()
-        super().__init__(parent, font=Font.BODY, textvariable=self.sv, bg="white")
+class Texte(Button):
+    def __init__(self, parent, row):
+        super().__init__(parent, font=Font.BODY, text=" ", padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, bg="white")
         self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        self.bind("<KeyRelease>", lambda e: commande())
 
-    def get_texte(self):
-        return self.sv.get().lower().strip()
+    def get_texte(self) -> str:
+        return self.cget("text")
+
+    def set_texte(self, texte):
+        self["text"] = texte
 
     def is_exist(self):
         self["bg"] = "green"

@@ -28,8 +28,8 @@ class Options(Frame):
         label.grid(row=colonne, column=1, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
         return label
 
-    def get_label(self, scan: int):
-        return self.labels[scan]["text"]
+    def get_label(self, scan: int) -> str:
+        return self.labels[scan].cget("text")
 
     def get_labels(self):
         labels: dict[str, int] = {}
