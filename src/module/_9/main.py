@@ -1,20 +1,14 @@
 from .model.tableau import Tableau
-from .tools.fonctions import make_menu
 from constants.fenetre import Titre
+from constants.instructions import Contenu
 from tools.module import Module
 
 
 class Module_9(Module):
     def __init__(self, root, geometrie):
-        super().__init__(root, geometrie)
-
-        self.title(Titre.MODULE_9.value)
-
         self.tableau = Tableau()
 
-        make_menu(self, self.nouvelle_partie, self.quitter)
-
-        self.ouvrir_partie()
+        super().__init__(Titre.MODULE_9, Contenu.MODULE_9, root, geometrie)
 
     def redessiner(self):
         self.tableau.do(self.cadre, 0)

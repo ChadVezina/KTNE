@@ -1,14 +1,10 @@
-from .tools.fonctions import make_menu
-from constants.fenetre import Titre
 from .model.tableau import Tableau
+from constants.fenetre import Titre
+from constants.instructions import Contenu
 from tools.module import Module
 
 class Module_3(Module):
     def __init__(self, root, geometrie):
-        super().__init__(root, geometrie)
-
-        self.title(Titre.MODULE_3.value)
-
         self.caracteres0 = [
             "Ϙ", # U+03D8
             "Ѧ", # U+0466
@@ -79,9 +75,7 @@ class Module_3(Module):
         ]
         self.tableau = Tableau(self.caracteres, self.hints, self.colonnes)
 
-        make_menu(self, self.nouvelle_partie, self.quitter)
-
-        self.ouvrir_partie()
+        super().__init__(Titre.MODULE_3, Contenu.MODULE_3, root, geometrie)
 
     def redessiner(self):
         self.tableau.do(self.cadre, 0)

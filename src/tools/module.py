@@ -15,6 +15,7 @@ class Module(Tk, Toplevel):
             self.geometry(geometrie)
         self.init()
         make_menu(self, self.nouvelle_partie, self.quitter, titre, contenu)
+        self.ouvrir_partie()
 
     def init(self):
         container = Frame(self)

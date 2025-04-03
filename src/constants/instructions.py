@@ -29,9 +29,6 @@ class Titre(Enum):
         return None
 
 
-N_FENETRES = len(Titre)
-
-
 class Contenu(Enum):
     MODULE_1 = """Les fils sont comme le sang de l'électronique ! Non... L'électricité est le sang.
     Les fils sont plus comme les artères. Les veines ? Peu importe.

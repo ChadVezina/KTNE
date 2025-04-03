@@ -1,5 +1,4 @@
 from .model.next_link import NextLink
-from .tools.fonctions import make_menu
 from constants.fenetre import Titre
 from constants.instructions import Contenu
 from tools.module import Module
@@ -7,8 +6,6 @@ from tools.module import Module
 
 class Module_1(Module):
     def __init__(self):
-        super().__init__(Titre.MODULE_1, Contenu.MODULE_1)
-
         self.next_link = NextLink(
             "Combien de fils?",
             {
@@ -173,7 +170,7 @@ class Module_1(Module):
             False,
         )
 
-        self.ouvrir_partie()
+        super().__init__(Titre.MODULE_1, Contenu.MODULE_1)
 
     def redessiner(self):
         self.next_link.do(self.cadre, 0)

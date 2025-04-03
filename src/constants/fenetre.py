@@ -1,13 +1,6 @@
 from enum import Enum
 
 
-PHASE_X = 7 # décalage des fenêtres vers la gauche
-PHASE_Y = 20 # height of the windows bar at bottom
-DEPHASE_X = 2 # width of the windows border
-DEPHASE_Y = 50 # height of the windows border + height of the windows bar at top (title bar)
-N_MODULES = 1#12 # nombre de fenêtres
-
-
 class Titre(Enum):
     MODULE_1 = "Fils"
     MODULE_2 = "Bouton"
@@ -34,3 +27,10 @@ class Titre(Enum):
         if search_index in range(len(enum_values)):
             return enum_values[search_index]
         return None
+
+
+PHASE_X = 7 # décalage des fenêtres vers la gauche
+PHASE_Y = 20 # height of the windows bar at bottom
+DEPHASE_X = 2 # width of the windows border
+DEPHASE_Y = 50 # height of the windows border + height of the windows bar at top (title bar)
+N_MODULES = len(Titre) # nombre de fenêtres
