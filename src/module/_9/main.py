@@ -1,7 +1,7 @@
 from .model.tableau import Tableau
 from constants.fenetre import Titre
 from constants.instructions import Contenu
-from tools.module import Module
+from src.model.module import Module
 
 
 class Module_9(Module):
