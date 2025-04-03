@@ -12,5 +12,5 @@ class Texte(Label):
     def set_texte(self, texte: str):
         self["text"] = texte
 
-    def desactiver(self):
+    def clear_texte(self):
         self["text"] = ""

@@ -1,7 +1,7 @@
 from typing import Callable
 from .bouton_case import BoutonCase
-from .texte import Texte
 from ..tools.enums import TypeConnexion, TypeFil
+from model.texte import Texte
 
 class Case:
     def __init__(self, numero, commande):

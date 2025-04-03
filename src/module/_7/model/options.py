@@ -51,4 +51,4 @@ class Options(Frame):
 
     def is_not_exist(self, scan: int):
         self.inputs[scan].is_not_exist()
-        self.labels[scan].desactiver()
+        self.labels[scan].clear_texte()
