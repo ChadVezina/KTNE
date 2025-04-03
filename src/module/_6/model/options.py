@@ -1,6 +1,6 @@
 from tkinter import Frame, Button
 from typing import Callable
-from ..tools.constantes import GridPad, Font
+from tools.constants import GridPad, Font
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, options: dict[int, str]):

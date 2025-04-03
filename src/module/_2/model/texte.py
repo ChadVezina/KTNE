@@ -1,5 +1,5 @@
 from tkinter import Label
-from ..tools.constantes import GridPad, Font
+from tools.constants import GridPad, Font
 
 class Texte(Label):
     def __init__(self, parent, row, texte):

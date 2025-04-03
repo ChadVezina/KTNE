@@ -1,7 +1,7 @@
 from tkinter import Button
 from typing import Callable
 
-from ..tools.constantes import Font, TextPad
+from tools.constants import Font, TextPad
 
 
 class Symbole:

@@ -1,6 +1,6 @@
 from tkinter import Frame, Label
 
-from ..tools.constantes import Font, TextPad
+from tools.constants import Font, TextPad
 
 
 class Ligne(Frame):

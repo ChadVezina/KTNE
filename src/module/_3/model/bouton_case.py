@@ -1,6 +1,6 @@
 from tkinter import Button
 
-from ..tools.constantes import BoutonCaseRect, Font
+from tools.constants import BoutonCaseRect, Font
 
 
 class BoutonCase(Button):

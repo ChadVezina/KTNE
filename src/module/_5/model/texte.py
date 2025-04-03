@@ -1,6 +1,6 @@
 from tkinter import Button
 from typing import Callable
-from ..tools.constantes import GridPad, BoutonCaseRect, Font
+from tools.constants import GridPad, BoutonCaseRect, Font
 
 class Texte(Button):
     def __init__(self, parent, row):
