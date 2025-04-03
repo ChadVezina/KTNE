@@ -1,7 +1,8 @@
-from tkinter import Frame, Button
+from tkinter import Frame
 from typing import Callable
 
-from constants.config import GridPad, BoutonCaseRect, Font
+from model.bouton import Bouton
+from constants.config import GridPad
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, commande: Callable[[int], None], n_options: int = 6):
@@ -11,7 +12,7 @@ class Options(Frame):
         self.make_options(commande)
 
     def make_options(self, commande: Callable[[int], None]):
-        self.boutons: dict[int, Button] = {}
+        self.boutons: dict[int, Bouton] = {}
         self.bouton_active: int = -1
         for scan in range(self.n_options):
             self.boutons[scan] = self.make_button(scan)
@@ -21,18 +22,16 @@ class Options(Frame):
     def make_button(self, colonne: int):
         x = colonne // 2
         y = colonne % 2
-        bouton = Button(self, font=Font.BODY, text=" ", padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, bg="white", relief="raised")
-        bouton.grid(row=x, column=y, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        return bouton
+        return Bouton(self, x, y)
 
     def add_command(self, scan: int, commande: Callable[[int], None]):
         self.boutons[scan]["command"] = lambda: commande(scan)
 
     def get_option(self, scan: int) -> str:
-        return self.boutons[scan].cget("text")
+        return self.boutons[scan].get_texte()
 
     def set_option(self, scan: int, texte: str):
-        self.boutons[scan]["text"] = texte
+        self.boutons[scan].set_texte(texte)
 
     def get_options(self):
         options: list[str] = []
@@ -47,24 +46,21 @@ class Options(Frame):
         return self.bouton_active == scan
 
     def is_exist(self, scan: int):
-        self.boutons[scan]["bg"] = "green"
+        self.boutons[scan].is_exist()
 
     def is_not_exist(self, scan: int):
-        self.boutons[scan]["bg"] = "white"
+        self.boutons[scan].is_not_exist()
 
     def set_active_option(self, scan: int, active: bool):
-        if active:
-            self.boutons[scan].config(relief="sunken")
-        else:
-            self.boutons[scan].config(relief="raised")
+        self.boutons[scan].set_active(active)
 
     def activer(self, scan: int):
         if(self.bouton_active != -1 and not self.is_active(scan)):
             self.desactiver(self.bouton_active)
-        self.boutons[scan]["bg"] = "pink"
+        self.boutons[scan].activer()
         self.bouton_active = scan
 
     def desactiver(self, scan: int):
         if(self.is_active(scan)):
-            self.boutons[scan]["bg"] = "white"
+            self.boutons[scan].desactiver()
             self.bouton_active = -1

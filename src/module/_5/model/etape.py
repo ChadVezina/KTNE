@@ -19,7 +19,7 @@ class Etape(Frame):
         #self.prev_option()
         if self.bouton_active == scan:
             #self.bouton_active = -1
-            pass #
+            return #
         else:
             self.prev_option() #
             self.bouton_active = scan

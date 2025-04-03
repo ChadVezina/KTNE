@@ -1,7 +1,8 @@
-from tkinter import Frame, Button
+from tkinter import Frame
 from typing import Callable
 
-from constants.config import GridPad, BoutonCaseRect, Font
+from model.bouton import Bouton
+from constants.config import GridPad
 
 class Tableau(Frame):
     def __init__(self, parent: Frame, row: int, textes: list[str], options: list[str], commande_texte: Callable[[str], None], commande_option: Callable[[str], None]):
@@ -15,12 +16,10 @@ class Tableau(Frame):
         composante.grid(row=row, padx=GridPad.PADDING_X*2, pady=GridPad.PADDING_Y*2)
         for scan, texte in enumerate(options):
             bouton = self.make_button(composante, scan, texte, split_col)
-            bouton["command"] = lambda texte=texte: commande(texte)
+            bouton["command"] = lambda: commande(texte)
         return composante
 
     def make_button(self, parent: Frame, colonne: int, texte: str, split_col: int):
         x = colonne // split_col
         y = colonne % split_col
-        bouton = Button(parent, font=Font.BODY, text=texte, padx=BoutonCaseRect.PADDING_X, pady=BoutonCaseRect.PADDING_Y, bg="white")
-        bouton.grid(row=x, column=y, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        return bouton
+        return Bouton(parent, x, y, texte)
