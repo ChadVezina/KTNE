@@ -16,13 +16,18 @@ class Etape(Frame):
         self.clic_option(0)
 
     def clic_option(self, scan: int):
-        if self.bouton_active != -1:
-            self.options.set_active_option(self.bouton_active, False)
+        #self.prev_option()
         if self.bouton_active == scan:
-            self.bouton_active = -1
+            #self.bouton_active = -1
+            pass #
         else:
+            self.prev_option() #
             self.bouton_active = scan
             self.options.set_active_option(scan, True)
+
+    def prev_option(self):
+        if self.bouton_active != -1:
+            self.options.set_active_option(self.bouton_active, False)
 
     def clic_tableau_texte(self, texte: str):
         self.texte.set_texte(texte)
