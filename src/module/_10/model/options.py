@@ -1,4 +1,3 @@
-from textwrap import wrap
 from tkinter import Frame, Button
 from typing import Callable
 from constants.config import GridPad, BoutonCaseRect, Font
