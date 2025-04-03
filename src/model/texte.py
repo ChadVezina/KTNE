@@ -1,4 +1,4 @@
-from tkinter import Frame, Label
+from tkinter import Frame, Label, _ScreenUnits
 from constants.config import GridPad, Font
 
 class Texte(Label):
@@ -8,17 +8,23 @@ class Texte(Label):
         row: int,
         col: int = 0,
         texte: str = "",
+        font = Font.BODY,
+        width: _ScreenUnits = ...,
+        wraplength: _ScreenUnits = ...,
+        no_margin: bool = False,
         ):
         super().__init__(
             parent,
-            font = Font.BODY,
+            font = font,
             text = texte,
+            width = width,
+            wraplength = wraplength,
             )
         self.grid(
             row = row,
             column = col,
-            padx = GridPad.PADDING_X,
-            pady = GridPad.PADDING_Y,
+            padx = 0 if no_margin else GridPad.PADDING_X,
+            pady = 0 if no_margin else GridPad.PADDING_Y,
             )
 
     def get_texte(self) -> str:

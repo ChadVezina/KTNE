@@ -1,4 +1,4 @@
-from tkinter import Frame, Button, _Relief, _ButtonCommand
+from tkinter import Frame, Button, _Relief, _ButtonCommand, _ScreenUnits
 from typing import Callable
 from constants.config import GridPad, BoutonCaseRect, Font
 
@@ -10,23 +10,30 @@ class Bouton(Button):
         col: int = 0,
         texte: str = "",
         commande: Callable[[], None] = None,
+        font = Font.BODY,
         relief: _Relief = "sunken",
+        border: _ScreenUnits = ...,
+        wraplength: _ScreenUnits = ...,
+        no_margin: bool = False,
+        no_padding: bool = False,
         ):
         super().__init__(
             parent,
-            font = Font.BODY,
+            font = font,
             text = texte,
-            padx = BoutonCaseRect.PADDING_X,
-            pady = BoutonCaseRect.PADDING_Y,
+            padx = 0 if no_padding else BoutonCaseRect.PADDING_X,
+            pady = 0 if no_padding else BoutonCaseRect.PADDING_Y,
             command = commande,
             bg = "white",
             relief = relief,
+            border = border,
+            wraplength = wraplength,
             )
         self.grid(
             row = row,
             column = col,
-            padx = GridPad.PADDING_X,
-            pady = GridPad.PADDING_Y,
+            padx = 0 if no_margin else GridPad.PADDING_X,
+            pady = 0 if no_margin else GridPad.PADDING_Y,
             )
 
     def add_command(self, commande: _ButtonCommand) -> None:
