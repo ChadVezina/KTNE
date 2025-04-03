@@ -1,5 +1,5 @@
-MULTI_PAD = 1
-MULTI_SIZE = 1
+MULTI_PAD = 2
+MULTI_SIZE = 2
 
 MULTI_HINT_CASE = 2
 TAILLE_HINT_CASE = 9
@@ -46,7 +46,7 @@ class HintCaseRect:
 
 
 class Font:
-    BODY_SYMBOLE = ('Times New Roman', 32)
-    BODY = ('Times New Roman', 16)
-    BODY_HINT = ('Times New Roman', 12)
+    BODY_SYMBOLE = ('Times New Roman', 32 * MULTI_SIZE)
+    BODY = ('Times New Roman', 16 * MULTI_SIZE)
+    BODY_HINT = ('Times New Roman', 12 * MULTI_SIZE)
 
