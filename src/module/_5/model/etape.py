@@ -1,8 +1,8 @@
 from tkinter import Frame
 from typing import Callable
 from .options import Options
-from .texte import Texte
 from .tableau import Tableau
+from model.bouton import Bouton
 
 class Etape(Frame):
     def __init__(self, parent: Frame, row: int, textes: list[str], options: list[str], commande: Callable[[], None]):
@@ -10,7 +10,7 @@ class Etape(Frame):
         self.grid(row=row)
         self.commande = commande
         self.bouton_active = -1
-        self.texte = Texte(self, 0)
+        self.texte = Bouton(self, 0)
         self.options = Options(self, 1, self.clic_option)
         self.tableau = Tableau(self, 2, textes, options, self.clic_tableau_texte, self.clic_tableau_option)
         self.clic_option(0)
