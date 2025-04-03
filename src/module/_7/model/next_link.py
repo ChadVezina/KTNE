@@ -69,7 +69,17 @@ class NextLink:
                 caractere = list(self.caracteres.keys())[index]
                 self.etape.options.is_exist(scan, caractere)
             else:
-                self.etape.options.is_not_exist(scan)
+                caractere: str | None = None
+                for key, secret in self.caracteres.items():
+                    if secret.__contains__(option):
+                        if caractere is not None:
+                            caractere = None
+                            break
+                        caractere = key
+                if caractere is None:
+                    self.etape.options.is_not_exist(scan)
+                else:
+                    self.etape.options.is_exist(scan, caractere)
 
     def scan_labels(self, labels: dict[str, int]):
         solution: str | None = None
