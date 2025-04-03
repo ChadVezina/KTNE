@@ -1,7 +1,7 @@
 from tkinter import Frame, Button
 from typing import Callable
 
-from tools.constants import GridPad, BoutonCaseRect, Font
+from constants.config import GridPad, BoutonCaseRect, Font
 
 class Tableau(Frame):
     def __init__(self, parent: Frame, row: int, textes: list[str], options: list[str], commande_texte: Callable[[str], None], commande_option: Callable[[str], None]):

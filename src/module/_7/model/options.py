@@ -1,6 +1,6 @@
 from tkinter import Frame, Entry, Label, StringVar
 from typing import Callable
-from tools.constants import GridPad, Font
+from constants.config import GridPad, Font
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, commande: Callable[[], None]):

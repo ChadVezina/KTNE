@@ -4,7 +4,7 @@ from typing import Callable
 from .ligne import Ligne
 from .root import Root
 
-from tools.constants import GridPad, Font
+from constants.config import GridPad, Font
 
 
 class Conclusion(Frame):

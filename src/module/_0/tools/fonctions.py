@@ -1,6 +1,6 @@
 from tkinter import Label, Entry, Button, Menu, Toplevel, Text, E, INSERT, DISABLED, WORD
 
-from tools.constants import GridPad, TextPad, ButtonPad, EntrySize, Font
+from constants.config import GridPad, TextPad, ButtonPad, EntrySize, Font
 
 
 def make_label(root, texte, rangee, colonne=0):

@@ -3,7 +3,7 @@ from tkinter import Frame, Label
 from .ligne import Ligne
 from .root import Root
 
-from tools.constants import GridPad, Font
+from constants.config import GridPad, Font
 
 class Texte(Frame):
     def __init__(self, parent, row):

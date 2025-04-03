@@ -1,8 +1,7 @@
 from tkinter import Tk, Toplevel, Frame, Button, Menu, Toplevel, Text, INSERT, DISABLED, WORD
 from typing import Callable
 
-from .constants import TextPad, ButtonPad, Font
-
+from constants.config import TextPad, ButtonPad, Font
 from constants.fenetre import Titre, PHASE_X, PHASE_Y, DEPHASE_X, DEPHASE_Y
 from constants.instructions import Titre as NewTitre, Contenu
 

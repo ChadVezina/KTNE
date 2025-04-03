@@ -1,7 +1,7 @@
 from textwrap import wrap
 from tkinter import Frame, Button
 from typing import Callable
-from tools.constants import GridPad, Font
+from constants.config import GridPad, Font
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, options: dict[int, str]):

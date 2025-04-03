@@ -5,7 +5,7 @@ les inputs de coordonnées au TP3.
 
 from tkinter import Button
 
-from tools.constants import BoutonCaseRect, Font
+from constants.config import BoutonCaseRect, Font
 
 
 class BoutonCase(Button):

@@ -2,7 +2,7 @@ from tkinter import Frame, Label
 
 from .ligne import Ligne
 
-from tools.constants import GridPad, Font
+from constants.config import GridPad, Font
 
 
 class Conclusion(Frame):

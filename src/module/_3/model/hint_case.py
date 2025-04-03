@@ -1,6 +1,6 @@
 from tkinter import Label
 
-from tools.constants import BoutonCaseRect, Font
+from constants.config import BoutonCaseRect, Font
 
 
 class HintCase(Label):
