@@ -1,17 +1,30 @@
-from tkinter import Label
+from tkinter import Frame, Label
+
+from .ligne import Ligne
+from .root import Root
 
 from ..tools.constantes import GridPad, Font
 
 
-class Conclusion(Label):
-    def __init__(self, parent, texte):
+class Conclusion(Frame):
+    def __init__(self, parent):
         super().__init__(
             parent,
-            font=Font.BODY,
-            text=texte,
             )
         self.grid(padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
+        self.root: Root | None = None
 
-    def setText(self, texte):
-        self["text"] = texte
+    def do(self):
+        if(self.root is not None):
+            self.root.destroy()
+        self.root = Root(self, 0)
 
+    def setText(self, solutions: list[list[tuple[str, str, bool]]] = None, unique: bool = False):
+        self.do()
+        if solutions is None:
+            Label(self.root, font=Font.BODY, text="Solution indéterminée...").grid()
+            return
+        texte = "Solution unique:" if unique else "Solutions possibles:"
+        Label(self.root, font=Font.BODY, text=texte).grid(row=0)
+        for row, solution in enumerate(solutions):
+            Ligne(self.root, row+1, solution)

@@ -41,8 +41,8 @@ class Tableau:
     def placer_solution(self, parent):
         composante = Frame(parent)
         composante.grid(row=1)
-        texte = self.get_solution()
-        self.conclusion = Conclusion(parent, texte)
+        self.conclusion = Conclusion(parent)
+        self.afficher_solution()
 
     def valider_coordonnees(self, i):
         return i in range(self.length)
@@ -72,34 +72,22 @@ class Tableau:
     def get_solution(self):
         colonnes_communes = self.obtenir_colonnes_communes()
         if len(colonnes_communes) == 0:
-            return "Solution indéterminée..."
+            return None, False
+        result: list[list[tuple[str, str, bool]]] = []
         if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             selection = colonnes_communes[0][1].copy()
-            solution = [val for val in solution if val in selection]
-            result = str.join("\t", solution)
-            solution_hint = [f"{self.hints[self.caracteres.index(val)]}" for val in solution]
-            result_hint = str.join("\t", solution_hint)
-            return f"Solution unique:\n\n{result}\n{result_hint}"
-        texte: list[str] = []
+            result.append([(val, self.hints[self.caracteres.index(val)], True) for val in solution if val in selection])
+            return result, True
         for colonne, caracteres in colonnes_communes:
             solution = self.colonnes[colonne].copy()
-            for solution_case in solution:
-                if solution_case in caracteres:
-                    scan = solution.index(solution_case)
-                    solution[scan] = f"({solution_case})"
-            result = str.join("\t", solution)
-            n_caracteres = len(caracteres)
-            texte.append(f"{result}\t\t{n_caracteres}")
-        result = str.join("\n\n", texte)
-        return f"Solutions possibles:\n\n{result}"
+            selection = caracteres.copy()
+            result.append([(val, self.hints[self.caracteres.index(val)], True if val in selection else False) for val in solution])
+        return result, False
 
     def afficher_solution(self):
-        texte = self.get_solution()
-        self.conclusion.setText(texte)
+        self.conclusion.setText(*self.get_solution())
 
     def calculate_y(self, parent):
         screen_width, screen_height = get_width_height(parent)
         return calculate_x_y(screen_width, screen_height, self.length)[1]
-
-
