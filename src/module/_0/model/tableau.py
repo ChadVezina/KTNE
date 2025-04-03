@@ -10,7 +10,7 @@ from random import randint
 class Tableau:
     """
     Tableau du jeu de démineur, implémenté avec un dictionnaire de cases.
-    
+
     Warning:
         Si vous ajoutez des attributs à la classe Tableau, n'oubliez pas de les documenter ici.
 
@@ -30,7 +30,7 @@ class Tableau:
 
     def __init__(self, dimension_rangee=5, dimension_colonne=5, nombre_mines=5):
         """ Initialisation d'un objet tableau.
-        
+
         Attributes:
             dimension_rangee (int): Nombre de rangées du tableau (valeur par défaut: 5)
             dimension_colonne (int): Nombre de colonnes du tableau (valeur par défaut: 5)
@@ -52,11 +52,11 @@ class Tableau:
         """
         Valide les coordonnées reçues en argument. Les coordonnées sont considérées valides si elles se trouvent bien
         dans les dimensions du tableau.
-        
+
         Args:
             rangee_x (int) : Numéro de la rangée de la case dont on veut valider les coordonnées
             colonne_y (int): Numéro de la colonne de la case dont on veut valider les coordonnées
-        
+
         Returns:
             bool: True si les coordonnées (x, y) sont valides, False autrement
         """
@@ -67,7 +67,7 @@ class Tableau:
     def obtenir_case(self, rangee_x, colonne_y):
         """
         Récupère une case à partir de ses numéros de ligne et de colonne
-        
+
         Args:
             rangee_x (int) : Numéro de la rangée de la cas
             colonne_y (int): Numéro de la colonne de la case
@@ -95,8 +95,8 @@ class Tableau:
             sont reçues en argument
         """
         voisinage = ((-1, -1), (-1, 0), (-1, 1),
-                     (0, -1), (0, 1),
-                     (1, -1), (1, 0), (1, 1))
+                    (0, -1), (0, 1),
+                    (1, -1), (1, 0), (1, 1))
 
         liste_coordonnees_cases_voisines = []
 
@@ -113,8 +113,8 @@ class Tableau:
             1) On crée chacune des cases du tableau (cette étape est programmée pour vous).
             2) On y ajoute ensuite les mines dans certaines cases qui sont choisies au hasard
                 (attention de ne pas choisir deux fois la même case!).
-                - À chaque fois qu'on ajoute une mine dans une case, on obtient la liste de 
-                  ses voisins (pour se faire, utilisez la méthode obtenir_voisins)
+                - À chaque fois qu'on ajoute une mine dans une case, on obtient la liste de
+                    ses voisins (pour se faire, utilisez la méthode obtenir_voisins)
                 - Pour chaque voisin, on appelle la méthode ajouter_une_mine_voisine de la case correspondante.
         """
         for rangee_x in range(1, self.dimension_rangee + 1):
@@ -135,28 +135,28 @@ class Tableau:
 
     def valider_coordonnees_a_devoiler(self, rangee_x, colonne_y):
         """
-        Valide que les coordonnées reçues en argument sont celles d'une case que l'on peut dévoiler 
+        Valide que les coordonnées reçues en argument sont celles d'une case que l'on peut dévoiler
         (donc que les coordonnées sont valides et que la case correspondante n'a pas encore été dévoilée).
 
         Note: une méthode pré-existante vérifie déjà que les coordonnées sont à l'intérieur du tableau.
         De plus, avec la méthode obtenir_case, vous obtiendrez soit une case, soit None si les
         coordonnées ne sont pas à l'intérieur.
-        
+
         Args:
             rangee_x (int) : Numéro de la rangée de la case dont on veut valider les coordonnées
             colonne_y (int): Numéro de la colonne de la case dont on veut valider les coordonnées
-        
+
         Returns
             bool: True si la case à ces coordonnées (x, y) peut être dévoilée, False autrement (donc si la
-                  case a déjà été dévoilée ou que les coordonnées ne dont pas valides).
+                case a déjà été dévoilée ou que les coordonnées ne dont pas valides).
         """
         case = self.obtenir_case(rangee_x, colonne_y)
         return case is not None and not case.est_devoilee
 
     def afficher_solution(self):
         """
-        Méthode qui affiche le tableau de la solution à l'écran. La solution montre les 
-        mines pour les cases qui en contiennent et la valeur du nombre de mines voisines 
+        Méthode qui affiche le tableau de la solution à l'écran. La solution montre les
+        mines pour les cases qui en contiennent et la valeur du nombre de mines voisines
         pour les autres cases.
         """
         self.tout_devoiler()
@@ -171,7 +171,7 @@ class Tableau:
 
     def afficher_tableau(self):
         """
-        Méthode qui affiche le tableau à l'écran. Le tableau montre le contenu des cases dévoilées 
+        Méthode qui affiche le tableau à l'écran. Le tableau montre le contenu des cases dévoilées
         (mine ou nombre de mines voisines) ou un point pour les cases non dévoilées.
 
         Vous pouvez vous inspirer de la méthode afficher_solution
@@ -268,11 +268,11 @@ class Tableau:
     def contient_mine(self, rangee_x, colonne_y):
         """
         Méthode qui vérifie si la case dont les coordonnées sont reçues en argument contient une mine.
-        
+
         Args:
             rangee_x (int) : Numéro de la rangée de la case dont on veut vérifier si elle contient une mine
             colonne_y (int): Numéro de la colonne de la case dont on veut vérifier si elle contient une mine
-        
+
         Returns:
             bool: True si la case à ces coordonnées (x, y) contient une mine, False autrement.
         """
@@ -286,7 +286,7 @@ def test_initialisation():
 
     assert tableau_test.contient_cases_a_devoiler()
     assert tableau_test.nombre_cases_sans_mine_a_devoiler == tableau_test.dimension_colonne * \
-           tableau_test.dimension_rangee - tableau_test.nombre_mines
+        tableau_test.dimension_rangee - tableau_test.nombre_mines
 
 
 def test_valider_coordonnees():
