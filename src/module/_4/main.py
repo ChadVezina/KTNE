@@ -86,7 +86,7 @@ class Module_4(Module):
                                             ))
                                         ) else None,
                             ],
-                            ),
+                            ) if liste_2 != -1 else None,
                     ],
                     ),
             ],

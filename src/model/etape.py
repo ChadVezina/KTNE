@@ -15,9 +15,8 @@ class Etape(Frame):
         if(not self.multiple):
             for scan in self.options.get_active_options():
                 if(scan != i):
-                    self.clic(scan)
-        if(self.options is not None):
-            if self.options.is_active(i):
-                self.options.desactiver(i)
-            else:
-                self.options.activer(i)
+                    self.options.desactiver(scan)
+        if self.options.is_active(i):
+            self.options.desactiver(i)
+        else:
+            self.options.activer(i)
