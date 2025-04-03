@@ -1,39 +1,34 @@
-from tkinter import Frame, Entry, Label, StringVar
+from tkinter import Frame
 from typing import Callable
-from constants.config import GridPad, Font
+from model.texte import Texte
+from model.input import Input
+from constants.config import GridPad
 
 class Options(Frame):
-    def __init__(self, parent: Frame, row: int, commande: Callable[[], None]):
+    def __init__(self, parent: Frame, row: int, commande: Callable[[], None], n_options: int = 6):
         super().__init__(parent)
         self.grid(row=row, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        self.sv: dict[int, StringVar] = {}
-        self.inputs: dict[int, Entry] = {}
-        self.labels: dict[int, Label] = {}
+        self.n_options = n_options
+        self.inputs: dict[int, Input] = {}
+        self.labels: dict[int, Texte] = {}
         self.make_options(commande)
 
     def make_options(self, commande: Callable[[], None]):
-        for scan in range(7):
-            self.sv[scan] = StringVar()
-            self.inputs[scan] = self.make_entry(scan)
-            self.labels[scan] = self.make_label(scan)
-            self.inputs[scan].bind("<KeyRelease>", lambda e: commande())
+        for scan in range(self.n_options):
+            self.inputs[scan] = Input(self, scan)
+            self.labels[scan] = Texte(self, scan, 1)
+        for scan in range(self.n_options):
+            self.add_command(scan, commande)
 
-    def make_entry(self, colonne: int):
-        input = Entry(self, font=Font.BODY, textvariable=self.sv[colonne], bg="white")
-        input.grid(row=colonne, column=0, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        return input
-
-    def make_label(self, colonne: int):
-        label = Label(self, font=Font.BODY, text="", bg="white")
-        label.grid(row=colonne, column=1, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        return label
+    def add_command(self, scan: int, commande: Callable[[], None]):
+        self.inputs[scan].bind("<KeyRelease>", lambda e: commande())
 
     def get_label(self, scan: int) -> str:
-        return self.labels[scan].cget("text")
+        return self.labels[scan].get_texte()
 
     def get_labels(self):
         labels: dict[str, int] = {}
-        for scan in range(7):
+        for scan in range(self.n_options):
             texte = self.get_label(scan)
             if(texte == ""):
                 continue
@@ -41,25 +36,19 @@ class Options(Frame):
             labels[texte] = label + 1
         return labels
 
-    def set_texte(self, scan: int, texte: str):
-        self.labels[scan]["text"] = texte
-
-    def desactiver(self, scan: int):
-        self.labels[scan]["text"] = ""
-
     def get_option(self, scan: int):
-        return self.sv[scan].get().lower().strip()
+        return self.inputs[scan].get_texte()
 
     def get_options(self):
         options: list[str] = []
-        for scan in range(7):
+        for scan in range(self.n_options):
             options.append(self.get_option(scan))
         return options
 
     def is_exist(self, scan: int, texte: str):
-        self.inputs[scan]["bg"] = "green"
-        self.set_texte(scan, texte)
+        self.inputs[scan].is_exist()
+        self.labels[scan].set_texte(texte)
 
     def is_not_exist(self, scan: int):
-        self.inputs[scan]["bg"] = "white"
-        self.desactiver(scan)
+        self.inputs[scan].is_not_exist()
+        self.labels[scan].desactiver()

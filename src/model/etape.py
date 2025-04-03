@@ -8,7 +8,7 @@ class Etape(Frame):
         super().__init__(parent)
         self.grid(row=row)
         self.multiple = multiple
-        self.texte = Texte(self, 0, texte)
+        self.texte = Texte(self, 0, texte=texte)
         self.options = Options(self, 1, options, commande)
 
     def clic(self, i: int):

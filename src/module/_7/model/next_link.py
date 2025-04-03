@@ -55,16 +55,12 @@ class NextLink:
 
     def do(self, parent: Frame, row: int):
         self.destroy()
-        self.parent = parent
-        self.row = row
         self.etape = Etape(parent, row, lambda: self.clic())
 
     def destroy(self):
         if(self.etape is not None):
             self.etape.destroy()
             self.etape = None
-            self.parent = None
-            self.row = None
 
     def scan_options(self, options: list[str]):
         for scan, option in enumerate(options):

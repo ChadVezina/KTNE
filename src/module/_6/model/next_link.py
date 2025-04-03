@@ -32,7 +32,7 @@ class NextLink:
         self.row = row
         self.historique = historique
         if len(self.options.items()) == 0:
-            self.etape = Texte(parent, row, self.texte)
+            self.etape = Texte(parent, row, texte=self.texte)
         else:
             self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan), False)
             self.next(-1)
