@@ -1,14 +1,13 @@
 from .model.next_link import NextLink
 from .tools.fonctions import make_menu
 from constants.fenetre import Titre
+from constants.instructions import Contenu
 from tools.module import Module
 
 
 class Module_1(Module):
     def __init__(self):
-        super().__init__()
-
-        self.title(Titre.MODULE_1.value)
+        super().__init__(Titre.MODULE_1, Contenu.MODULE_1)
 
         self.next_link = NextLink(
             "Combien de fils?",
@@ -173,8 +172,6 @@ class Module_1(Module):
             ],
             False,
         )
-
-        make_menu(self, self.nouvelle_partie, self.quitter)
 
         self.ouvrir_partie()
 

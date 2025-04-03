@@ -1,16 +1,20 @@
 from tkinter import Tk, Toplevel, Event, messagebox, Frame, Canvas, BOTH, LEFT, TOP
-from typing import Any
+
+from constants.fenetre import Titre
+from constants.instructions import Contenu
+
+from tools.functions import make_menu
 
 class Module(Tk, Toplevel):
-    def __init__(self, root: Any | None = None, geometrie: Any | None = None):
+    def __init__(self, titre: Titre, contenu: Contenu, root: Tk | None = None, geometrie: str | None = None):
         no_args = root is None or geometrie is None
         if no_args:
             Tk.__init__(self)
         else:
             Toplevel.__init__(self, root)
             self.geometry(geometrie)
-        self.resizable(True, True)
         self.init()
+        make_menu(self, self.nouvelle_partie, self.quitter, titre, contenu)
 
     def init(self):
         container = Frame(self)

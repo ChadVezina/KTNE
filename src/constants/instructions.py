@@ -17,6 +17,17 @@ class Titre(Enum):
     MODULE_11 = f"À propos du {TitreFenetre.MODULE_11.value}"
     MODULE_12 = f"À propos de {TitreFenetre.MODULE_12.value}"
 
+    def index(self):
+        enum_values = [e.value for e in self.__class__]
+        return enum_values.index(self.value)
+
+    @classmethod
+    def get_value_by_index(cls, search_index: int) -> str | None:
+        enum_values = [e.value for e in cls]
+        if search_index in range(len(enum_values)):
+            return enum_values[search_index]
+        return None
+
 
 N_FENETRES = len(Titre)
 
@@ -97,3 +108,13 @@ class Contenu(Enum):
     """
     MODULE_12 = """ Annexe """
 
+    def index(self):
+        enum_values = [e.value for e in self.__class__]
+        return enum_values.index(self.value)
+
+    @classmethod
+    def get_value_by_index(cls, search_index: int) -> str | None:
+        enum_values = [e.value for e in cls]
+        if search_index in range(len(enum_values)):
+            return enum_values[search_index]
+        return None
