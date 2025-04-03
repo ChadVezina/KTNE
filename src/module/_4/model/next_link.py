@@ -23,11 +23,7 @@ class NextLink:
         if len(self.options.items()) == 0:
             etapes = historique.copy()
             etapes.append(self.texte)
-            for scan, texte in enumerate(etapes):
-                if(scan % 3 == 2):
-                    etapes[scan] += "\n"
-            texte = str.join("\n", etapes)
-            self.etape = Etape(parent, row, f"Appuyer sur ce(s) bouton(s):\n{texte}", lambda scan: self.clic(scan), self.options)
+            self.etape = Etape(parent, row, etapes, lambda scan: self.clic(scan), self.options)
         else:
             self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
         if len(self.options.items()) != 0:
