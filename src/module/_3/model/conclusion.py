@@ -1,4 +1,5 @@
 from tkinter import Frame, Label
+from typing import Callable
 
 from .ligne import Ligne
 from .root import Root
@@ -19,7 +20,7 @@ class Conclusion(Frame):
             self.root.destroy()
         self.root = Root(self, 0)
 
-    def setText(self, solutions: list[list[tuple[str, str, bool]]] = None, unique: bool = False):
+    def setText(self, solutions: list[list[tuple[str, str, bool, Callable[[], None]]]] = None, unique: bool = False):
         self.do()
         if solutions is None:
             Label(self.root, font=Font.BODY, text="Solution indéterminée...").grid()

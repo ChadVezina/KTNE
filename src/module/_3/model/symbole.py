@@ -1,10 +1,11 @@
 from tkinter import Label
+from typing import Callable
 
 from ..tools.constantes import Font, TextPad
 
 
 class Symbole:
-    def __init__(self, parent, col, texte, hint, selected):
+    def __init__(self, parent, col, texte, hint, selected, commande: Callable[[], None]):
         self.bouton = Label(
             parent,
             font=Font.BODY,
@@ -12,6 +13,7 @@ class Symbole:
             padx=TextPad.PADDING_X,
             pady=TextPad.PADDING_Y,
             relief="sunken" if selected else "flat",
+            command=commande,
             )
         self.hint = Label(
             parent,
@@ -20,6 +22,7 @@ class Symbole:
             padx=TextPad.PADDING_X,
             pady=TextPad.PADDING_Y,
             relief="solid" if selected else "flat",
+            command=commande,
             )
         self.bouton.grid(row=0, column=col)
         self.hint.grid(row=1, column=col)

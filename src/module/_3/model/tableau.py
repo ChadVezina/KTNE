@@ -1,4 +1,5 @@
 from tkinter import Frame
+from typing import Callable
 from .case import Case
 from .conclusion import Conclusion
 from .root import Root
@@ -54,13 +55,13 @@ class Tableau:
         return self.cases[numero]
 
     def obtenir_colonnes_communes(self):
-        colonnes_communes: dict[int, list[str]] = {}
+        colonnes_communes: dict[int, list[tuple[str, Callable[[], None]]]] = {}
         for case in self.cases:
             colonnes_valides = case.colonnes_valides(self.colonnes)
             if colonnes_valides is not None:
                 for colonne in colonnes_valides:
                     old_value = colonnes_communes.get(colonne, [])
-                    old_value.append(case.texte)
+                    old_value.append((case.texte, lambda: case.clic()))
                     colonnes_communes[colonne] = old_value
         return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
 
@@ -73,7 +74,7 @@ class Tableau:
         colonnes_communes = self.obtenir_colonnes_communes()
         if len(colonnes_communes) == 0:
             return None, False
-        result: list[list[tuple[str, str, bool]]] = []
+        result: list[list[tuple[str, str, bool, Callable[[], None]]]] = []
         if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             selection = colonnes_communes[0][1].copy()
