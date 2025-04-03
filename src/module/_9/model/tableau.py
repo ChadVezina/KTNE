@@ -59,14 +59,14 @@ class Tableau:
             self.parent = None
             self.row = None
 
+    def placer_tableau(self, parent):
+        for scan in range(self.length):
+            self.cases[scan].placer_case(parent)
+
     def initialiser_tableau(self):
         self.cases: list[Case] = []
         for i in range(self.length):
             self.cases.append(Case(i, lambda numero: self.clic(numero)))
-
-    def placer_tableau(self, parent):
-        for scan in range(self.length):
-            self.cases[scan].placer_case(parent)
 
     def clic(self, numero: int):
         for scan, case in enumerate(self.cases, numero+1):
