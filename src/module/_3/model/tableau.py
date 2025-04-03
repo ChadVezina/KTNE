@@ -54,14 +54,20 @@ class Tableau:
 
         return self.cases[numero]
 
+    def obtenir_commande(self, numero: int):
+        if not self.valider_coordonnees(numero):
+            return None
+
+        return lambda: self.cases[numero].clic()
+
     def obtenir_colonnes_communes(self):
-        colonnes_communes: dict[int, list[tuple[str, Callable[[], None]]]] = {}
+        colonnes_communes: dict[int, list[str]] = {}
         for case in self.cases:
             colonnes_valides = case.colonnes_valides(self.colonnes)
             if colonnes_valides is not None:
                 for colonne in colonnes_valides:
                     old_value = colonnes_communes.get(colonne, [])
-                    old_value.append((case.texte, lambda: case.clic()))
+                    old_value.append(case.texte)
                     colonnes_communes[colonne] = old_value
         return sorted(colonnes_communes.items(), key=lambda x: len(x[1]), reverse=True)
 
@@ -78,12 +84,12 @@ class Tableau:
         if len(colonnes_communes[0][1]) == 4 and (len(colonnes_communes) == 1 or len(colonnes_communes[1][1]) != 4):
             solution = self.colonnes[colonnes_communes[0][0]].copy()
             selection = colonnes_communes[0][1].copy()
-            result.append([(val, self.hints[self.caracteres.index(val)], True) for val in solution if val in selection])
+            result.append([(val, self.hints[self.caracteres.index(val)], True, self.obtenir_commande(self.caracteres.index(val))) for val in solution if val in selection])
             return result, True
         for colonne, caracteres in colonnes_communes:
             solution = self.colonnes[colonne].copy()
             selection = caracteres.copy()
-            result.append([(val, self.hints[self.caracteres.index(val)], True if val in selection else False) for val in solution])
+            result.append([(val, self.hints[self.caracteres.index(val)], True if val in selection else False, self.obtenir_commande(self.caracteres.index(val))) for val in solution])
         return result, False
 
     def afficher_solution(self):

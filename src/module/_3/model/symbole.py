@@ -1,4 +1,4 @@
-from tkinter import Label
+from tkinter import Button
 from typing import Callable
 
 from ..tools.constantes import Font, TextPad
@@ -6,7 +6,7 @@ from ..tools.constantes import Font, TextPad
 
 class Symbole:
     def __init__(self, parent, col, texte, hint, selected, commande: Callable[[], None]):
-        self.bouton = Label(
+        self.bouton = Button(
             parent,
             font=Font.BODY,
             text=texte,
@@ -15,7 +15,7 @@ class Symbole:
             relief="sunken" if selected else "flat",
             command=commande,
             )
-        self.hint = Label(
+        self.hint = Button(
             parent,
             font=Font.BODY3,
             text=hint,
