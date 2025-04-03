@@ -58,7 +58,8 @@ class NextLink:
             self.parent = None
             self.row = None
 
-    def scan_options(self, options: list[str]):
+    def scan_options(self):
+        options = self.etape.options.get_options()
         mots_acceptes: list[str] = []
         for mot in self.mots:
             is_mot_accepte = True
@@ -74,13 +75,10 @@ class NextLink:
             if is_mot_accepte == True:
                 mots_acceptes.append(mot)
         if len(mots_acceptes) == 0:
-            return "Aucun mot trouvé"
-        elif len(mots_acceptes) < 6:
-            return "\n".join(mots_acceptes)
-        return "\n".join(mots_acceptes[0:5])
+            return None
+        return mots_acceptes
 
     def clic(self):
         if(self.etape is not None):
-            options = self.etape.options.get_options()
-            texte = self.scan_options(options)
-            self.etape.texte.set_texte(texte)
+            self.etape.texte.prepare()
+            self.etape.texte.set_texte(self.scan_options(), 12)
