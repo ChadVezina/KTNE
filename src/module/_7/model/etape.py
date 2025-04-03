@@ -1,7 +1,7 @@
 from tkinter import Frame
 from typing import Callable
 from .options import Options
-from .texte import Texte
+from model.texte import Texte
 
 class Etape(Frame):
     def __init__(self, parent: Frame, row: int, commande: Callable[[], None]):
