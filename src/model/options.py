@@ -1,6 +1,7 @@
-from tkinter import Frame, Button
+from tkinter import Frame
 from typing import Callable
-from constants.config import GridPad, Font
+from model.bouton import Bouton
+from constants.config import GridPad
 
 class Options(Frame):
     def __init__(self, parent: Frame, row: int, options: dict[int, str], commande: Callable[[int], None]):
@@ -9,18 +10,13 @@ class Options(Frame):
         self.make_options(options, commande)
 
     def make_options(self, options: dict[int, str], commande: Callable[[int], None]):
-        self.boutons: dict[int, Button] = {}
+        self.boutons: dict[int, Bouton] = {}
         self.boutons_active: dict[int, bool] = {}
         for scan, option in options.items():
-            self.boutons[scan] = self.make_button(scan, option)
+            self.boutons[scan] = Bouton(self, 0, scan, option)
             self.boutons_active[scan] = False
         for scan in options.keys():
             self.add_command(scan, commande)
-
-    def make_button(self, colonne: int, texte: str):
-        bouton = Button(self, font=Font.BODY, text=texte, bg="white")
-        bouton.grid(row=0, column=colonne, padx=GridPad.PADDING_X, pady=GridPad.PADDING_Y)
-        return bouton
 
     def add_command(self, scan: int, commande: Callable[[int], None]):
         self.boutons[scan]["command"] = lambda: commande(scan)
@@ -33,9 +29,9 @@ class Options(Frame):
         return self.boutons_active[scan]
 
     def activer(self, scan: int):
-        self.boutons[scan]["bg"] = "pink"
+        self.boutons[scan].activer()
         self.boutons_active[scan] = True
 
     def desactiver(self, scan: int):
-        self.boutons[scan]["bg"] = "white"
+        self.boutons[scan].desactiver()
         self.boutons_active[scan] = False
