@@ -17,6 +17,7 @@ class BoutonCase(Button):
             width=0,
             height=0,
             command=commande,
+            bg="white",
             border=0,
             )
         self.grid(row=x, column=y)
