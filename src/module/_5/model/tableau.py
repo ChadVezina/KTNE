@@ -15,11 +15,10 @@ class Tableau(Frame):
         composante = Frame(self)
         composante.grid(row = row, padx = GridPad.PADDING_X*2, pady = GridPad.PADDING_Y*2)
         for scan, texte in enumerate(options):
-            bouton = self.make_button(composante, scan, texte, split_col)
-            bouton["command"] = lambda: commande(texte)
+            self.make_button(composante, scan, texte, lambda texte=texte: commande(texte), split_col)
         return composante
 
-    def make_button(self, parent: Frame, colonne: int, texte: str, split_col: int):
+    def make_button(self, parent: Frame, colonne: int, texte: str, commande: Callable[[], None], split_col: int):
         x = colonne // split_col
         y = colonne % split_col
-        return Bouton(parent, x, y, texte)
+        return Bouton(parent, x, y, texte, commande)

@@ -25,7 +25,7 @@ class Options(Frame):
         return Bouton(self, x, y, relief="raised")
 
     def add_command(self, scan: int, commande: Callable[[int], None]):
-        self.boutons[scan]["command"] = lambda: commande(scan)
+        self.boutons[scan]["command"] = lambda scan=scan: commande(scan)
 
     def get_option(self, scan: int) -> str:
         return self.boutons[scan].get_texte()
