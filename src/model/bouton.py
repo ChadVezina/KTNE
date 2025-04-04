@@ -1,5 +1,5 @@
-from tkinter import Frame, Button, _Relief, _ButtonCommand, _ScreenUnits
-from typing import Callable
+from tkinter import Frame, Button
+from typing import Callable, Literal;
 from constants.config import GridPad, BoutonCaseRect, Font
 
 class Bouton(Button):
@@ -11,9 +11,9 @@ class Bouton(Button):
         texte: str = "",
         commande: Callable[[], None] = None,
         font = Font.BODY,
-        relief: _Relief = "sunken",
-        border: _ScreenUnits = ...,
-        wraplength: _ScreenUnits = ...,
+        relief: Literal["raised", "sunken", "flat", "ridge", "solid", "groove"] = "sunken",
+        border: str | float = ...,
+        wraplength: str | float = ...,
         no_margin: bool = False,
         no_padding: bool = False,
         ):
@@ -36,8 +36,8 @@ class Bouton(Button):
             pady = 0 if no_margin else GridPad.PADDING_Y,
             )
 
-    def add_command(self, commande: _ButtonCommand) -> None:
-        self["command"] = commande
+    def add_command(self, commande: Callable[[], None]) -> None:
+        self["command"] = lambda: commande()
 
     def get_texte(self) -> str:
         return self.cget("text")

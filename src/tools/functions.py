@@ -53,16 +53,16 @@ def calculate_x_y(screen_width: int, screen_height: int, length: int) -> tuple[i
     n_y = round(unit)
     diff = length - (n_x * n_y)
     while(diff < 0):
-        if(ratio > = 1):
-            n_x - = 1
+        if(ratio >= 1):
+            n_x -= 1
         else:
-            n_y - = 1
+            n_y -= 1
         diff = length - (n_x * n_y)
     while(diff > 0):
-        if(ratio > = 1):
-            n_y + = 1
+        if(ratio >= 1):
+            n_y += 1
         else:
-            n_x + = 1
+            n_x += 1
         diff = length - (n_x * n_y)
     return n_x, n_y
 

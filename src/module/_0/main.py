@@ -53,7 +53,7 @@ class Module_0(Tk):
             self.tableau_mines.dictionnaire_cases = dictionnaire_cases
             for case in self.tableau_mines.dictionnaire_cases.values():
                 if case.est_devoilee:
-                    self.tableau_mines.nombre_cases_sans_mine_a_devoiler - = 1
+                    self.tableau_mines.nombre_cases_sans_mine_a_devoiler -= 1
         if activer_jeu:
             self.activer_jeu()
         else:
@@ -201,11 +201,11 @@ class Module_0(Tk):
         dictionnaire_cases = {}
         jeu_en_cours = False
         for ligne in f.readlines():
-            x + = 1
+            x += 1
             y = 0
             rangee = ligne.rstrip().split(" ")
             for str_case in rangee:
-                y + = 1
+                y += 1
                 y_max = max(y, y_max)
                 case = Case()
                 if str_case[0] == "o":
@@ -214,7 +214,7 @@ class Module_0(Tk):
                     jeu_en_cours = True
                 if str_case[1] == "M":
                     case.ajouter_mine()
-                    n_mines + = 1
+                    n_mines += 1
                 else:
                     mines_voisines = int(str_case[1])
                     for i in range(mines_voisines):

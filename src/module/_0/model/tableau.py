@@ -129,7 +129,7 @@ class Tableau:
             case = self.obtenir_case(mine_x, mine_y)
             if not case.est_minee:
                 case.ajouter_mine()
-                mines_a_placer - = 1
+                mines_a_placer -= 1
                 for voisin_x, voisin_y in self.obtenir_voisins(mine_x, mine_y):
                     self.obtenir_case(voisin_x, voisin_y).ajouter_une_mine_voisine()
 
@@ -263,7 +263,7 @@ class Tableau:
         case.devoiler()
 
         if not case.est_minee:
-            self.nombre_cases_sans_mine_a_devoiler - = 1
+            self.nombre_cases_sans_mine_a_devoiler -= 1
 
     def contient_mine(self, rangee_x, colonne_y):
         """

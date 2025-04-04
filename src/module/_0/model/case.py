@@ -38,7 +38,7 @@ class Case:
         """
         Méthode qui incrémente l'attribut nombre_mines_voisines
         """
-        self.nombre_mines_voisines + = 1
+        self.nombre_mines_voisines += 1
 
     def est_voisine_d_une_mine(self):
         """

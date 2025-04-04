@@ -330,13 +330,13 @@ class Tableau:
                 noeud = (i, j)
                 voisins: list[tuple[int, int]] = []
                 # Vérifier déplacement haut
-                if i - 2 > = 0 and self.cases[i-1][j].type == TypeCase.MUR_VIDE:
+                if i - 2 >= 0 and self.cases[i-1][j].type == TypeCase.MUR_VIDE:
                     voisins.append((i-2, j))
                 # Vérifier déplacement bas
                 if i + 2 < 13 and self.cases[i+1][j].type == TypeCase.MUR_VIDE:
                     voisins.append((i+2, j))
                 # Vérifier déplacement gauche
-                if j - 2 > = 0 and self.cases[i][j-1].type == TypeCase.MUR_VIDE:
+                if j - 2 >= 0 and self.cases[i][j-1].type == TypeCase.MUR_VIDE:
                     voisins.append((i, j-2))
                 # Vérifier déplacement droite
                 if j + 2 < 13 and self.cases[i][j+1].type == TypeCase.MUR_VIDE:

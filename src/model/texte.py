@@ -1,4 +1,4 @@
-from tkinter import Frame, Label, _ScreenUnits
+from tkinter import Frame, Label
 from constants.config import GridPad, Font
 
 class Texte(Label):
@@ -9,8 +9,8 @@ class Texte(Label):
         col: int = 0,
         texte: str = "",
         font = Font.BODY,
-        width: _ScreenUnits = ...,
-        wraplength: _ScreenUnits = ...,
+        width: str | float = ...,
+        wraplength: str | float = ...,
         no_margin: bool = False,
         ):
         super().__init__(
