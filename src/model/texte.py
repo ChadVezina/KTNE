@@ -9,8 +9,8 @@ class Texte(Label):
         col: int = 0,
         texte: str = "",
         font = Font.BODY,
-        width: str | float = ...,
-        wraplength: str | float = ...,
+        width: str | float = None,
+        wraplength: str | float = None,
         no_margin: bool = False,
         ):
         super().__init__(

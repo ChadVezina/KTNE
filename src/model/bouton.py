@@ -12,8 +12,8 @@ class Bouton(Button):
         commande: Callable[[], None] = None,
         font = Font.BODY,
         relief: Literal["raised", "sunken", "flat", "ridge", "solid", "groove"] = "sunken",
-        border: str | float = ...,
-        wraplength: str | float = ...,
+        border: str | float = None,
+        wraplength: str | float = None,
         no_margin: bool = False,
         no_padding: bool = False,
         ):
