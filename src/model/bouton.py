@@ -16,6 +16,7 @@ class Bouton(Button):
         wraplength: str | float = None,
         no_margin: bool = False,
         no_padding: bool = False,
+        no_color: bool = False,
         ):
         super().__init__(
             parent,
@@ -24,7 +25,7 @@ class Bouton(Button):
             padx = 0 if no_padding else BoutonCaseRect.PADDING_X,
             pady = 0 if no_padding else BoutonCaseRect.PADDING_Y,
             command = commande,
-            bg = "white",
+            bg = None if no_color else "white",
             relief = relief,
             border = border,
             wraplength = wraplength,

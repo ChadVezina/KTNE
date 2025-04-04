@@ -1,26 +1,12 @@
-from tkinter import Button
-
-from constants.config import BoutonCaseRect, Font
+from model.bouton import Bouton
 from ..tools.enums import TypeCase
 
 
-class BoutonCase(Button):
+class BoutonCase(Bouton):
     def __init__(self, parent, x: int, y: int, commande):
         self.x = x
         self.y = y
-        super().__init__(
-            parent,
-            font = Font.BODY,
-            text = "",
-            padx = 0,
-            pady = 0,
-            width = 0,
-            height = 0,
-            command = commande,
-            bg = "white",
-            border = 0,
-            )
-        self.grid(row = x, column = y)
+        super().__init__(parent, x, y, commande=commande, border=0, no_padding=True, no_margin=True, no_color=True)
 
     def setType(self, type: TypeCase):
         match type:
@@ -42,5 +28,5 @@ class BoutonCase(Button):
             case TypeCase.VIDE:
                 self["text"] = "▪"
             case _:
-                pass
+                return
 
