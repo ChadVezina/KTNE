@@ -106,4 +106,5 @@ class NextLink:
             if(scan is not None):
                 self.scan_options(options, self.table_libelle.get(options[scan], None))
                 if self.etape.options.get_active_option() == -1:
-                    self.etape.options.set_pointer_option(scan)
+                    if self.etape.options.set_pointer_option(scan):
+                        self.etape.clic_option(scan)

@@ -9,6 +9,7 @@ class Options(Frame):
         super().__init__(parent)
         self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.n_options = n_options
+        self.pointer_option = -1
         self.make_options(commande)
 
     def make_options(self, commande: Callable[[int], None]):
@@ -66,4 +67,7 @@ class Options(Frame):
             self.bouton_active = -1
 
     def set_pointer_option(self, scan: int):
-        self.boutons[scan]["bg"] = "purple"
+        if self.pointer_option == scan:
+            return False
+        self.pointer_option = scan
+        return True
