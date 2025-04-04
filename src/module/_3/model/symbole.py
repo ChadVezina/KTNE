@@ -1,28 +1,28 @@
-from tkinter import Button
 from typing import Callable
 
-from constants.config import Font, TextPad
+from model.bouton import Bouton
+from constants.config import Font
 
 
 class Symbole:
     def __init__(self, parent, col, texte, hint, selected, commande: Callable[[], None]):
-        self.bouton = Button(
+        self.bouton = Bouton(
             parent,
-            font = Font.BODY_SYMBOLE,
-            text = texte,
-            padx = TextPad.PADDING_X,
-            pady = TextPad.PADDING_Y,
-            relief = "sunken" if selected else "flat",
-            command = commande,
+            0,
+            col,
+            texte,
+            commande,
+            Font.BODY_SYMBOLE,
+            "sunken" if selected else "flat",
+            no_color=True,
             )
-        self.hint = Button(
+        self.hint = Bouton(
             parent,
-            font = Font.BODY_HINT,
-            text = hint,
-            padx = TextPad.PADDING_X,
-            pady = TextPad.PADDING_Y,
-            relief = "solid" if selected else "flat",
-            command = commande,
+            1,
+            col,
+            hint,
+            commande,
+            Font.BODY_HINT,
+            "solid" if selected else "flat",
+            no_color=True,
             )
-        self.bouton.grid(row = 0, column = col)
-        self.hint.grid(row = 1, column = col)

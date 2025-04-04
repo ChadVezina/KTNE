@@ -6,7 +6,7 @@ class Input(Entry):
     def __init__(
         self,
         parent: Frame,
-        row: int,
+        row: int = 0,
         col: int = 0,
         commande: Callable[[], None] = None,
         font = Font.BODY,

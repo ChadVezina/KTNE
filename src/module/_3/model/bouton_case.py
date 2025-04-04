@@ -1,28 +1,16 @@
-from tkinter import Button
+from model.bouton import Bouton
+from constants.config import Font
 
-from constants.config import BoutonCaseRect, Font
 
-
-class BoutonCase(Button):
+class BoutonCase(Bouton):
     def __init__(self, parent, x, y, texte, commande):
-        self.x = x
-        self.y = y
         super().__init__(
             parent,
-            font = Font.BODY_SYMBOLE,
-            text = texte,
-            padx = BoutonCaseRect.PADDING_X,
-            pady = BoutonCaseRect.PADDING_Y,
-            width = BoutonCaseRect.WIDTH,
-            height = BoutonCaseRect.HEIGHT,
-            command = commande,
-            bg = "white",
+            x,
+            y,
+            texte,
+            commande,
+            Font.BODY_SYMBOLE,
+            no_margin = True,
             )
-        self.grid(row = x, column = y)
-
-    def activer(self):
-        self["bg"] = "pink"
-
-    def desactiver(self):
-        self["bg"] = "white"
 

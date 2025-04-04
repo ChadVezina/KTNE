@@ -5,7 +5,7 @@ class Texte(Label):
     def __init__(
         self,
         parent: Frame,
-        row: int,
+        row: int = 0,
         col: int = 0,
         texte: str = "",
         font = Font.BODY,
