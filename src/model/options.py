@@ -14,7 +14,7 @@ class Options(Frame):
         self.boutons_active: dict[int, bool] = {}
         for scan, option in options.items():
             self.boutons_active[scan] = False
-            self.boutons[scan] = Bouton(self, 0, scan, option, lambda: commande(scan))
+            self.boutons[scan] = Bouton(self, 0, scan, option, lambda scan=scan: commande(scan))
 
     def add_command(self, scan: int, commande: Callable[[int], None]) -> None:
         self.boutons[scan]["command"] = lambda: commande(scan)
