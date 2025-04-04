@@ -9,7 +9,7 @@ class Tableau(Frame):
         super().__init__(parent)
         self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
         self.make_options(0, textes, commande_texte, 10)
-        self.make_options(1, options, commande_option, 10)
+        self.make_options(1, options, commande_option, 5)
 
     def make_options(self, row: int, options: list[str], commande: Callable[[str], None], split_col: int = 2):
         composante = Frame(self)
