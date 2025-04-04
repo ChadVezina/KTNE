@@ -10,7 +10,7 @@ class Etape(Frame):
         self.grid(row = row)
         self.commande = commande
         self.bouton_active = -1
-        self.texte = Bouton(self, 0)
+        self.texte = Bouton(self, 0, relief="sunken")
         self.options = Options(self, 1, self.clic_option)
         self.tableau = Tableau(self, 2, textes, options, self.clic_tableau_texte, self.clic_tableau_option)
         self.clic_option(0)

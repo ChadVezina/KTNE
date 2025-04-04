@@ -22,4 +22,4 @@ class Tableau(Frame):
     def make_button(self, parent: Frame, colonne: int, texte: str, split_col: int):
         x = colonne // split_col
         y = colonne % split_col
-        return Bouton(parent, x, y, texte, relief="raised")
+        return Bouton(parent, x, y, texte)
