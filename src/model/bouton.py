@@ -65,13 +65,20 @@ class Bouton(Button):
     def activer(self) -> None:
         self["bg"] = "pink"
 
-    def desactiver(self) -> None:
-        self["bg"] = "white"
+    def desactiver(self, pointer: bool = False) -> None:
+        if pointer:
+            self["bg"] = "purple"
+        else:
+            self["bg"] = "white"
 
-    def show(self) -> None:
+    def show(self, is_selected = False) -> None:
         if self.winfo_ismapped():
             self.grid_remove()
         self.grid(row = self.row, column = self.col, padx = self.padx, pady = self.pady)
+        if is_selected:
+            self.activer()
+        else:
+            self.desactiver()
 
     def hide(self) -> None:
         if self.winfo_ismapped():
@@ -83,3 +90,5 @@ class Bouton(Button):
         self.grid(row = row, column = col, padx = self.padx, pady = self.pady)
         if is_selected:
             self.activer()
+        else:
+            self.desactiver()

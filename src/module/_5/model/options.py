@@ -63,10 +63,11 @@ class Options(Frame):
 
     def desactiver(self, scan: int):
         if(self.is_active(scan)):
-            self.boutons[scan].desactiver()
+            self.boutons[scan].desactiver(self.pointer_option)
             self.bouton_active = -1
 
     def set_pointer_option(self, scan: int):
+        self.boutons[scan]["bg"] = "purple"
         if self.pointer_option == scan:
             return False
         self.pointer_option = scan
