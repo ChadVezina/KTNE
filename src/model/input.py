@@ -28,6 +28,9 @@ class Input(Entry):
         if commande is not None:
             self.bind("<KeyRelease>", lambda e: commande())
 
+    def add_command(self, commande: Callable[[], None]) -> None:
+        self.bind("<KeyRelease>", lambda e: commande())
+
     def get_texte(self) -> str | None:
         return self.sv.get().lower().strip()
 

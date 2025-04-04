@@ -35,3 +35,9 @@ class Texte(Label):
 
     def clear_texte(self) -> None:
         self["text"] = ""
+
+    def activer(self) -> None:
+        self["bg"] = "pink"
+
+    def desactiver(self) -> None:
+        self["bg"] = "white"

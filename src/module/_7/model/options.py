@@ -21,7 +21,7 @@ class Options(Frame):
             self.add_command(scan, commande)
 
     def add_command(self, scan: int, commande: Callable[[], None]):
-        self.inputs[scan].bind("<KeyRelease>", lambda e: commande())
+        self.inputs[scan].add_command(commande)
 
     def get_label(self, scan: int) -> str:
         return self.labels[scan].get_texte()
