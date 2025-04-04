@@ -78,9 +78,11 @@ class NextLink:
 
     def scan_options(self, options: list[str], libelle_values: list[str] | None):
         if(libelle_values is None):
+            self.etape.tableau.set_active_all()
             for scan, _ in enumerate(options):
                 self.etape.options.is_not_exist(scan)
         else:
+            self.etape.tableau.set_active(libelle_values, options)
             for scan, option in enumerate(options):
                 if(option in libelle_values):
                     self.etape.options.is_exist(scan)

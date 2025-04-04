@@ -30,11 +30,15 @@ class Bouton(Button):
             border = border,
             wraplength = wraplength,
             )
+        self.row = row
+        self.col = col
+        self.padx = 0 if no_margin else GridPad.PADDING_X,
+        self.pady = 0 if no_margin else GridPad.PADDING_Y
         self.grid(
             row = row,
             column = col,
-            padx = 0 if no_margin else GridPad.PADDING_X,
-            pady = 0 if no_margin else GridPad.PADDING_Y,
+            padx = self.padx,
+            pady = self.pady,
             )
 
     def add_command(self, commande: Callable[[], None]) -> None:
@@ -63,3 +67,19 @@ class Bouton(Button):
 
     def desactiver(self) -> None:
         self["bg"] = "white"
+
+    def show(self) -> None:
+        if self.winfo_ismapped():
+            self.grid_remove()
+        self.grid(row = self.row, column = self.col, padx = self.padx, pady = self.pady)
+
+    def hide(self) -> None:
+        if self.winfo_ismapped():
+            self.grid_remove()
+
+    def show_with(self, row: int, col: int, is_selected = False) -> None:
+        if self.winfo_ismapped():
+            self.grid_remove()
+        self.grid(row = row, column = col, padx = self.padx, pady = self.pady)
+        if is_selected:
+            self.activer()
