@@ -31,7 +31,7 @@ class NextLink:
             "you": ["sure", "you are", "your", "you're", "next", "uh huh", "ur", "hold", "what?", "you", "uh uh", "like", "done", "u"],
             "you are": ["your", "next", "like", "uh huh", "what?", "done", "uh uh", "hold", "you", "u", "you're", "sure", "ur", "you are"],
             "your": ["uh uh", "you are", "uh huh", "your", "next", "ur", "sure", "u", "you're", "you", "what?", "hold", "like", "done"],
-            "you're": ["you", "you're", "ur", "next", "uh uh", "you are", "your", "what?", "uh huh", "sure", "done", "like", "hold"],
+            "you're": ["you", "you're", "ur", "next", "uh uh", "you are", "u", "your", "what?", "uh huh", "sure", "done", "like", "hold"],
             "ur": ["done", "u", "ur", "uh huh", "what?", "sure", "your", "hold", "you're", "like", "next", "uh uh", "you are", "you"],
             "u": ["uh huh", "sure", "next", "what?", "you're", "hold", "uh uh", "done", "u", "you", "like", "you are", "your"],
             "uh huh": ["uh huh", "your", "you are", "you", "done", "hold", "uh uh", "next", "sure", "like", "you're", "ur", "u", "what?"],
