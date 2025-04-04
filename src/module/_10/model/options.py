@@ -16,7 +16,7 @@ class Options(Frame):
             self.boutons[scan] = Bouton(self, col=scan, texte=option, wraplength=BoutonCaseRect.WRAP_LENGTH, no_padding=True)
 
     def add_command(self, scan: int, commande: Callable[[int], None]):
-        self.boutons[scan].add_command(lambda: commande(scan))
+        self.boutons[scan].add_command(lambda scan = scan: commande(scan))
 
     def get_active_option(self):
         return self.bouton_active
