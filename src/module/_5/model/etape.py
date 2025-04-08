@@ -17,7 +17,7 @@ class Etape(Frame):
 
     def clic_option(self, scan: int):
         if self.bouton_active != scan:
-            self.prev_option() #
+            self.prev_option()
             self.bouton_active = scan
             self.options.set_active_option(scan, True)
 
