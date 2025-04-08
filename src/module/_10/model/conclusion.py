@@ -1,7 +1,7 @@
 from tkinter import Frame, Label
 
-from .ligne import Ligne
-
+from model.texte import Texte
+from model.ligne import Ligne
 from model.root import Root
 from constants.config import GridPad, Font
 
@@ -42,4 +42,4 @@ class Conclusion(Frame):
             if len(sub_liste) != 0:
                 if row < len(solutions) - split_col:
                     sub_liste.append("->")
-                Ligne(self.root, row, sub_liste)
+                Ligne(self.root, row, sub_liste, lambda parent, col, texte: Texte(parent, 0, col, texte))

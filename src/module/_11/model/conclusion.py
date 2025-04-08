@@ -1,11 +1,11 @@
 from tkinter import Frame, Label
 
-from .ligne import Ligne
-
+from model.ligne import Ligne
+from model.texte import Texte
 from model.root import Root
 from constants.config import GridPad, Font
 
-class Texte(Frame):
+class Conclusion(Frame):
     def __init__(self, parent, row):
         super().__init__(parent)
         self.grid(row = row, padx = GridPad.PADDING_X, pady = GridPad.PADDING_Y)
@@ -36,4 +36,4 @@ class Texte(Frame):
                 except StopIteration:
                     break
             if len(sub_liste) != 0:
-                Ligne(self.root, row, sub_liste)
+                Ligne(self.root, row, sub_liste, lambda parent, col, texte: Texte(parent, 0, col, texte))
