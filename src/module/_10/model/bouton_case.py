@@ -4,8 +4,7 @@ from ..tools.enums import TypeCase
 
 class BoutonCase(Bouton):
     def __init__(self, parent, x: int, y: int, commande):
-        self.x = x
-        self.y = y
+        self.condition = x % 2 == 0
         super().__init__(parent, x, y, commande=commande, border=0, no_padding=True, no_margin=True, no_color=True)
 
     def setType(self, type: TypeCase):
@@ -19,7 +18,7 @@ class BoutonCase(Bouton):
             case TypeCase.ARRIVEE:
                 self["text"] = "▲"
             case TypeCase.MUR:
-                if self.x % 2 == 0:
+                if self.condition:
                     self["text"] = "━"
                 else:
                     self["text"] = "┃"

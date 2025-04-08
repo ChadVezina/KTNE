@@ -8,7 +8,7 @@ class NextLink:
     def __init__(
         self,
         texte: str,
-        options: dict[int, str] = {},
+        options: dict[int, str],
         actions: list[Callable[[int], TypeTableau | None]] = [],
         ):
         self.texte = texte
@@ -22,7 +22,7 @@ class NextLink:
         self.destroy()
         self.parent = parent
         self.row = row
-        self.etape = Etape(parent, row, self.texte, lambda scan: self.clic(scan), self.options)
+        self.etape = Etape(parent, row, self.texte, self.options, lambda scan: self.clic(scan))
         self.tableau.do(parent, row + 1)
         if len(self.options.items()) != 0:
             self.next(self.etape.options.get_active_option())

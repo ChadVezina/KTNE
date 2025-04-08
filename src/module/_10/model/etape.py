@@ -1,23 +1,18 @@
 from tkinter import Frame
 from typing import Callable
-from .options import Options
-from .texte import Texte
+
+from model.texte import Texte
+from model.options_single import Options
 
 class Etape(Frame):
-    def __init__(self, parent: Frame, row: int, texte: str, command: Callable[[int], None], options: dict[int, str] = {}):
+    def __init__(self, parent: Frame, row: int, texte: str, options: dict[int, str], command: Callable[[int], None]):
         super().__init__(parent)
         self.grid(row = row)
-        self.texte = Texte(self, 0, texte = texte)
-        if len(options.items()) != 0:
-            self.options = Options(self, 1, options)
-            for scan in options.keys():
-                self.options.add_command(scan, command)
-        else:
-            self.options = None
+        self.texte = Texte(self, 0, 0, texte)
+        self.options = Options(self, 1, options, command)
 
     def clic(self, i: int):
-        if(self.options is not None):
-            if self.options.is_active(i):
-                self.options.desactiver(i)
-            else:
-                self.options.activer(i)
+        if self.options.is_active(i):
+            self.options.desactiver(i)
+        else:
+            self.options.activer(i)
