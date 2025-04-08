@@ -1,6 +1,7 @@
 from tkinter import Frame
-from .hint_case import HintCase
-from .bouton_case import BoutonCase
+from model.bouton import Bouton
+from model.texte import Texte
+from constants.config import HintCaseRect, Font
 
 class Case:
     def __init__(self, numero, texte, hint, afficher_solution):
@@ -15,8 +16,8 @@ class Case:
         self.is_active = False
         self.composante = Frame(parent)
         self.composante.grid(row = x, column = y)
-        self.bouton = BoutonCase(self.composante, 0, 0, self.texte, lambda: self.clic())
-        self.label = HintCase(self.composante, 1, 0, self.hint)
+        self.bouton = Bouton(self.composante, 0, 0, self.texte, lambda: self.clic(), Font.BODY_SYMBOLE, no_margin = True)
+        self.label = Texte(self.composante, 1, 0, self.hint, Font.BODY_HINT, HintCaseRect.WIDTH, HintCaseRect.WRAP_LENGTH, True)
 
     def clic(self):
         if self.is_active:
