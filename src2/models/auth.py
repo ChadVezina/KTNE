@@ -17,6 +17,9 @@ class Auth(ObservableModel):
     def state(self) -> Data:
         return self.current_memento.state if self.current_memento else {}
 
+    def is_state(self, key: str, value: str) -> bool:
+        return self.state.get(key, None) == value
+
     def update(self, key: str, memento: Data) -> None:
         if self.current_memento is None:
             self.current_memento = Caretaker(memento)

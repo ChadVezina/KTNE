@@ -31,12 +31,12 @@ class Module1View(Frame):
     def is_active(self, key: str) -> Callable[[str], bool]:
         if self.model is None:
             return False
-        return lambda value: self.model.auth.state[key] == value
+        return lambda value: self.model.auth.is_state(key, value)
 
     def get_action(self, key: str) -> Callable[[str | None], None] | None:
         if self.model is None:
             return None
-        return lambda val, key=key: self.model.auth.update({key: val})
+        return lambda val, key=key: self.model.auth.update(key, {key: val})
 
     def choix_args(self, key: str):
         return self.is_active(key), self.get_action(key)
