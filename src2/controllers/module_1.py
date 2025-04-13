@@ -11,7 +11,7 @@ class Module1Controller:
 
     def _bind(self) -> None:
         self.frame.is_state = self.model.auth.is_state
-        self.frame.update = self.model.auth.update
+        self.frame.update_state = self.model.auth.update
         self.frame.init_boutons()
         self.frame.module2.config(command=self.module2)
         self.frame.init_questions()

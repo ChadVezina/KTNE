@@ -1,6 +1,9 @@
-from typing import Optional, TypedDict
+from typing import Optional, TypedDict, TypeVar
 from .base import ObservableModel
 from designs.memento import Caretaker
+
+
+T = TypeVar("T")
 
 
 class Data(TypedDict):
@@ -22,7 +25,7 @@ class Auth(ObservableModel):
             }
         return self.current_memento.state
 
-    def is_state(self, key: str, value: str) -> bool:
+    def is_state(self, key: str, value: T) -> bool:
         return self.state.get(key, None) == value
 
     def update(self, memento: Data) -> None:

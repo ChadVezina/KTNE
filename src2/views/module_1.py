@@ -1,5 +1,6 @@
 from tkinter import Frame
-from typing import Callable
+from typing import Any, Callable
+from models.auth import Data
 from designs.composite import Composite, Leaf
 from designs.abstract_factory import ConcreteFactory1
 
@@ -10,6 +11,8 @@ class Module1View(Frame):
         self.grid_rowconfigure(0, weight=0)
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
+        self.is_state: Callable[[str, Any], bool] = lambda key, value: False
+        self.update_state: Callable[[Data], None] = lambda state: None
 
     def init_boutons(self, row: int = 0):
         self.root_boutons = Frame(self)
@@ -30,7 +33,7 @@ class Module1View(Frame):
         return lambda value: self.is_state(key, value)
 
     def get_action(self, key: str) -> Callable[[str | None], None]:
-        return lambda val, key=key: self.update({key: val})
+        return lambda val, key=key: self.update_state({key: val})
 
     def choix_args(self, key: str):
         return self.is_active(key), self.get_action(key)
