@@ -17,25 +17,14 @@ class Auth(ObservableModel):
     def state(self) -> Data:
         return self.current_memento.state if self.current_memento else {}
 
-    def update(self, memento: Data) -> None:
+    def update(self, key: str, memento: Data) -> None:
         if self.current_memento is None:
             self.current_memento = Caretaker(memento)
         else:
             state = self.state
-            for key, value in memento.items():
-                if value is not None:
-                    state[key] = value
-            self.current_memento.update(state)
-        self.trigger_event("auth_changed")
-
-    def clear_fields(self, keys: list[str]) -> None:
-        if self.current_memento is None:
-            return
-        else:
-            state = self.state
-            for key in keys:
-                if key in state.keys():
-                    state[key] = None
+            if not key in state.keys():
+                return
+            state[key] = memento[key]
             self.current_memento.update(state)
         self.trigger_event("auth_changed")
 

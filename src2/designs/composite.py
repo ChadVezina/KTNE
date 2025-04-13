@@ -98,13 +98,15 @@ class Composite(Component):
             component.hide()
         self._widget.hide()
 
-    def add_choix(self, choix: str, active: bool = False, action: Callable[[str | None], None] | None = None) -> None:
+    def add_choix(self, choix: str, active: bool = False, action_model: Callable[[str | None], None] | None = None) -> None:
         self._actives.append(active)
         self._children_choix.append(choix)
         col = len(self._children_choix) - 1
-        self._boutons.append(Bouton(self._options, 0, col, choix, lambda col=col, action=action: self.clic(col, action)))
+        bouton = Bouton(self._options, 0, col, choix)
         if active:
-            self._boutons[col].config(bg="pink")
+            bouton.config(bg="pink")
+        self._boutons.append(bouton)
+        self._boutons[col].add_command(lambda col=col, action=action_model: self.clic(col, action))
 
     def add_action(self, component: Component, action: Callable[[Composite], bool] | None = None) -> None:
         self._children_action.append((component, action))
