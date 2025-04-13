@@ -1,5 +1,4 @@
 from models.main import Model
-from models.auth import Data
 from views.main import View
 
 

@@ -1,5 +1,4 @@
 from models.main import Model
-from models.auth import Data
 from views.main import View
 
 
@@ -11,7 +10,8 @@ class Module2Controller:
         self._bind()
 
     def _bind(self) -> None:
-        self.frame.model = self.model
+        self.frame.is_state = self.model.auth.is_state
+        self.frame.update = self.model.auth.update
         self.frame.init_boutons()
         self.frame.module1.config(command=self.module1)
         self.frame.init_questions()
