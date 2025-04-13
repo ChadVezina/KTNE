@@ -17,11 +17,10 @@ class Module1View(Frame):
         self.root_boutons.grid(row=row)
 
         factory = ConcreteFactory1()
-        self.signin_btn = factory.create_bouton(self.root_boutons, 0, 0, "Sign In")
-        self.signup_btn = factory.create_bouton(self.root_boutons, 0, 1, "Sign Up")
+        self.module2 = factory.create_bouton(self.root_boutons, 0, 0, "Module 2")
+        #self.module1 = factory.create_bouton(self.root_boutons, 0, 1, "Module 1")
 
     def init_questions(self, row: int = 1):
-        self.data = self.model.auth.state["info_1"]
         self.root_questions = Frame(self)
         self.root_questions.grid(row=row)
 
@@ -31,8 +30,8 @@ class Module1View(Frame):
     def question_1(self) -> Composite:
         branch = Composite(1, "1) Bouton est ...?", self.root_questions)
 
-        branch.add_choix("bleu", self.data is not None and self.data["couleur"] == "bleu")
-        branch.add_choix("\"Annuler\"", self.data is not None and self.data["texte"] == "Annuler")
+        branch.add_choix("bleu")
+        branch.add_choix("\"Annuler\"")
 
         branch.add_action(self.derniere_question(), lambda x: x.is_active(0) and x.is_active(1))
         branch.add_action(self.question_2(), lambda x: not x.is_active(1))
@@ -55,7 +54,7 @@ class Module1View(Frame):
     def question_3(self) -> Composite:
         branch = Composite(3, "3) Bouton est ...? Indicateur est ...?", self.root_questions)
 
-        branch.add_choix("blanc", self.data is not None and self.data["couleur"] == "blanc") # question 1-0
+        branch.add_choix("blanc") # question 1-0
         branch.add_choix("allumé avec \"CAR\"")
 
         branch.add_action(self.derniere_question(), lambda x: x.is_active(0) and x.is_active(1))
@@ -79,7 +78,7 @@ class Module1View(Frame):
     def question_5(self) -> Composite:
         branch = Composite(5, "5) Bouton est ...?", self.root_questions)
 
-        branch.add_choix("rouge", self.data is not None and self.data["couleur"] == "rouge") # question 3-0 et 1-0
+        branch.add_choix("rouge") # question 3-0 et 1-0
 
         branch.add_action(self.conclusion(), lambda x: x.is_active(0))
         branch.add_action(self.derniere_question())

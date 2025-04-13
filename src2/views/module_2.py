@@ -17,8 +17,8 @@ class Module2View(Frame):
         self.root_boutons.grid(row=row)
 
         factory = ConcreteFactory1()
-        self.signin_btn = factory.create_bouton(self.root_boutons, 0, 0, "Sign In")
-        self.signup_btn = factory.create_bouton(self.root_boutons, 0, 1, "Sign Up")
+        self.module1 = factory.create_bouton(self.root_boutons, 0, 0, "Module 1")
+        #self.module2 = factory.create_bouton(self.root_boutons, 0, 1, "Module 2")
 
     def init_questions(self, row: int = 1):
         self.root_questions = Frame(self)
