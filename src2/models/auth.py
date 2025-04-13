@@ -3,14 +3,9 @@ from .base import ObservableModel
 from designs.memento import Caretaker
 
 
-class Info_1(TypedDict):
-    couleur: Optional[str]
-    texte: Optional[str]
-
-
 class Data(TypedDict):
-    info_1: Optional[Info_1]
-    info_2: Optional[str]
+    module1_couleur: Optional[str]
+    module1_texte: Optional[str]
 
 
 class Auth(ObservableModel):
@@ -26,7 +21,7 @@ class Auth(ObservableModel):
         if self.current_memento is None:
             self.current_memento = Caretaker(memento)
         else:
-            state: Data = self.current_memento.state
+            state = self.state
             for key, value in memento.items():
                 if value is not None:
                     state[key] = value
@@ -37,7 +32,7 @@ class Auth(ObservableModel):
         if self.current_memento is None:
             return
         else:
-            state: Data = self.current_memento.state
+            state = self.state
             for key in keys:
                 if key in state.keys():
                     state[key] = None
