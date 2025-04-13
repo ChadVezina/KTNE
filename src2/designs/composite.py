@@ -98,7 +98,11 @@ class Composite(Component):
             component.hide()
         self._widget.hide()
 
-    def add_choix(self, choix: str, active: bool = False, action_model: Callable[[str | None], None] | None = None) -> None:
+    def add_choix(self, choix: str, active_action: Callable[[str], bool] | bool = False, action_model: Callable[[str | None], None] | None = None) -> None:
+        if isinstance(active_action, bool):
+            active = active_action
+        else:
+            active = active_action(choix)
         self._actives.append(active)
         self._children_choix.append(choix)
         col = len(self._children_choix) - 1

@@ -28,21 +28,24 @@ class Module1View(Frame):
         tree = self.question_1()
         tree.show(0)
 
-    def is_active(self, key: str, value: str) -> bool:
+    def is_active(self, key: str) -> Callable[[str], bool]:
         if self.model is None:
             return False
-        return self.model.auth.state["info_1"][key] == value
+        return lambda value: self.model.auth.state[key] == value
 
     def get_action(self, key: str) -> Callable[[str | None], None] | None:
         if self.model is None:
             return None
         return lambda val, key=key: self.model.auth.update({key: val})
 
+    def choix_args(self, key: str):
+        return self.is_active(key), self.get_action(key)
+
     def question_1(self) -> Composite:
         branch = Composite(1, "1) Bouton est ...?", self.root_questions)
 
-        branch.add_choix("bleu", self.is_active("module1_couleur", "bleu"), self.get_action("module1_couleur"))
-        branch.add_choix("\"Annuler\"", self.is_active("module1_texte", "\"Annuler\""), self.get_action("module1_texte"))
+        branch.add_choix("bleu", *self.choix_args("module1_couleur"))
+        branch.add_choix("\"Annuler\"", *self.choix_args("module1_texte"))
 
         branch.add_action(self.derniere_question(), lambda x: x.is_active(0) and x.is_active(1))
         branch.add_action(self.question_2(), lambda x: not x.is_active(1))
