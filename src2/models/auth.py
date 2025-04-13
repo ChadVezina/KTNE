@@ -15,19 +15,24 @@ class Auth(ObservableModel):
 
     @property
     def state(self) -> Data:
-        return self.current_memento.state if self.current_memento else {}
+        if self.current_memento is None:
+            return {
+                "module1_couleur": None,
+                "module1_texte": None
+            }
+        return self.current_memento.state
 
     def is_state(self, key: str, value: str) -> bool:
         return self.state.get(key, None) == value
 
     def update(self, key: str, memento: Data) -> None:
+        state = self.state
+        if not key in state.keys():
+            return
+        state[key] = memento[key]
         if self.current_memento is None:
-            self.current_memento = Caretaker(memento)
+            self.current_memento = Caretaker(state)
         else:
-            state = self.state
-            if not key in state.keys():
-                return
-            state[key] = memento[key]
             self.current_memento.update(state)
         self.trigger_event("auth_changed")
 
