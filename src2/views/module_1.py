@@ -13,6 +13,7 @@ class Module1View(Frame):
         self.grid_columnconfigure(0, weight=1)
         self.is_state: Callable[[str, Any], bool] = lambda key, value: False
         self.update_state: Callable[[Data], None] = lambda state: None
+        self.init_boutons()
 
     def init_boutons(self, row: int = 0):
         self.root_boutons = Frame(self)
