@@ -7,11 +7,14 @@ class Module2Controller:
         self.model = model
         self.view = view
         self.frame = self.view.frames["module2"]
+        self.init()
         self._bind()
 
-    def _bind(self) -> None:
+    def init(self) -> None:
         self.frame.is_state = self.model.auth.is_state
         self.frame.update_state = self.model.auth.update
+
+    def _bind(self) -> None:
         self.frame.init_boutons()
         self.frame.module1.config(command=self.module1)
         self.frame.init_questions()
