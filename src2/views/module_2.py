@@ -36,7 +36,7 @@ class Module2View(Frame):
     def get_action(self, key: str) -> Callable[[str | None], None] | None:
         if self.model is None:
             return None
-        return lambda val, key=key: self.model.auth.update(key, {key: val})
+        return lambda val, key=key: self.model.auth.update({key: val})
 
     def choix_args(self, key: str):
         return self.is_active(key), self.get_action(key)
