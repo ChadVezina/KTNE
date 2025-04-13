@@ -1,4 +1,5 @@
 from tkinter import Frame
+from typing import Callable
 from models.main import Model
 from designs.composite import Composite, Leaf
 from designs.abstract_factory import ConcreteFactory1
@@ -27,11 +28,24 @@ class Module2View(Frame):
         tree = self.question_1()
         tree.show(0)
 
+    def is_active(self, key: str) -> Callable[[str], bool]:
+        if self.model is None:
+            return False
+        return lambda value: self.model.auth.is_state(key, value)
+
+    def get_action(self, key: str) -> Callable[[str | None], None] | None:
+        if self.model is None:
+            return None
+        return lambda val, key=key: self.model.auth.update(key, {key: val})
+
+    def choix_args(self, key: str):
+        return self.is_active(key), self.get_action(key)
+
     def question_1(self) -> Composite:
         branch = Composite(1, "1) Bouton est ...?", self.root_questions)
 
-        branch.add_choix("bleu")
-        branch.add_choix("\"Annuler\"")
+        branch.add_choix("bleu", *self.choix_args("module1_couleur"))
+        branch.add_choix("\"Annuler\"", *self.choix_args("module1_texte"))
 
         branch.add_action(self.derniere_question(), lambda x: x.is_active(0) and x.is_active(1))
         branch.add_action(self.question_2(), lambda x: not x.is_active(1))
@@ -43,7 +57,7 @@ class Module2View(Frame):
         branch = Composite(2, "2) Combien de piles? Bouton est ...?", self.root_questions)
 
         branch.add_choix("plus qu'une")
-        branch.add_choix("\"Exploser\"") # question 1-1
+        branch.add_choix("\"Exploser\"", *self.choix_args("module1_texte")) # question 1-1
 
         branch.add_action(self.conclusion(), lambda x: x.is_active(0) and x.is_active(1))
         branch.add_action(self.question_3(), lambda x: x.parent_numero_is_active(1, 0))
@@ -54,7 +68,7 @@ class Module2View(Frame):
     def question_3(self) -> Composite:
         branch = Composite(3, "3) Bouton est ...? Indicateur est ...?", self.root_questions)
 
-        branch.add_choix("blanc") # question 1-0
+        branch.add_choix("blanc", *self.choix_args("module1_couleur")) # question 1-0
         branch.add_choix("allumé avec \"CAR\"")
 
         branch.add_action(self.derniere_question(), lambda x: x.is_active(0) and x.is_active(1))
@@ -78,7 +92,7 @@ class Module2View(Frame):
     def question_5(self) -> Composite:
         branch = Composite(5, "5) Bouton est ...?", self.root_questions)
 
-        branch.add_choix("rouge") # question 3-0 et 1-0
+        branch.add_choix("rouge", *self.choix_args("module1_couleur")) # question 3-0 et 1-0
 
         branch.add_action(self.conclusion(), lambda x: x.is_active(0))
         branch.add_action(self.derniere_question())
