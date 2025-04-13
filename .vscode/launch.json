@@ -8,7 +8,7 @@
 			"name": "Run Python",
 			"type": "debugpy",
 			"request": "launch",
-			"program": "${workspaceFolder}/src/index.py",
+			"program": "${workspaceFolder}/src2/index.py",
 			"console": "integratedTerminal",
 			"justMyCode": true
 		}
