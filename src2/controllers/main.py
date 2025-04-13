@@ -15,11 +15,8 @@ class Controller:
         self.model.auth.add_event_listener("auth_changed", self.auth_state_listener)
 
     def auth_state_listener(self, data: Auth) -> None:
-        self.module1_controller.model.auth = data
-        self.module2_controller.model.auth = data
         self.module1_controller.init()
         self.module2_controller.init()
-        pass
 
     def start(self) -> None:
         self.view.switch("module1")
