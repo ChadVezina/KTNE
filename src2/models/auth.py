@@ -130,14 +130,14 @@ class Auth(ObservableModel):
             self.current_memento = Caretaker(state)
         else:
             self.current_memento.update(state)
-        self.trigger_event("clear")
+        self.trigger_event("auth_refresh")
 
     def undo(self) -> None:
         if self.current_memento is not None:
             self.current_memento.undo()
-            self.trigger_event("auth_changed")
+            self.trigger_event("auth_refresh")
 
     def reset(self) -> None:
         self.current_memento = None
-        self.trigger_event("auth_changed")
+        self.trigger_event("auth_refresh")
 
