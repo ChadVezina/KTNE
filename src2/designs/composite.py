@@ -59,7 +59,7 @@ class Component(ABC):
 
 
 class Leaf(Component):
-    def __init__(self, texte, parent: Frame) -> None:
+    def __init__(self, texte: str, parent: Frame) -> None:
         super().__init__(texte)
         self._widget = Texte(parent, texte=texte, visible=False)
 
@@ -71,10 +71,11 @@ class Leaf(Component):
 
 
 class Composite(Component):
-    def __init__(self, numero: int, texte, parent: Frame, multiple: bool = True) -> None:
+    def __init__(self, numero: int, texte: str, parent: Frame, multiple: bool = True) -> None:
         super().__init__(texte)
         self._numero = numero
         self._multiple = multiple
+        self._active_actions: dict[int, Callable[[], bool]] = {}
         self._actives: List[bool] = []
         self._children_choix: List[str] = []
         self._children_action: List[tuple[Component, Callable[[Component], bool] | None]] = []
@@ -98,14 +99,23 @@ class Composite(Component):
             component.hide()
         self._widget.hide()
 
+    def init_actions(self) -> None:
+        for component, _ in self._children_action:
+            if isinstance(component, Composite):
+                component.init_actions()
+        for scan, action in self._active_actions.items():
+            if self.is_active(scan) != action():
+                self.set_active(scan)
+
     def add_choix(self, choix: str, active_action: Callable[[str], bool] | bool = False, action_model: Callable[[str | None], None] | None = None) -> None:
+        col = len(self._children_choix)
         if isinstance(active_action, bool):
             active = active_action
         else:
             active = active_action(choix)
+            self._active_actions[col] = lambda choix=choix: active_action(choix)
         self._actives.append(active)
         self._children_choix.append(choix)
-        col = len(self._children_choix) - 1
         bouton = Bouton(self._options, 0, col, choix)
         if active:
             bouton.config(bg="pink")
