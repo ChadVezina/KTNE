@@ -1,6 +1,5 @@
 from tkinter import Frame
 from typing import Any, Callable
-from models.auth import Data
 from designs.composite import Composite, Leaf
 from designs.abstract_factory import ConcreteFactory1
 
