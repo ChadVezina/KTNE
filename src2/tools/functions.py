@@ -6,14 +6,20 @@ from constants.fenetre import Titre
 from constants.instructions import Titre as NewTitre, Contenu
 
 
-def make_menu(root: Tk, nouvelle: Callable, quitter: Callable):
+def make_menu(root: Tk, nouvelle: Callable, undo: Callable, reset: Callable, quitter: Callable):
     root.resizable(True, True)
 
     root.bind("<Control-n>", lambda event: nouvelle())
+    root.bind("<Control-z>", lambda event: undo())
+    root.bind("<Control-0>", lambda event: reset())
     root.bind("<Alt-F4>", lambda event: quitter())
 
     popup_menu_fichier = Menu(root, tearoff = 0)
     popup_menu_fichier.add_command(label = "Nouvelle", command = nouvelle, accelerator = "Ctrl+N")
+    popup_menu_fichier.add_separator()
+    popup_menu_fichier.add_command(label = "Undo", command = undo, accelerator = "Ctrl+Z")
+    popup_menu_fichier.add_separator()
+    popup_menu_fichier.add_command(label = "Reset", command = reset, accelerator = "Ctrl+0")
     popup_menu_fichier.add_separator()
     popup_menu_fichier.add_command(label = "Quitter", command = quitter, accelerator = "Alt+F4")
 

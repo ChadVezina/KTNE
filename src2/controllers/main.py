@@ -28,7 +28,7 @@ class Controller:
         for name, Controller in Controllers.items():
             self._add_controller(name, Controller)
         self.model.auth.add_event_listener("auth_changed", self.auth_state_listener)
-        self.model.auth.add_event_listener("refresh", self.refresh_listener)
+        self.model.auth.add_event_listener("auth_refresh", self.refresh_listener)
 
     def _add_controller(self, name: str, Controller) -> None:
         self.controllers[name] = Controller(name, self.model, self.view)
@@ -41,7 +41,7 @@ class Controller:
             controller.init()
 
     def refresh_listener(self, data: Auth) -> None:
-        for name, controller in self.controllers.items():
+        for _, controller in self.controllers.items():
             controller.model.auth = data
             controller.init()
 

@@ -17,7 +17,7 @@ class Root(Tk):
         self.grid_rowconfigure(0, weight=1)
 
         self.init()
-        make_menu(self, self.nouvelle_partie, self.quitter)
+        make_menu(self, self.nouvelle_partie, self.undo_partie, self.reset_partie, self.quitter)
 
     def init(self) -> None:
         container = Frame(self)
@@ -91,11 +91,14 @@ class Root(Tk):
         if self.scroll_active:
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
-    def ouvrir_partie(self) -> None:
+    def nouvelle_partie(self) -> None:
         self.redessiner(self.name)
 
-    def nouvelle_partie(self) -> None:
-        self.ouvrir_partie()
+    def undo_partie(self) -> None:
+        self.undo()
+
+    def reset_partie(self) -> None:
+        self.reset()
 
     def quitter(self) -> None:
         if messagebox.askyesno("Quitter", "Êtes-vous sûr de vouloir quitter?"):
