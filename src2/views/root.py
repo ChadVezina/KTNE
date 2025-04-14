@@ -1,7 +1,4 @@
-from tkinter import Tk, Toplevel, Event, messagebox, Frame, Canvas, BOTH, LEFT, TOP
-
-from constants.fenetre import Titre
-from constants.instructions import Contenu
+from tkinter import Tk, Event, messagebox, Frame, Canvas, BOTH, LEFT, TOP
 
 from tools.functions import make_menu
 

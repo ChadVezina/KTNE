@@ -7,8 +7,8 @@ T = TypeVar("T")
 
 
 class Data(TypedDict):
-    module1_couleur: Optional[str]
-    module1_texte: Optional[str]
+    module1_module2_couleur: Optional[str]
+    module1_module2_texte: Optional[str]
 
     @staticmethod
     def keys():
@@ -23,10 +23,10 @@ class Auth(ObservableModel):
     @property
     def state(self) -> Data:
         if self.current_memento is None:
-            return {
-                "module1_couleur": None,
-                "module1_texte": None
-            }
+            state: Data = {}
+            for key in Data.keys():
+                state[key] = None
+            return state
         return self.current_memento.state
 
     def is_state(self, key: str, value: T) -> bool:
