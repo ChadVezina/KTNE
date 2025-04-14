@@ -1,35 +1,38 @@
-from typing import TypedDict
+from typing import TypedDict, get_type_hints
 
 from .root import Root
 from .module_1 import Module1View
 from .module_2 import Module2View
 
 
-class Frames(TypedDict):
+class Views(TypedDict):
     module1: Module1View
     module2: Module2View
+
+    @staticmethod
+    def items():
+        return get_type_hints(Views).items()
 
 
 class View:
     def __init__(self):
-        self.root = Root()
-        self.frames: Frames = {}
-
         self._name = "module1"
-        self._add_frame(Module1View, "module1")
-        self._add_frame(Module2View, "module2")
+        self.root = Root()
+        self.views: Views = {}
+        for name, View in Views.items():
+            self._add_view(name, View)
 
     @property
     def name(self) -> int:
         return self._name
 
-    def _add_frame(self, View, name: str) -> None:
-        self.frames[name] = View(self.root)
-        self.frames[name].grid(row=0, column=0, sticky="nsew")
+    def _add_view(self, name: str, View) -> None:
+        self.views[name] = View(self.root)
+        self.views[name].grid(row=0, column=0, sticky="nsew")
 
     def switch(self, name: str) -> None:
         self._name = name
-        frame = self.frames[name]
+        frame = self.views[name]
         frame.tkraise()
 
     def start_mainloop(self) -> None:

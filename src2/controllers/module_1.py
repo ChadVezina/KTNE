@@ -6,7 +6,7 @@ class Module1Controller:
     def __init__(self, model: Model, view: View) -> None:
         self.model = model
         self.view = view
-        self.frame = self.view.frames["module1"]
+        self.frame = self.view.views["module1"]
         self._bind()
         self.init()
 
