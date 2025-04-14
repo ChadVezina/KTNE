@@ -18,6 +18,7 @@ class Module2View(Frame):
 
     def init(self) -> None:
         self.tree.init_actions()
+        self.tree.show(0)
 
     def init_boutons(self, row: int = 0):
         self.root_boutons = Frame(self)
@@ -32,7 +33,6 @@ class Module2View(Frame):
         self.root_questions.grid(row=row)
 
         self.tree = self.question_1()
-        self.tree.show(0)
 
     def is_active(self, key: str) -> Callable[[str], bool]:
         return lambda value: self.is_state(key, value)
