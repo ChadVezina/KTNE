@@ -5,13 +5,11 @@ class Root(Tk):
     def __init__(self):
         super().__init__()
 
-        start_width = 1000
-        min_width = 500
-        start_height = 500
-        min_height = 250
+        min_width = 800
+        min_height = 1000
 
-        self.geometry(f"{start_width}x{start_height}")
+        self.geometry(f"{min_width}x{min_height}+0+0")
         self.minsize(width=min_width, height=min_height)
-        self.title("TKinter MVC Multi-frame GUI")
+        self.title("Keep Talking and Nobody Explodes")
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
