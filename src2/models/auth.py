@@ -7,7 +7,7 @@ T = TypeVar("T")
 
 
 class Data(TypedDict):
-    module_module2_couleur: Optional[str]
+    module1_module2_couleur: Optional[str]
     module1_module2_texte: Optional[str]
 
     @staticmethod
