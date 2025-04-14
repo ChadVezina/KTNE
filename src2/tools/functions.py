@@ -23,19 +23,19 @@ def make_menu(root: Tk, nouvelle: Callable, quitter: Callable):
         titre = Titre.get_value_by_index(search_index)
         new_titre = NewTitre.get_value_by_index(search_index)
         contenu = Contenu.get_value_by_index(search_index)
-        if titre is None or new_titre is None:
+        if titre is None or new_titre is None or contenu is None:
             continue
         menu.add_command(label = f"Instructions: {titre}", command = lambda root = root, titre = new_titre, contenu = contenu: show_instructions(root, titre, contenu))
 
     root.config(menu = menu)
 
 
-def show_instructions(root: Tk, titre: str | None, contenu: Contenu):
+def show_instructions(root: Tk, titre: str, contenu: str):
     instructions_window = Toplevel(root)
-    instructions_window.title(titre if titre is not None else "Instructions")
+    instructions_window.title(titre)
 
     instructions_text = Text(instructions_window, wrap = WORD, font = Font.BODY, padx = TextPad.PADDING_X, pady = TextPad.PADDING_Y, width = 30, height = 15)
-    instructions_text.insert(INSERT, contenu.value)
+    instructions_text.insert(INSERT, contenu)
     instructions_text.config(state = DISABLED)
     instructions_text.pack()
 
