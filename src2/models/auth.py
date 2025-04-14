@@ -36,7 +36,7 @@ class Auth(ObservableModel):
             split = key.split("_module")
             end = split[split.__len__() - 1]
             end = end[end.index("_") + 1:]
-            if key == key_module:
+            if end == key_module:
                 return key
         return None
 

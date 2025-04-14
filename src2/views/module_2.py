@@ -12,6 +12,7 @@ class Module2View(Frame):
         self.grid_columnconfigure(0, weight=1)
         self.key_couleur = "couleur"
         self.key_texte = "texte"
+        self.key_n_piles = "n_piles"
         self.is_state: Callable[[str, Any], bool] = lambda key, value: False
         self.update_state: Callable[[str, Any], None] = lambda key, value: None
         self.init_boutons()
