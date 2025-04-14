@@ -22,6 +22,11 @@ class Module1View(Frame):
         self.tree.init_actions()
         self.tree.show(0)
 
+    def refresh(self) -> None:
+        self.root_questions.destroy()
+        self.init_questions()
+        self.tree.show(0)
+
     def init_boutons(self, row: int = 0):
         self.root_boutons = Frame(self)
         self.root_boutons.grid(row=row)

@@ -43,7 +43,7 @@ class Controller:
 
     def refresh_listener(self, data: Auth) -> None:
         for _, controller in self.controllers.items():
-            controller.init()
+            controller.refresh()
 
     def start(self) -> None:
         self.view.switch("module1")
