@@ -33,6 +33,9 @@ class Data(TypedDict):
     def keys():
         return get_type_hints(Data).keys()
 
+    def copy(self) -> Data:
+        return Data(self.items())
+
 
 class Auth(ObservableModel):
     def __init__(self):
@@ -46,7 +49,8 @@ class Auth(ObservableModel):
             for key in Data.keys():
                 state[key] = None
             return state
-        return self.current_memento.state
+        state: Data = self.current_memento.state
+        return state.copy()
 
     def get_key(self, name: str, key_module: str) -> str | None:
         keys = filter(lambda x: x.__contains__(name), Data.keys())
