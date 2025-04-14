@@ -15,16 +15,23 @@ class View:
         self.root = Root()
         self.frames: Frames = {}
 
+        self._name = "module1"
         self._add_frame(Module1View, "module1")
         self._add_frame(Module2View, "module2")
 
-    def _add_frame(self, Frame, name: str) -> None:
-        self.frames[name] = Frame(self.root)
+    @property
+    def name(self) -> int:
+        return self._name
+
+    def _add_frame(self, View, name: str) -> None:
+        self.frames[name] = View(self.root)
         self.frames[name].grid(row=0, column=0, sticky="nsew")
 
     def switch(self, name: str) -> None:
+        self._name = name
         frame = self.frames[name]
         frame.tkraise()
 
     def start_mainloop(self) -> None:
         self.root.mainloop()
+
