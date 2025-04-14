@@ -27,7 +27,7 @@ class View:
         return self._name
 
     def _add_view(self, name: str, View) -> None:
-        self.views[name] = View(self.root)
+        self.views[name] = View(self.root.cadre)
         self.views[name].grid(row=0, column=0, sticky="nsew")
 
     def switch(self, name: str) -> None:

@@ -20,7 +20,6 @@ class Root(Tk):
 
         self.init()
         make_menu(self, self.nouvelle_partie, self.quitter)
-        self.ouvrir_partie()
 
     def init(self) -> None:
         container = Frame(self)
@@ -88,9 +87,6 @@ class Root(Tk):
 
     def ouvrir_partie(self) -> None:
         self.redessiner()
-
-    def redessiner(self) -> None:
-        pass
 
     def nouvelle_partie(self) -> None:
         self.ouvrir_partie()

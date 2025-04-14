@@ -1,4 +1,4 @@
-from typing import Optional, TypedDict, TypeVar
+from typing import Optional, TypedDict, TypeVar, get_type_hints
 from .base import ObservableModel
 from designs.memento import Caretaker
 
@@ -9,6 +9,10 @@ T = TypeVar("T")
 class Data(TypedDict):
     module1_couleur: Optional[str]
     module1_texte: Optional[str]
+
+    @staticmethod
+    def keys():
+        return get_type_hints(Data).keys()
 
 
 class Auth(ObservableModel):
@@ -38,11 +42,15 @@ class Auth(ObservableModel):
             self.current_memento.update(state)
         self.trigger_event("auth_changed")
 
-    def clear(self) -> None:
+    def clear(self, name: str) -> None:
+        state = self.state
+        for key in Data.keys():
+            if key.__contains__(name):
+                state[key] = None
         if self.current_memento is None:
-            return
+            self.current_memento = Caretaker(state)
         else:
-            self.current_memento.update({})
+            self.current_memento.update(state)
         self.trigger_event("auth_changed")
 
     def undo(self) -> None:
