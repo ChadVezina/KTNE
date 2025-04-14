@@ -24,6 +24,8 @@ class Controller:
         self.view.root.redessiner = lambda name: self.model.auth.clear(name)
         self.view.root.reset = self.model.auth.reset
         self.view.root.undo = self.model.auth.undo
+        self.view.is_state = lambda name, key, value: self.model.auth.is_state(name, key, value)
+        self.view.update_state = lambda name, key, value: self.model.auth.update(name, key, value)
         self.controllers: Controllers = {}
         for name, Controller in Controllers.items():
             self._add_controller(name, Controller)
@@ -37,12 +39,10 @@ class Controller:
         for name, controller in self.controllers.items():
             if name == self.view.name:
                 continue
-            controller.model.auth = data
             controller.init()
 
     def refresh_listener(self, data: Auth) -> None:
         for _, controller in self.controllers.items():
-            controller.model.auth = data
             controller.init()
 
     def start(self) -> None:

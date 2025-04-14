@@ -12,8 +12,8 @@ class Module2Controller:
         self.init()
 
     def init(self) -> None:
-        self.frame.is_state = lambda key, value: self.model.auth.is_state(self.name, key, value)
-        self.frame.update_state = lambda key, value: self.model.auth.update(self.name, key, value)
+        self.frame.is_state = lambda key, value: self.view.is_state(self.name, key, value)
+        self.frame.update_state = lambda key, value: self.view.update_state(self.name, key, value)
         self.frame.init()
 
     def _bind(self) -> None:
