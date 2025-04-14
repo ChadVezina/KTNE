@@ -9,6 +9,7 @@ T = TypeVar("T")
 class Data(TypedDict):
     module1_module2_couleur: Optional[str]
     module1_module2_texte: Optional[str]
+    module1_module2_n_piles: Optional[str]
 
     @staticmethod
     def keys():
@@ -32,7 +33,10 @@ class Auth(ObservableModel):
     def get_key(self, name: str, key_module: str) -> str | None:
         keys = filter(lambda x: x.__contains__(name), Data.keys())
         for key in keys:
-            if key.__contains__(key_module):
+            split = key.split("_module")
+            end = split[split.__len__() - 1]
+            end = end[end.index("_") + 1:]
+            if key == key_module:
                 return key
         return None
 
