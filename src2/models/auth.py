@@ -116,7 +116,6 @@ class Auth(ObservableModel):
         self.trigger_event("auth_changed")
 
     def clear(self, name: str) -> None:
-        print(f"clear {name}")
         state = self.state
         changement = False
         for key in Data.keys():
@@ -131,7 +130,7 @@ class Auth(ObservableModel):
             self.current_memento = Caretaker(state)
         else:
             self.current_memento.update(state)
-        self.trigger_event("auth_changed")
+        self.trigger_event("clear")
 
     def undo(self) -> None:
         if self.current_memento is not None:

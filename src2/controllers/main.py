@@ -19,7 +19,6 @@ class Controllers(TypedDict):
 
 class Controller:
     def __init__(self, model: Model, view: View) -> None:
-        self.is_loading = False
         self.model = model
         self.view = view
         self.view.root.redessiner = lambda name: self.model.auth.clear(name)
@@ -27,21 +26,22 @@ class Controller:
         for name, Controller in Controllers.items():
             self._add_controller(name, Controller)
         self.model.auth.add_event_listener("auth_changed", self.auth_state_listener)
+        self.model.auth.add_event_listener("clear", self.clear_listener)
 
     def _add_controller(self, name: str, Controller) -> None:
         self.controllers[name] = Controller(name, self.model, self.view)
 
     def auth_state_listener(self, data: Auth) -> None:
-        if self.is_loading:
-            return
-        self.is_loading = True
-        self.view.root.redessiner = lambda name: data.clear(name)
         for name, controller in self.controllers.items():
             if name == self.view.name:
                 continue
             controller.model.auth = data
             controller.init()
-        self.is_loading = False
+
+    def clear_listener(self, data: Auth) -> None:
+        for name, controller in self.controllers.items():
+            controller.model.auth = data
+            controller.init()
 
     def start(self) -> None:
         self.view.switch("module1")
