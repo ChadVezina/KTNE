@@ -8,7 +8,7 @@ class Root(Tk):
         self._name = "module1"
         super().__init__()
         min_width = 800
-        min_height = 1000
+        min_height = 600
 
         self.geometry(f"{min_width}x{min_height}+0+0")
         self.minsize(width=min_width, height=min_height)
