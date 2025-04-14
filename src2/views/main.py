@@ -16,22 +16,21 @@ class Views(TypedDict):
 
 class View:
     def __init__(self):
-        self._name = "module1"
         self.root = Root()
         self.views: Views = {}
         for name, View in Views.items():
             self._add_view(name, View)
 
     @property
-    def name(self) -> int:
-        return self._name
+    def name(self) -> str:
+        return self.root.name
 
     def _add_view(self, name: str, View) -> None:
         self.views[name] = View(self.root.cadre)
         self.views[name].grid(row=0, column=0, sticky="nsew")
 
     def switch(self, name: str) -> None:
-        self._name = name
+        self.root.name = name
         frame = self.views[name]
         frame.tkraise()
 

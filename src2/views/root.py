@@ -5,6 +5,7 @@ from tools.functions import make_menu
 
 class Root(Tk):
     def __init__(self):
+        self._name = "module1"
         super().__init__()
         min_width = 800
         min_height = 1000
@@ -37,8 +38,16 @@ class Root(Tk):
         self.scroll_active = False
 
         self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
-        self.bind("<Button-2>", lambda e: self.redessiner())
+        self.bind("<Button-2>", lambda e: self.redessiner(self.name))
         self.bind("<Button-3>", lambda e: self.clic())
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, name: str) -> None:
+        self._name = name
 
     def clic(self) -> None:
         if self.state() == "zoomed":
@@ -83,7 +92,7 @@ class Root(Tk):
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
     def ouvrir_partie(self) -> None:
-        self.redessiner()
+        self.redessiner(self.name)
 
     def nouvelle_partie(self) -> None:
         self.ouvrir_partie()

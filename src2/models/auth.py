@@ -116,11 +116,13 @@ class Auth(ObservableModel):
         self.trigger_event("auth_changed")
 
     def clear(self, name: str) -> None:
+        print(f"clear {name}")
         state = self.state
         changement = False
         for key in Data.keys():
-            split = key.split("_module")
-            if split.__len__() == 2 and key.__contains__(name) and state[key] is not None:
+            if key.__contains__("_module") or state[key] is None:
+                continue
+            if key.__contains__(name):
                 state[key] = None
                 changement = True
         if not changement:
