@@ -19,6 +19,7 @@ class Controllers(TypedDict):
 
 class Controller:
     def __init__(self, model: Model, view: View) -> None:
+        self.is_loading = False
         self.model = model
         self.view = view
         self.controllers: Controllers = {}
@@ -30,11 +31,15 @@ class Controller:
         self.controllers[name] = Controller(self.model, self.view)
 
     def auth_state_listener(self, data: Auth) -> None:
+        if self.is_loading:
+            return
+        self.is_loading = True
         for name, controller in self.controllers.items():
             if name == self.view.name:
                 continue
             controller.model.auth = data
             controller.init()
+        self.is_loading = False
 
     def start(self) -> None:
         self.view.switch("module1")

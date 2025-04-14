@@ -1,9 +1,27 @@
-from typing import Callable, Optional, TypeAlias, TypedDict, get_type_hints
+from __future__ import annotations
+from dataclasses import dataclass
+from typing import Callable, Optional, TypedDict, get_type_hints
 from .base import ObservableModel
 from designs.memento import Caretaker
+from inspect import getsource
 
 
-Comparaison: TypeAlias = tuple[int, Callable[[int], bool]]
+@dataclass
+class Comparaison:
+    _value: int
+    _condition: Callable[[int], bool]
+
+    @property
+    def value(self) -> int:
+        return self._value
+
+    @property
+    def condition(self) -> Callable[[int], bool]:
+        return self._condition
+
+    @staticmethod
+    def build(value: int, condition: Callable[[int], bool]) -> Comparaison:
+        return Comparaison(_value=value, _condition=condition)
 
 
 class Data(TypedDict):
@@ -41,14 +59,17 @@ class Auth(ObservableModel):
         return None
 
     def get_value(self, key: str, value: str) -> str | int | float | Comparaison | None:
+        if value is None:
+            return None
         if key.startswith("n_"):
             match value:
                 case "plus qu'une":
-                    return 2, lambda x: x > 1
+                    return Comparaison.build(2, lambda x: x > 1)
                 case "plus que 2":
-                    return 3, lambda x: x > 2
+                    return Comparaison.build(3, lambda x: x > 2)
                 case _:
                     try:
+                        print(f"Value: {value}")
                         return int(value)
                     except ValueError:
                         try:
@@ -61,10 +82,12 @@ class Auth(ObservableModel):
     def is_state(self, name: str, key_module: str, value_module: str) -> bool:
         key = self.get_key(name, key_module)
         if key:
-            value = self.get_value(key, value_module)
-            if value is Comparaison:
-                old_value = self.state.get(key, (0, lambda x: False))
-                return old_value[1](value[0])
+            value = self.get_value(key_module, value_module)
+            if isinstance(value, Comparaison):
+                old_value: Optional[Comparaison] = self.state.get(key, None)
+                if old_value is None:
+                    return value is None
+                return value.condition(old_value.value)
             return self.state.get(key, None) == value
         else:
             return False
@@ -73,7 +96,9 @@ class Auth(ObservableModel):
         state = self.state
         key = self.get_key(name, key_module)
         if key:
-            value = self.get_value(key, value_module)
+            value = self.get_value(key_module, value_module)
+            if value == state.get(key, None):
+                return
             state[key] = value
         else:
             return

@@ -35,7 +35,7 @@ class Originator:
 
     def restore(self, memento: Memento) -> None:
         self._state = memento.get_state()
-        print(f"Originator: Etat actuel devient: {self._state}")
+        print(f"Originator: Etat actuel était: {self._state}")
 
 
 class ConcreteMemento(Memento):
