@@ -13,8 +13,8 @@ class Module2Controller:
 
     def init(self) -> None:
         self.view.root.redessiner = lambda name=self.name: self.model.auth.clear(name)
-        self.frame.is_state = self.model.auth.is_state
-        self.frame.update_state = self.model.auth.update
+        self.frame.is_state = lambda key, value, name=self.name: self.model.auth.is_state(name, key, value)
+        self.frame.update_state = lambda key, value, name=self.name: self.model.auth.update(name, key, value)
         self.frame.init()
 
     def _bind(self) -> None:

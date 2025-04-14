@@ -29,13 +29,26 @@ class Auth(ObservableModel):
             return state
         return self.current_memento.state
 
-    def is_state(self, key: str, value: T) -> bool:
+    def get_key(self, name: str, key_module: str) -> str:
+        keys = filter(lambda x: x.__contains__(name), Data.keys())
+        for key in keys:
+            if key.__contains__(key_module):
+                return key
+        return None
+
+    def is_state(self, name: str, key_module: str, value: T) -> bool:
+        key = self.get_key(name, key_module)
         return self.state.get(key, None) == value
 
-    def update(self, memento: Data) -> None:
+    def update(self, name: str, key_module: str, value: T) -> None:
         state = self.state
-        for key in memento.keys():
-            state[key] = memento[key]
+        key = self.get_key(name, key_module)
+        if key:
+            state[key] = value
+        else:
+            return
+        #for key in memento.keys():
+            #state[key] = memento[key]
         if self.current_memento is None:
             self.current_memento = Caretaker(state)
         else:

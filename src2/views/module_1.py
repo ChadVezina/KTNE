@@ -11,10 +11,10 @@ class Module1View(Frame):
         self.grid_rowconfigure(0, weight=0)
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
-        self.key_couleur = "module1_module2_couleur"
-        self.key_texte = "module1_module2_texte"
+        self.key_couleur = "couleur"
+        self.key_texte = "texte"
         self.is_state: Callable[[str, Any], bool] = lambda key, value: False
-        self.update_state: Callable[[Data], None] = lambda state: None
+        self.update_state: Callable[[str, Any], None] = lambda key, value: None
         self.init_boutons()
         self.init_questions()
 
@@ -40,7 +40,7 @@ class Module1View(Frame):
         return lambda value: self.is_state(key, value)
 
     def get_action(self, key: str) -> Callable[[str | None], None]:
-        return lambda val, key=key: self.update_state({key: val})
+        return lambda value, key=key: self.update_state(key, value)
 
     def choix_args(self, key: str):
         return self.is_active(key), self.get_action(key)
