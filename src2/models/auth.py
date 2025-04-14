@@ -1,15 +1,15 @@
-from typing import Optional, TypedDict, TypeVar, get_type_hints
+from typing import Callable, Optional, TypeAlias, TypedDict, get_type_hints
 from .base import ObservableModel
 from designs.memento import Caretaker
 
 
-T = TypeVar("T")
+Comparaison: TypeAlias = tuple[int, Callable[[int], bool]]
 
 
 class Data(TypedDict):
     module1_module2_couleur: Optional[str]
     module1_module2_texte: Optional[str]
-    module1_module2_n_piles: Optional[str]
+    module1_module2_n_piles: Optional[Comparaison]
 
     @staticmethod
     def keys():
@@ -40,17 +40,40 @@ class Auth(ObservableModel):
                 return key
         return None
 
-    def is_state(self, name: str, key_module: str, value: T) -> bool:
+    def get_value(self, key: str, value: str) -> str | int | float | Comparaison | None:
+        if key.startswith("n_"):
+            match value:
+                case "plus qu'une":
+                    return 2, lambda x: x > 1
+                case "plus que 2":
+                    return 3, lambda x: x > 2
+                case _:
+                    try:
+                        return int(value)
+                    except ValueError:
+                        try:
+                            return float(value)
+                        except ValueError:
+                            return None
+        else:
+            return value
+
+    def is_state(self, name: str, key_module: str, value_module: str) -> bool:
         key = self.get_key(name, key_module)
         if key:
+            value = self.get_value(key, value_module)
+            if value is Comparaison:
+                old_value = self.state.get(key, (0, lambda x: False))
+                return old_value[1](value[0])
             return self.state.get(key, None) == value
         else:
             return False
 
-    def update(self, name: str, key_module: str, value: T) -> None:
+    def update(self, name: str, key_module: str, value_module: str) -> None:
         state = self.state
         key = self.get_key(name, key_module)
         if key:
+            value = self.get_value(key, value_module)
             state[key] = value
         else:
             return

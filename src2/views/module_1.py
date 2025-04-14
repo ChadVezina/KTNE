@@ -60,7 +60,7 @@ class Module1View(Frame):
     def question_2(self) -> Composite:
         branch = Composite(2, "2) Combien de piles? Bouton est ...?", self.root_questions)
 
-        branch.add_choix("plus qu'une")
+        branch.add_choix("plus qu'une", *self.choix_args(self.key_n_piles))
         branch.add_choix("\"Exploser\"", *self.choix_args(self.key_texte)) # question 1-1
 
         branch.add_action(self.conclusion(), lambda x: x.is_active(0) and x.is_active(1))
@@ -84,7 +84,7 @@ class Module1View(Frame):
     def question_4(self) -> Composite:
         branch = Composite(4, "4) Combien de piles? Indicateur est ...?", self.root_questions)
 
-        branch.add_choix("plus que 2") # question 2-0
+        branch.add_choix("plus que 2", *self.choix_args(self.key_n_piles)) # question 2-0
         branch.add_choix("allumé avec \"FRK\"")
 
         branch.add_action(self.conclusion(), lambda x: x.is_active(0) and x.is_active(1))
