@@ -7,7 +7,7 @@ T = TypeVar("T")
 
 
 class Data(TypedDict):
-    module1_module2_couleur: Optional[str]
+    module_module2_couleur: Optional[str]
     module1_module2_texte: Optional[str]
 
     @staticmethod
@@ -29,7 +29,7 @@ class Auth(ObservableModel):
             return state
         return self.current_memento.state
 
-    def get_key(self, name: str, key_module: str) -> str:
+    def get_key(self, name: str, key_module: str) -> str | None:
         keys = filter(lambda x: x.__contains__(name), Data.keys())
         for key in keys:
             if key.__contains__(key_module):
@@ -38,7 +38,10 @@ class Auth(ObservableModel):
 
     def is_state(self, name: str, key_module: str, value: T) -> bool:
         key = self.get_key(name, key_module)
-        return self.state.get(key, None) == value
+        if key:
+            return self.state.get(key, None) == value
+        else:
+            return False
 
     def update(self, name: str, key_module: str, value: T) -> None:
         state = self.state
@@ -47,8 +50,6 @@ class Auth(ObservableModel):
             state[key] = value
         else:
             return
-        #for key in memento.keys():
-            #state[key] = memento[key]
         if self.current_memento is None:
             self.current_memento = Caretaker(state)
         else:
