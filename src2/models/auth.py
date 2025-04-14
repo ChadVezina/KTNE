@@ -85,9 +85,7 @@ class Auth(ObservableModel):
             value = self.get_value(key_module, value_module)
             if isinstance(value, Comparaison):
                 old_value: Optional[Comparaison] = self.state.get(key, None)
-                if old_value is None:
-                    return value is None
-                return value.condition(old_value.value)
+                return old_value is not None and value.condition(old_value.value)
             return self.state.get(key, None) == value
         else:
             return False
@@ -97,9 +95,18 @@ class Auth(ObservableModel):
         key = self.get_key(name, key_module)
         if key:
             value = self.get_value(key_module, value_module)
-            if value == state.get(key, None):
+            if isinstance(value, Comparaison):
+                old_value: Optional[Comparaison] = state.get(key, None)
+                if old_value is None or not value.condition(old_value.value):
+                    state[key] = value
+                else:
+                    if getsource(old_value.condition) == getsource(value.condition):
+                        return
+                    state[key].condition = value.condition
+            elif state.get(key, None) == value:
                 return
-            state[key] = value
+            else:
+                state[key] = value
         else:
             return
         if self.current_memento is None:
