@@ -14,6 +14,10 @@ class Module2View(Frame):
         self.is_state: Callable[[str, Any], bool] = lambda key, value: False
         self.update_state: Callable[[Data], None] = lambda state: None
         self.init_boutons()
+        self.init_questions()
+
+    def init(self) -> None:
+        self.tree.init_actions()
 
     def init_boutons(self, row: int = 0):
         self.root_boutons = Frame(self)
@@ -27,8 +31,8 @@ class Module2View(Frame):
         self.root_questions = Frame(self)
         self.root_questions.grid(row=row)
 
-        tree = self.question_1()
-        tree.show(0)
+        self.tree = self.question_1()
+        self.tree.show(0)
 
     def is_active(self, key: str) -> Callable[[str], bool]:
         return lambda value: self.is_state(key, value)
