@@ -40,6 +40,8 @@ class Root(Tk):
         self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
         self.bind("<Button-2>", lambda e: self.reset_partie())
         self.bind("<Button-3>", lambda e: self.clic())
+        self.bind("<Map>", lambda e: self.on_inner_frame_change())
+        self.bind("<Unmap>", lambda e: self.on_inner_frame_change())
 
     @property
     def name(self) -> str:
