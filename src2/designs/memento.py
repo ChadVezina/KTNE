@@ -1,14 +1,34 @@
+from __future__ import annotations
+from dataclasses import dataclass
 from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import TypeVar
+from copy import copy
+#from inspect import getsource
 
 
 T = TypeVar("T")
 
 
+@dataclass
+class Data:
+    _state: T
+
+    @property
+    def state(self) -> T:
+        return self._state
+
+    def copy(self) -> T:
+        return copy(self._state)
+
+    @staticmethod
+    def build(state: T) -> Data:
+        return Data(_state = state)
+
+
 class Memento(ABC):
     @abstractmethod
-    def get_state(self) -> T:
+    def get_data(self) -> Data:
         pass
 
     @abstractmethod
@@ -18,51 +38,53 @@ class Memento(ABC):
 
 class Originator:
     def __init__(self, state: T) -> None:
-        self._state = state
-        print(f"Originator: Etat actuel: {self._state}")
+        self._data = Data.build(state)
+        print(f"Originator: Etat actuel: {self._data.state}")
 
     @property
-    def state(self) -> T:
-        return self._state
+    def data(self) -> Data:
+        return self._data
 
-    @state.setter
-    def state(self, state: T) -> None:
-        self._state = state
-        print(f"Originator: Etat actuel devient: {self._state}")
+    @data.setter
+    def data(self, state: T) -> None:
+        self._data = Data.build(state)
+        print(f"Originator: Etat actuel devient: {self._data.state}")
 
     def save(self) -> Memento:
-        return ConcreteMemento(self._state)
+        return ConcreteMemento(self._data)
 
     def restore(self, memento: Memento) -> None:
-        self._state = memento.get_state()
-        print(f"Originator: Etat actuel était: {self._state}")
+        self._data = memento.get_data()
+        print(f"Originator: Etat actuel etait: {self._data.state}")
 
 
 class ConcreteMemento(Memento):
-    def __init__(self, state: T) -> None:
-        self._state = state
+    def __init__(self, data: Data) -> None:
+        self._data = data
         self._date = str(datetime.now())[:19]
 
-    def get_state(self) -> T:
-        return self._state
+    def get_data(self) -> Data:
+        return self._data
 
     def get_name(self) -> str:
-        return f"{self._date} / ({self._state.__str__()})"
+        return f"{self._date} / ({self._data.state.__str__()})"
 
 
 class Caretaker:
     def __init__(self, state: T) -> None:
         self._mementos: list[Memento] = []
-        self._originator = Originator(None)
-        self.update(state)
+        self._originator = Originator(state)
 
     @property
     def state(self) -> T:
-        return self._originator.state
+        return self._originator.data.state
+
+    def copy(self) -> T:
+        return self._originator.data.copy()
 
     def update(self, new_state: T) -> None:
         self.backup()
-        self._originator.state = new_state
+        self._originator.data = new_state
 
     def backup(self) -> None:
         print("\nCaretaker: Sauvegarde en cours...")
@@ -85,12 +107,16 @@ class Caretaker:
         for memento in self._mementos:
             print(memento.get_name())
 
-
 if __name__ == "__main__":
-    caretaker = Caretaker("a")
-    caretaker.update(3)
-    caretaker.update("c")
-    caretaker.update("d")
-    caretaker.undo()
-    caretaker.undo()
+    #test = (["s", 45, 3.5], {"a": 1, "b": 2})
+    test0 = {"s": 234, "a": "gdsg"}
+    test = [0, None, 324, "dfgdfg", 4.5, False, test0]
+    caretaker = Caretaker(test)
+    state:list = caretaker.copy()
+    state[0] = None
+    state.append("test")
+    #state = (None, state[1])
+    print(state)
+    now = caretaker.state
+    print(now)
 
