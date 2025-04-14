@@ -117,9 +117,14 @@ class Auth(ObservableModel):
 
     def clear(self, name: str) -> None:
         state = self.state
+        changement = False
         for key in Data.keys():
-            if key.__contains__(name):
+            split = key.split("_module")
+            if split.__len__() == 2 and key.__contains__(name) and state[key] is not None:
                 state[key] = None
+                changement = True
+        if not changement:
+            return
         if self.current_memento is None:
             self.current_memento = Caretaker(state)
         else:
