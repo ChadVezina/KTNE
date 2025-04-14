@@ -19,7 +19,7 @@ def make_menu(root: Tk, nouvelle: Callable, undo: Callable, reset: Callable, qui
     popup_menu_fichier.add_separator()
     popup_menu_fichier.add_command(label = "Undo", command = undo, accelerator = "Ctrl+Z")
     popup_menu_fichier.add_separator()
-    popup_menu_fichier.add_command(label = "Reset", command = reset, accelerator = "Ctrl+0")
+    popup_menu_fichier.add_command(label = "Reset", command = reset, accelerator = "Ctrl+0 / middle click")
     popup_menu_fichier.add_separator()
     popup_menu_fichier.add_command(label = "Quitter", command = quitter, accelerator = "Alt+F4")
 

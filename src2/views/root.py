@@ -38,7 +38,7 @@ class Root(Tk):
         self.scroll_active = False
 
         self.bind("<Enter>", lambda e: self.bind_mouse_scroll())
-        self.bind("<Button-2>", lambda e: self.redessiner(self.name))
+        self.bind("<Button-2>", lambda e: self.reset_partie())
         self.bind("<Button-3>", lambda e: self.clic())
 
     @property
@@ -54,9 +54,6 @@ class Root(Tk):
             self.state("normal")
         else:
             self.state("zoomed")
-
-    def enter(self) -> None:
-        self.on_inner_frame_change()
 
     def on_inner_frame_change(self, event = None) -> None:
         self.outer_frame.event_generate("<Configure>")
@@ -92,13 +89,13 @@ class Root(Tk):
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
     def nouvelle_partie(self) -> None:
-        self.redessiner(self.name)
+        self.reset()
 
     def undo_partie(self) -> None:
         self.undo()
 
     def reset_partie(self) -> None:
-        self.reset()
+        self.redessiner(self.name)
 
     def quitter(self) -> None:
         if messagebox.askyesno("Quitter", "Êtes-vous sûr de vouloir quitter?"):
