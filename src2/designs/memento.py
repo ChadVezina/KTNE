@@ -47,13 +47,14 @@ class ConcreteMemento(Memento):
         return self._state
 
     def get_name(self) -> str:
-        return f"{self._date} / ({self._state.__str__()[0:9]}...)"
+        return f"{self._date} / ({self._state.__str__()})"
 
 
 class Caretaker:
     def __init__(self, state: T) -> None:
         self._mementos: list[Memento] = []
-        self._originator = Originator(state)
+        self._originator = Originator(None)
+        self.update(state)
 
     @property
     def state(self) -> T:
@@ -67,16 +68,17 @@ class Caretaker:
         print("\nCaretaker: Sauvegarde en cours...")
         self._mementos.append(self._originator.save())
 
-    def undo(self) -> None:
+    def undo(self) -> bool:
         if not len(self._mementos):
-            return
+            return False
         self.afficher_historique()
         memento = self._mementos.pop()
         print(f"\nCaretaker: Charger: {memento.get_name()}")
         try:
             self._originator.restore(memento)
         except Exception:
-            self.undo()
+            return self.undo()
+        return True
 
     def afficher_historique(self) -> None:
         print("\nCaretaker: Historique:")

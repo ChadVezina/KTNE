@@ -41,7 +41,7 @@ class Auth(ObservableModel):
 
     @property
     def state(self) -> Data:
-        if self.current_memento is None:
+        if self.current_memento is None or self.current_memento.state is None:
             state: Data = {}
             for key in Data.keys():
                 state[key] = None
@@ -134,8 +134,10 @@ class Auth(ObservableModel):
 
     def undo(self) -> None:
         if self.current_memento is not None:
-            self.current_memento.undo()
-            self.trigger_event("auth_refresh")
+            if self.current_memento.undo():
+                self.trigger_event("auth_refresh")
+        else:
+            self.reset()
 
     def reset(self) -> None:
         self.current_memento = None
