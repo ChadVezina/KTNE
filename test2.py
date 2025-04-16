@@ -11,12 +11,14 @@ down = "s"
 
 def back_flip():
     pyautogui.press(down)
+    time.sleep(0.1)
     pyautogui.press("space")
     #print("back-flipping")
 
 
 def cart_slam():
     pyautogui.press("space")
+    time.sleep(0.1)
     pyautogui.press(down)
     #print("cart-slamming")
 
@@ -45,41 +47,10 @@ def detect_sign(dir, x1, y1, x2, y2):
         time.sleep(.4)
         drift(dir)
         back_flip()
+        back_flip()
 
 
 def get_all():
-    left_x1 = 710
-    left_y1 = 350
-
-    left_x2 = 1115
-    left_y2 = 1498
-
-    right_x1 = 2720
-    right_y1 = 350
-
-    right_x2 = 3128
-    right_y2 = 1498
-
-    return left_x1, left_y1, left_x2, left_y2, right_x1, right_y1, right_x2, right_y2
-
-
-def get_all2():
-    left_x1 = 1356
-    left_y1 = 642
-
-    left_x2 = 1544
-    left_y2 = 1185
-
-    right_x1 = 2294
-    right_y1 = 642
-
-    right_x2 = 2488
-    right_y2 = 1185
-
-    return left_x1, left_y1, left_x2, left_y2, right_x1, right_y1, right_x2, right_y2
-
-
-def get_all3():
     left_x1 = 241
     left_y1 = 648
 
@@ -95,7 +66,8 @@ def get_all3():
     return left_x1, left_y1, left_x2, left_y2, right_x1, right_y1, right_x2, right_y2
 
 
-all = get_all3()
+all = get_all()
+time.sleep(2)
 while True:
     detect_sign(right, all[0], all[1], all[2], all[3])
     detect_sign(left, all[4], all[5], all[6], all[7])
