@@ -44,9 +44,8 @@ def detect_sign(dir, x1, y1, x2, y2):
     frame = np.array(frame_grab)
     if 255 in cv2.inRange(frame, YELLOW_LOWER, YELLOW_UPPER):
         cart_slam()
-        time.sleep(.4)
+        time.sleep(.3)
         drift(dir)
-        back_flip()
         back_flip()
 
 
